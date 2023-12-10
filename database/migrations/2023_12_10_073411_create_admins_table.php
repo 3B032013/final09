@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); # 使用者編號
+            $table->integer('position'); # 管理員等級
             $table->timestamps();
         });
     }

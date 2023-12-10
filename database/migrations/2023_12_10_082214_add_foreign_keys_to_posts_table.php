@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sellers', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id'); # 使用者編號
-            $table->integer('status'); # 賣家審核狀態
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            # 管理員編號 外來鍵
+            $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sellers');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropForeign(['admin_id']);
+        });
     }
 };

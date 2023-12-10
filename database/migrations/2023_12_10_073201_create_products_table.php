@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_category_id'); # 商品類型編號
+            $table->unsignedBigInteger('seller_id'); # 賣家編號
+            $table->string('name');
+            $table->string('image_url');
+            $table->integer('price');
+            $table->integer('inventory');
+            $table->string('detail');
+            $table->integer('status'); # 商品狀態
             $table->timestamps();
         });
     }

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id'); # 管理員編號
+            $table->text('title');
+            $table->text('content');
+            $table->date('date');
+            $table->integer('status'); # 公告狀態 (未、已發佈)
             $table->timestamps();
         });
     }
