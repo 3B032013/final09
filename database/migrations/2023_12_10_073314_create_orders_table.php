@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('seller_id'); # 賣家編號
             $table->integer('status');
             $table->date('date');
-            $table->integer('score');
-            $table->string('comment');
+            $table->integer('score')->nullable();
+            $table->string('comment')->nullable();
             $table->integer('pay');
             $table->integer('price');
             $table->string('receiver');
