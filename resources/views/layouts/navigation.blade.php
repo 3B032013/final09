@@ -37,7 +37,11 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('個人資料') }}
                         </x-dropdown-link>
-
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            <x-dropdown-link :href="route('admins.dashboard')">
+                                {{ __('後台管理') }}
+                            </x-dropdown-link>
+                        @endif
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

@@ -50,6 +50,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function isAdmin()
+    {
+        return $this->admin !== null;
+    }
+
     public function admin()
     {
         return $this->hasOne(Admin::class);
