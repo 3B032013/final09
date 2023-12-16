@@ -65,6 +65,14 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/admins/{admin}/edit', [App\Http\Controllers\AdminAdminController::class, 'edit'])->name("admins.edit");
         Route::patch('/admins/{admin}',[App\Http\Controllers\AdminAdminController::class,'update'])->name('admins.update');
         Route::delete('/admins/{admin}', [App\Http\Controllers\AdminAdminController::class, 'destroy'])->name("admins.destroy");
+
+        // 商品管理
+        Route::get('/products',[App\Http\Controllers\AdminProductController::class,'index'])->name('products.index');
+        Route::get('/products/create',[App\Http\Controllers\AdminProductController::class,'create'])->name('products.create');
+        Route::post('/products', [App\Http\Controllers\AdminProductController::class, 'store'])->name("products.store");
+        Route::get('/products/{product}/edit', [App\Http\Controllers\AdminProductController::class, 'edit'])->name("products.edit");
+        Route::patch('/products/{product}',[App\Http\Controllers\AdminProductController::class,'update'])->name('products.update');
+        Route::delete('/products/{product}', [App\Http\Controllers\AdminProductController::class, 'destroy'])->name("products.destroy");
     });
 });
 
