@@ -13,7 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+//        $products = Product::orderby('id','ASC')->get();
+//        $data = ['products' => $products];
+//        return view('index',$data);
     }
 
     /**
@@ -21,7 +23,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('sellers.products.create');
     }
 
     /**
@@ -29,15 +31,36 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($product)
     {
         //
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            $cartItems = $user->CartItems;
+
+            $product = Product::where('id',$product)->first();
+            $data = [
+                'cartItems' => $cartItems,
+                'product' => $product,
+            ];
+            return view('products.show', $data);
+        }
+        else
+        {
+            $product = Product::where('id',$product)->first();
+            $data = [
+                'product' => $product,
+
+            ];
+            return view('products.show', $data);
+        }
     }
 
     /**
@@ -45,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
@@ -53,7 +76,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+
     }
 
     /**
@@ -61,6 +84,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('sellers.products.index');
     }
 }

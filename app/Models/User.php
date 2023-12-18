@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasOne(Admin::class);
     }
 
+    public function isSeller()
+    {
+        return $this->seller !== null;
+    }
+
     public function seller()
     {
         return $this->hasOne(Seller::class);
