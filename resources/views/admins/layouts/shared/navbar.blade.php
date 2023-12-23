@@ -18,7 +18,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">管理員：{{ Auth::user()->name }} </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{ route('dashboard') }}">回到前台</a></li>
+                <li><a class="dropdown-item" href="{{ route('home') }}">回到前台</a></li>
                 <li><a class="dropdown-item" href="#!">設定</a></li>
                 <li>
                     <hr class="dropdown-divider"/>
