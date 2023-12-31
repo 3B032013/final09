@@ -79,6 +79,16 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/products/{product}/edit', [App\Http\Controllers\AdminProductController::class, 'edit'])->name("products.edit");
         Route::patch('/products/{product}',[App\Http\Controllers\AdminProductController::class,'update'])->name('products.update');
         Route::delete('/products/{product}', [App\Http\Controllers\AdminProductController::class, 'destroy'])->name("products.destroy");
+
+        Route::get('/product_categories',[App\Http\Controllers\AdminProductCategoryController::class,'index'])->name('product_categories.index');
+        Route::get('/product_categories/search', [App\Http\Controllers\AdminProductCategoryController::class, 'search'])->name('product_categories.search');
+        Route::get('/product_categories/create',[App\Http\Controllers\AdminProductCategoryController::class,'create'])->name('product_categories.create');
+        Route::post('/product_categories', [App\Http\Controllers\AdminProductCategoryController::class, 'store'])->name("product_categories.store");
+        Route::patch('/product_categories/{product_category}/statusOff', [App\Http\Controllers\AdminProductCategoryController::class, 'statusOff'])->name("product_categories.statusOff");
+        Route::patch('/product_categories/{product_category}/statusOn', [App\Http\Controllers\AdminProductCategoryController::class, 'statusOn'])->name("product_categories.statusOn");
+        Route::get('/product_categories/{product_category}/edit', [App\Http\Controllers\AdminProductCategoryController::class, 'edit'])->name("product_categories.edit");
+        Route::patch('/product_categories/{product_category}',[App\Http\Controllers\AdminProductCategoryController::class,'update'])->name('product_categories.update');
+        Route::delete('/product_categories/{product_category}', [App\Http\Controllers\AdminProductCategoryController::class, 'destroy'])->name("product_categories.destroy");
     });
 });
 
