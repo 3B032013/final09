@@ -47,6 +47,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         # 用戶資料管理
         Route::get('/users',[App\Http\Controllers\AdminUserController::class,'index'])->name('users.index');
+        Route::get('/users/search', [App\Http\Controllers\AdminUserController::class, 'search'])->name('users.search');
         Route::get('/users/create',[App\Http\Controllers\AdminUserController::class,'create'])->name('users.create');
         Route::post('/users', [App\Http\Controllers\AdminUserController::class, 'store'])->name("users.store");
         Route::get('/users/{user}/edit', [App\Http\Controllers\AdminUserController::class, 'edit'])->name("users.edit");
