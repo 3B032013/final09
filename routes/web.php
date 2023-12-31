@@ -18,7 +18,7 @@ use App\Http\Controllers\AdminDashboardController;
 
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
-Route::get('products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
+Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 
 
 
