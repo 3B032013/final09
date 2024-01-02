@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); # 使用者編號
             $table->unsignedBigInteger('product_id'); # 商品編號
             $table->integer('quantity');
-            $table->integer('price');
             $table->timestamps();
         });
     }
