@@ -21,9 +21,26 @@ class CartItemController extends Controller
                 return $cartItem->product->seller_id;
             });
 
+        $totalAmount = $cartItems->sum(function ($cartItem) {
+            return $cartItem->quantity * $cartItem->product->price;
+        });
+
+        $shippingFees = [];
+
+        foreach ($cartItems as $cartItem) {
+            $sellerId = $cartItem->product->seller->id;
+
+            // 假設每個賣家的運費為60
+            if (!isset($shippingFees[$sellerId])) {
+                $shippingFees[$sellerId] = 60;
+            }
+        }
+        $totalShippingFee = array_sum($shippingFees);
 
         $data = [
             'cartItems' => $cartItems,
+            'totalAmount' => $totalAmount,
+            'totalShippingFee' => $totalShippingFee,
         ];
 
         return view('cart_items.index', $data);

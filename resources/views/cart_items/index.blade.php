@@ -9,9 +9,25 @@
             <h1 class="text-2xl mb-4" align="center">購物車內容</h1>
 
             @if ($cartItems->count() > 0)
+                @php
+                    $cartItemsBySeller = $cartItems->groupBy('product.seller.id');
+                    $totalAmount = 0;
+                @endphp
+
+                @foreach ($cartItemsBySeller as $sellerId => $items)
+                    @php
+                        $seller = $items->first()->product->seller;
+                        $totalAmountBySeller = 0;
+                    @endphp
+
                     <table class="min-w-full bg-white border border-gray-200 mx-auto">
                         <tbody>
-                        @foreach ($cartItems as $cartItem)
+                        <tr>
+                            <td class="py-2 px-4 border-b" colspan="7">
+                                賣家：{{ $seller->user->name }}
+                            </td>
+                        </tr>
+                        @foreach ($items as $cartItem)
                             <tr>
                                 <td class="py-2 px-4 border-b">
                                     <input type="checkbox" style="transform: scale(1.5)" name="selected_items[]" checked value="{{ $cartItem->id }}">
@@ -28,11 +44,11 @@
                                         @csrf
                                         @method('PATCH')
                                         <span class="quantity-span">
-                                    <button class="quantity-minus" type="submit" onclick="setOperationInput('minus')">-</button>
-                                    <input class="quantity-input" type="number"  name="quantity" value="{{ $cartItem->quantity }}" style="max-width: 6rem">
-                                    <button class="quantity-plus" type="submit" onclick="setOperationInput('plus')">+</button>
-                                    <input type="hidden" name="operation" id="operationInput" value="">
-                                    </span>
+                                        <button class="quantity-minus" type="submit" onclick="setOperationInput('minus')">-</button>
+                                        <input class="quantity-input" type="number"  name="quantity" value="{{ $cartItem->quantity }}" style="max-width: 6rem">
+                                        <button class="quantity-plus" type="submit" onclick="setOperationInput('plus')">+</button>
+                                        <input type="hidden" name="operation" id="operationInput" value="">
+                                        </span>
                                     </form>
                                 </td>
                                 <td class="py-2 px-4 border-b subtotal">
@@ -46,10 +62,29 @@
                                     </form>
                                 </td>
                             </tr>
+                            @php
+                                $totalAmountBySeller += $cartItem->quantity * $cartItem->product->price;
+                            @endphp
                         @endforeach
                         </tbody>
                     </table>
+                        @php
+                            $totalAmount += $totalAmountBySeller;
+                        @endphp
+                        @endforeach
 
+                        <hr>
+
+                        <div class="text-left">
+                            <strong>商品總運費：</strong>${{ number_format($totalShippingFee, 0) }}
+                        </div>
+                        <div class="text-left">
+                            <strong>商品總金額：</strong>${{ number_format($totalAmount, 0) }}
+                        </div>
+                        <br>
+                        <div class="text-left" style="height: 80px">
+                            <strong>總金額：</strong>${{ number_format($totalAmount + $totalShippingFee, 0) }}
+                        </div>
 
                 <form action="{{ route('orders.create') }}" method="GET" id="checkoutForm" onsubmit="return prepareCheckout(event)">
                     @csrf
