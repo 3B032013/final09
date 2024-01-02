@@ -15,7 +15,18 @@ class CartItemController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $cartItems = $user->cartItems
+            ->sortBy(function ($cartItem) {
+                return $cartItem->product->seller_id;
+            });
+
+
+        $data = [
+            'cartItems' => $cartItems,
+        ];
+
+        return view('cart_items.index', $data);
     }
 
     /**
@@ -80,6 +91,7 @@ class CartItemController extends Controller
      */
     public function destroy(CartItem $cartItem)
     {
-        //
+        $cartItem->delete();
+        return redirect()->route('cart_items.index');
     }
 }
