@@ -36,16 +36,18 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('cart_items', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");
     Route::post('cart_items/{product}/store', [App\Http\Controllers\CartItemController::class, 'store'])->name("cart_items.store");
     Route::get('cart_items/{cart_item}/edit', [App\Http\Controllers\CartItemController::class, 'edit'])->name("cart_items.edit");
-    Route::patch('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
+    Route::patch('cart_items/{cart_item}/quantity_minus/a', [App\Http\Controllers\CartItemController::class, 'quantity_minus'])->name("cart_items.quantity_minus");
+    Route::patch('cart_items/{cart_item}/quantity_plus', [App\Http\Controllers\CartItemController::class, 'quantity_plus'])->name("cart_items.quantity_plus");
+    Route::patch('cart_items/{cart_item}/update', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
     Route::delete('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
 
     #申請成為賣家
     Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");
-    Route::post('sellers/{selller}/store', [App\Http\Controllers\SellerController::class, 'store'])->name("sellers.store");
+    Route::post('sellers/{seller}/store', [App\Http\Controllers\SellerController::class, 'store'])->name("sellers.store");
 
 
     Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
-    
+
 });
 
 

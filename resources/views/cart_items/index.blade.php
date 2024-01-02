@@ -40,18 +40,31 @@
                                     ${{ $cartItem->product->price }}
                                 </td>
                                 <td class="py-2 px-4 border-b">
-                                    <form action="{{ route('cart_items.update', $cartItem->id) }}" method="POST" id="updateCartItemForm">
+                                    <form action="{{ route('cart_items.quantity_minus', $cartItem->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <span class="quantity-span">
-                                        <button class="quantity-minus" type="submit" onclick="setOperationInput('minus')">-</button>
-                                        <input class="quantity-input" type="number"  name="quantity" value="{{ $cartItem->quantity }}" style="max-width: 6rem">
-                                        <button class="quantity-plus" type="submit" onclick="setOperationInput('plus')">+</button>
-                                        <input type="hidden" name="operation" id="operationInput" value="">
+                                        <button type="submit">-</button>
                                         </span>
                                     </form>
                                 </td>
-                                <td class="py-2 px-4 border-b subtotal">
+                                <td class="py-2 px-4 border-b">
+                                    <form action="{{ route('cart_items.update', $cartItem->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input class="quantity-input" type="text"  name="quantity" value="{{ $cartItem->quantity }}" style="max-width: 6rem">
+                                    </form>
+                                </td>
+                                <td class="py-2 px-4 border-b" >
+                                    <form action="{{ route('cart_items.quantity_plus', $cartItem->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <span class="quantity-span">
+                                        <button type="submit">+</button>
+                                        </span>
+                                    </form>
+                                </td>
+                                <td class="py-2 px-4 border-b subtotal" align="left">
                                     ${{ number_format($cartItem->quantity * $cartItem->product->price, 0) }}
                                 </td>
                                 <td class="py-2 px-4 border-b">
@@ -156,37 +169,12 @@
             const quantitySpans = document.querySelectorAll('.quantity-span');
             const totalAmountElement = document.getElementById('totalAmount');
 
-            quantitySpans.forEach(span => {
-                const quantityInput = span.querySelector('.quantity-input');
-                const minusButton = span.querySelector('.quantity-minus');
-                const plusButton = span.querySelector('.quantity-plus');
-
-                minusButton.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    updateQuantity(quantityInput, -1);
-                });
-
-                plusButton.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    updateQuantity(quantityInput, 1);
+            const checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateTotalAmount();
                 });
             });
-
-            function updateQuantity(input, change) {
-                let newValue = parseInt(input.value) + change;
-                if (newValue < 1) {
-                    newValue = 1;
-                }
-                input.value = newValue;
-
-                const priceElement = input.closest('tr').querySelector('.price');
-                const subtotalElement = input.closest('tr').querySelector('.subtotal');
-                const productPrice = parseFloat(priceElement.dataset.price);
-                const subtotal = newValue * productPrice;
-
-                subtotalElement.textContent = `$${subtotal.toFixed(0)}`;
-                updateTotalAmount();
-            }
 
             function updateTotalAmount() {
                 const subtotalElements = document.querySelectorAll('.subtotal');
@@ -204,7 +192,6 @@
 
                 totalAmountElement.textContent = `$${totalAmount.toFixed(0)}`;
             }
-
         });
     </script>
 @endsection
