@@ -38,6 +38,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('cart_items/{cart_item}/edit', [App\Http\Controllers\CartItemController::class, 'edit'])->name("cart_items.edit");
     Route::patch('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
     Route::delete('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
+
+    Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
+
 });
 
 
