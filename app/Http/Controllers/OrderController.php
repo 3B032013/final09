@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -19,9 +21,19 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $selectedItems = $request->query('selected_items');
+
+        // 將這些 ID 轉換為數組，然後使用它們進行進一步的處理
+        $selectedItemsArray = explode(',', $selectedItems);
+
+        // 根據 $selectedItemsArray 獲取相應的商品信息，這可以通過你的數據庫模型或其他方式完成
+        $selectedCartItems = CartItem::whereIn('id', $selectedItemsArray)->get();
+
+        // 現在，$selectedProducts 將包含所選商品的信息，你可以將它傳遞給結帳視圖
+        return view('orders.create', ['selectedCartItems' => $selectedCartItems]);
     }
 
     /**
