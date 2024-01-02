@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Seller;
 use App\Http\Requests\StoreSellerRequest;
 use App\Http\Requests\UpdateSellerRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
@@ -21,7 +22,9 @@ class SellerController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $data = ['user' => $user];
+        return view('sellers.create',$data);
     }
 
     /**
@@ -29,7 +32,8 @@ class SellerController extends Controller
      */
     public function store(StoreSellerRequest $request)
     {
-        //
+        Seller::create($request->all());
+        return redirect()->route('home');
     }
 
     /**
