@@ -71,11 +71,13 @@ require __DIR__.'/auth.php';
 #賣家後台
 Route::group(['middleware' => 'seller'], function () {
     Route::prefix('sellers')->name('sellers.')->group(function () {
+        #商品管理
         Route::get('/products', [App\Http\Controllers\SellerProductController::class, 'index'])->name('products.index');
         Route::get('/products/create', [App\Http\Controllers\SellerProductController::class, 'create'])->name('products.create');
         Route::post('/products', [App\Http\Controllers\SellerProductController::class, 'store'])->name("products.store");
         Route::get('/products/{product}/edit', [App\Http\Controllers\SellerProductController::class, 'edit'])->name("products.edit");
         Route::patch('/products/{product}', [App\Http\Controllers\SellerProductController::class, 'update'])->name('products.update');
+        Route::get('/products/search',[App\Http\Controllers\SellerProductController::class,'search'])->name('products.search');
         Route::patch('/products/{product}/reply', [App\Http\Controllers\SellerProductController::class, 'reply'])->name('products.reply');
         Route::patch('/products/{product}/statusoff', [App\Http\Controllers\SellerProductController::class, 'statusoff'])->name('products.statusoff');
         Route::patch('/products/{product}/statuson', [App\Http\Controllers\SellerProductController::class, 'statuson'])->name('products.statuson');

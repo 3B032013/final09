@@ -143,4 +143,22 @@ class SellerProductController extends Controller
         $product->delete();
         return redirect()->route('sellers.products.index');
     }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+
+        $products = Product::with(['seller.user'])
+            ->whereHas('seller.user', function ($query) use ($searchTerm) {
+                $query->where('name', 'like', "%$searchTerm%");
+            })
+            ->orWhere('name', 'like', "%$searchTerm%")
+            ->orderBy('id', 'ASC')
+            ->paginate($perPage);
+
+        return view('sellers.products.index', [
+            'products' => $products,
+            'query' => $searchTerm,
+        ]);
+    }
 }
