@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('bank_branch')->nullable();
             $table->string('bank_account')->nullable();
+            $table->integer('month')->nullable();
+            $table->integer('year')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

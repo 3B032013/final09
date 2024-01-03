@@ -165,7 +165,7 @@
             <td colspan="3"></td>
             <td>
                 @if ($order_detail->order->status == '0')
-                    <form action="#" method="GET">
+                    <form action="{{ route('orders.payment', $order_detail->order->id) }}" method="GET">
                         @csrf
                         @method('GET')
                         <div class="text-left">

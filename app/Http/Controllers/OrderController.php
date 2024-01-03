@@ -147,6 +147,14 @@ class OrderController extends Controller
         return view('orders.show', $data);
     }
 
+    public function payment($order_id)
+    {
+        $orderDetails = orderItem::where('order_id', $order_id)->get();
+        $data = ['order_details' => $orderDetails];
+
+        return view('orders.payment', $data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
