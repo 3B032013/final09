@@ -45,12 +45,20 @@ Route::group(['middleware' => 'user'], function () {
 
 
     Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
-    
+
 });
 
 
 
 require __DIR__.'/auth.php';
+
+
+#賣家後台
+Route::group(['middleware' => 'seller'], function () {
+    Route::prefix('sellers')->name('selers.')->group(function () {
+
+    });
+});
 
 
 # 管理員後台
