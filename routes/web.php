@@ -83,6 +83,16 @@ Route::group(['middleware' => 'seller'], function () {
         Route::patch('/products/{product}/statusoff', [App\Http\Controllers\SellerProductController::class, 'statusoff'])->name('products.statusoff');
         Route::patch('/products/{product}/statuson', [App\Http\Controllers\SellerProductController::class, 'statuson'])->name('products.statuson');
         Route::delete('/products/{product}', [App\Http\Controllers\SellerProductController::class, 'destroy'])->name("products.destroy");
+
+        #訂單管理
+        Route::get('/orders', [App\Http\Controllers\SellerOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}/edit', [App\Http\Controllers\SellerOrderController::class, 'edit'])->name("orders.edit");
+        Route::patch('/orders/{order}', [App\Http\Controllers\SellerOrderController::class, 'update'])->name('orders.update');
+        Route::patch('/orders/{order}/pass', [App\Http\Controllers\SellerOrderController::class, 'pass'])->name('orders.pass');
+        Route::patch('/orders/{order}/unpass', [App\Http\Controllers\SellerOrderController::class, 'unpass'])->name('orders.unpass');
+        Route::patch('/orders/{order}/transport', [App\Http\Controllers\SellerOrderController::class, 'transport'])->name('orders.transport');
+        Route::patch('/orders/{order}/arrive', [App\Http\Controllers\SellerOrderController::class, 'arrive'])->name('orders.arrive');
+        Route::delete('/orders/{order}', [App\Http\Controllers\SellerOrderController::class, 'destroy'])->name("orders.destroy");
     });
 });
 
