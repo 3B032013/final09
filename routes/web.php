@@ -64,6 +64,14 @@ Route::group(['middleware' => 'admin'], function () {
         Route::patch('/sellers/{seller}/unpass',[App\Http\Controllers\AdminSellerController::class,'unpass'])->name('sellers.unpass');
         Route::delete('/sellers/{seller}', [App\Http\Controllers\AdminSellerController::class, 'destroy'])->name("sellers.destroy");
 
+        //公告路由
+        Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");
+        Route::get('/posts/create', [App\Http\Controllers\AdminPostController::class, 'create'])->name("posts.create");
+        Route::post('/posts', [App\Http\Controllers\AdminPostController::class, 'store'])->name("posts.store");
+        Route::get('/posts/{post}/edit', [App\Http\Controllers\AdminPostController::class, 'edit'])->name("posts.edit");
+        Route::patch('/posts/{post}', [App\Http\Controllers\AdminPostController::class, 'update'])->name("posts.update");
+        Route::delete('/posts/{post}', [App\Http\Controllers\AdminPostController::class, 'destroy'])->name("posts.destroy");
+
         //管理員權限管理
         Route::get('/admins',[App\Http\Controllers\AdminAdminController::class,'index'])->name('admins.index');
         Route::get('/admins/search', [App\Http\Controllers\AdminAdminController::class, 'search'])->name('admins.search');
