@@ -91,6 +91,8 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/posts/create', [App\Http\Controllers\AdminPostController::class, 'create'])->name("posts.create");
         Route::post('/posts', [App\Http\Controllers\AdminPostController::class, 'store'])->name("posts.store");
         Route::get('/posts/{post}/edit', [App\Http\Controllers\AdminPostController::class, 'edit'])->name("posts.edit");
+        Route::patch('/posts/{post}/statusOff', [App\Http\Controllers\AdminPostController::class, 'statusOff'])->name("posts.statusOff");
+        Route::patch('/posts/{post}/statusOn', [App\Http\Controllers\AdminPostController::class, 'statusOn'])->name("posts.statusOn");
         Route::patch('/posts/{post}', [App\Http\Controllers\AdminPostController::class, 'update'])->name("posts.update");
         Route::delete('/posts/{post}', [App\Http\Controllers\AdminPostController::class, 'destroy'])->name("posts.destroy");
 

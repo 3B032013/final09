@@ -49,6 +49,18 @@ class AdminPostController extends Controller
         return view('admins.posts.edit',$data);
     }
 
+    public function statusOn(Request $request, Post $post)
+    {
+        $post->update(['status' => 1]);
+        return redirect()->route('admins.posts.index');
+    }
+
+    public function statusOff(Request $request, Post $post)
+    {
+        $post->update(['status' => 0]);
+        return redirect()->route('admins.posts.index');
+    }
+
     public function update(Request $request, Post $post)
     {
         $this->validate($request,[
