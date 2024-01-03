@@ -11,6 +11,12 @@
                 <a class="nav-link" href="{{ route('admins.sellers.index') }}">
                     賣家管理
                 </a>
+                <a class="nav-link" href="{{ route('admins.orders.index') }}">
+                    訂單管理
+                </a>
+                <a class="nav-link" href="{{ route('admins.moneys.index') }}">
+                    金流管理
+                </a>
                 <a class="nav-link" href="{{ route('admins.products.index') }}">
                     商品管理
                 </a>

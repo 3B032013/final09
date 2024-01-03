@@ -56,6 +56,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('orders/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('orders.filter');
     Route::get('orders/{order}/show', [App\Http\Controllers\OrderController::class, 'show'])->name("orders.show");
     Route::get('orders/{order}/payment', [App\Http\Controllers\OrderController::class, 'payment'])->name("orders.payment");
+    Route::patch('orders/{order}/update_pay', [App\Http\Controllers\OrderController::class, 'update_pay'])->name("orders.update_pay");
+    Route::patch('orders/{order}/complete_order', [App\Http\Controllers\OrderController::class, 'complete_order'])->name("orders.complete_order");
+    Route::patch('orders/{order}/cancel_order', [App\Http\Controllers\OrderController::class, 'cancel_order'])->name("orders.cancel_order");
 
 
 });
@@ -106,6 +109,15 @@ Route::group(['middleware' => 'admin'], function () {
         Route::patch('/sellers/{seller}/pass',[App\Http\Controllers\AdminSellerController::class,'pass'])->name('sellers.pass');
         Route::patch('/sellers/{seller}/unpass',[App\Http\Controllers\AdminSellerController::class,'unpass'])->name('sellers.unpass');
         Route::delete('/sellers/{seller}', [App\Http\Controllers\AdminSellerController::class, 'destroy'])->name("sellers.destroy");
+
+        Route::get('/orders', [App\Http\Controllers\AdminOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/search', [App\Http\Controllers\AdminOrderController::class, 'search'])->name('orders.search');
+        Route::get('/orders/{order}/info', [App\Http\Controllers\AdminOrderController::class, 'show'])->name('orders.show');
+        Route::patch('/orders/{order}', [App\Http\Controllers\AdminOrderController::class, 'cancel'])->name("orders.cancel");
+
+        Route::get('/moneys', [App\Http\Controllers\AdminMoneyController::class, 'index'])->name('moneys.index');
+        Route::get('/moneys/search', [App\Http\Controllers\AdminMoneyController::class, 'search'])->name('moneys.search');
+
 
         //公告路由
         Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");

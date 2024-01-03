@@ -23,6 +23,7 @@
         <table class="table">
             <thead>
             <tr>
+                <th scope="col" style="text-align:left">#</th>
                 <th scope="col" style="text-align:left">商品名稱</th>
                 <th scope="col" style="text-align:left">商品圖片</th>
                 <th scope="col" style="text-align:left">商品簡述</th>
