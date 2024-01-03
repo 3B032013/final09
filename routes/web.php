@@ -22,7 +22,9 @@ use App\Http\Controllers\CartItemController;
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
 Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 
-
+# 公告
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -79,6 +81,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         # 賣家權限管理
         Route::get('/sellers',[App\Http\Controllers\AdminSellerController::class,'index'])->name('sellers.index');
+        Route::get('/sellers/search', [App\Http\Controllers\AdminSellerController::class, 'search'])->name('sellers.search');
         Route::patch('/sellers/{seller}/statusOn',[App\Http\Controllers\AdminSellerController::class,'statusOn'])->name('sellers.statusOn');
         Route::patch('/sellers/{seller}/statusOff',[App\Http\Controllers\AdminSellerController::class,'statusOff'])->name('sellers.statusOff');
         Route::get('/sellers/{seller}/edit', [App\Http\Controllers\AdminSellerController::class, 'edit'])->name("sellers.edit");
@@ -86,8 +89,20 @@ Route::group(['middleware' => 'admin'], function () {
         Route::patch('/sellers/{seller}/unpass',[App\Http\Controllers\AdminSellerController::class,'unpass'])->name('sellers.unpass');
         Route::delete('/sellers/{seller}', [App\Http\Controllers\AdminSellerController::class, 'destroy'])->name("sellers.destroy");
 
+        //公告路由
+        Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");
+        Route::get('/posts/search', [App\Http\Controllers\AdminPostController::class, 'search'])->name('posts.search');
+        Route::get('/posts/create', [App\Http\Controllers\AdminPostController::class, 'create'])->name("posts.create");
+        Route::post('/posts', [App\Http\Controllers\AdminPostController::class, 'store'])->name("posts.store");
+        Route::get('/posts/{post}/edit', [App\Http\Controllers\AdminPostController::class, 'edit'])->name("posts.edit");
+        Route::patch('/posts/{post}/statusOff', [App\Http\Controllers\AdminPostController::class, 'statusOff'])->name("posts.statusOff");
+        Route::patch('/posts/{post}/statusOn', [App\Http\Controllers\AdminPostController::class, 'statusOn'])->name("posts.statusOn");
+        Route::patch('/posts/{post}', [App\Http\Controllers\AdminPostController::class, 'update'])->name("posts.update");
+        Route::delete('/posts/{post}', [App\Http\Controllers\AdminPostController::class, 'destroy'])->name("posts.destroy");
+
         //管理員權限管理
         Route::get('/admins',[App\Http\Controllers\AdminAdminController::class,'index'])->name('admins.index');
+        Route::get('/admins/search', [App\Http\Controllers\AdminAdminController::class, 'search'])->name('admins.search');
         Route::get('/admins/create',[App\Http\Controllers\AdminAdminController::class,'create'])->name('admins.create');
         Route::get('/admins/create_selected/{id}',[App\Http\Controllers\AdminAdminController::class,'create_selcted'])->name('admins.create_selected');
         Route::post('/admins', [App\Http\Controllers\AdminAdminController::class, 'store'])->name("admins.store");
@@ -98,10 +113,14 @@ Route::group(['middleware' => 'admin'], function () {
 
         // 商品管理
         Route::get('/products',[App\Http\Controllers\AdminProductController::class,'index'])->name('products.index');
+        Route::get('/products/search',[App\Http\Controllers\AdminProductController::class,'search'])->name('products.search');
         Route::get('/products/create',[App\Http\Controllers\AdminProductController::class,'create'])->name('products.create');
         Route::post('/products', [App\Http\Controllers\AdminProductController::class, 'store'])->name("products.store");
         Route::get('/products/{product}/edit', [App\Http\Controllers\AdminProductController::class, 'edit'])->name("products.edit");
+        Route::get('/products/{product}/review',[App\Http\Controllers\AdminProductController::class,'review'])->name('products.review');
         Route::patch('/products/{product}',[App\Http\Controllers\AdminProductController::class,'update'])->name('products.update');
+        Route::patch('/products/{product}/pass',[App\Http\Controllers\AdminProductController::class,'pass'])->name('products.pass');
+        Route::patch('/products/{product}/unpass',[App\Http\Controllers\AdminProductController::class,'unpass'])->name('products.unpass');
         Route::delete('/products/{product}', [App\Http\Controllers\AdminProductController::class, 'destroy'])->name("products.destroy");
 
         Route::get('/product_categories',[App\Http\Controllers\AdminProductCategoryController::class,'index'])->name('product_categories.index');

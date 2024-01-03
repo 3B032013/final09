@@ -5,13 +5,18 @@
 @section('page-content')
     <div class="container-fluid px-4">
         <h1 class="mt-4">管理員管理</h1>
-        {{--    <ol class="breadcrumb mb-4">--}}
-        {{--        <li class="breadcrumb-item active">用戶一覽表</li>--}}
-        {{--    </ol>--}}
-        {{--    <div class="alert alert-success alert-dismissible" role="alert" id="liveAlert">--}}
-        {{--        <strong>完成！</strong> 成功儲存用戶--}}
-        {{--        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
-        {{--    </div>--}}
+        <div class="container px-4 px-lg-5 mt-2 mb-4">
+            <form action="{{ route('admins.admins.search') }}" method="GET" class="d-flex">
+                <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
+                <button type="submit" class="btn btn-outline-dark">搜尋</button>
+            </form>
+        </div>
+        @if (request()->has('query'))
+            <div class="container px-4 px-lg-5 mt-2 mb-4">
+                查找「{{ request('query') }}」
+                <a class="btn btn-success btn-sm" href="{{ route('admins.admins.index') }}">取消搜尋</a>
+            </div>
+        @endif
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-success btn-sm" href="{{ route('admins.admins.create') }}">新增管理員</a>
         </div>
@@ -57,5 +62,34 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="d-flex align-items-center">
+                <span class="mr-1">每</span>
+                <select id="records-per-page" class="form-control" onchange="changeRecordsPerPage()">
+                    <option value="5" {{ $admins->perPage() == 5 ? 'selected' : '' }}>5</option>
+                    <option value="10" {{ $admins->perPage() == 10 ? 'selected' : '' }}>10</option>
+                    <option value="20" {{ $admins->perPage() == 20 ? 'selected' : '' }}>20</option>
+                </select>
+                <span class="ml-1">筆</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            @if ($admins->currentPage() > 1)
+                <a href="{{ $admins->previousPageUrl() }}" class="btn btn-secondary">上一頁</a>
+            @endif
+
+            <span class="mx-2">全部 {{ $admins->total() }} 筆資料，目前位於第 {{ $admins->currentPage() }} 頁，共 {{ $admins->lastPage() }} 頁</span>
+
+            @if ($admins->hasMorePages())
+                <a href="{{ $admins->nextPageUrl() }}" class="btn btn-secondary">下一頁</a>
+            @endif
+        </div>
     </div>
+    <script>
+        function changeRecordsPerPage() {
+            const select = document.getElementById('records-per-page');
+            const value = select.options[select.selectedIndex].value;
+            window.location.href = `{{ route('admins.admins.index') }}?perPage=${value}`;
+        }
+    </script>
 @endsection

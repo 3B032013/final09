@@ -13,7 +13,6 @@ class Post extends Model
         'admin_id',
         'title',
         'content',
-        'date',
         'status',
     ];
     public function admin()
