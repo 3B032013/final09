@@ -56,6 +56,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         # 賣家權限管理
         Route::get('/sellers',[App\Http\Controllers\AdminSellerController::class,'index'])->name('sellers.index');
+        Route::get('/sellers/search', [App\Http\Controllers\AdminSellerController::class, 'search'])->name('sellers.search');
         Route::patch('/sellers/{seller}/statusOn',[App\Http\Controllers\AdminSellerController::class,'statusOn'])->name('sellers.statusOn');
         Route::patch('/sellers/{seller}/statusOff',[App\Http\Controllers\AdminSellerController::class,'statusOff'])->name('sellers.statusOff');
         Route::get('/sellers/{seller}/edit', [App\Http\Controllers\AdminSellerController::class, 'edit'])->name("sellers.edit");
