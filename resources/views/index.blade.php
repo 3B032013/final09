@@ -4,6 +4,12 @@
 
 @section('content')
 <hr>
+<div class="container px-4 px-lg-5 mt-2 mb-4">
+    <form action="{{ route('products.search') }}" method="GET" class="d-flex">
+        <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
+        <button type="submit" class="btn btn-outline-dark">搜尋</button>
+    </form>
+</div>
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

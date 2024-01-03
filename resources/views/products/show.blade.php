@@ -28,11 +28,47 @@
                             <br><br><button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 加入購物車
                             </button>
+                            庫存量：{{ $product->inventory }}
                         </form>
-
-
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">相關商品</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                @foreach ($relatedProducts as $relatedProduct)
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <a href="{{ route("products.show",$relatedProduct->id) }}">
+                                <img class="card-img-top" src="{{ asset('storage/products/' . $relatedProduct->image_url) }}" alt="..." style="max-width: 150%; height: 250px" />
+                            </a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ $relatedProduct->name }}</h5>
+                                    <!-- Product price-->
+                                    ${{ $relatedProduct->price }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <form action="{{ route("cart_items.addToCart",$relatedProduct->id) }}" method="POST" role="form">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="text-center"><button class="btn btn-outline-dark mx-6 mt-auto" type="submit">加入購物車</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

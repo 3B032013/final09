@@ -21,7 +21,7 @@ use App\Http\Controllers\CartItemController;
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
 Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
-
+Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');
 # 公告
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
@@ -43,6 +43,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::patch('cart_items/{cart_item}/quantity_plus', [App\Http\Controllers\CartItemController::class, 'quantity_plus'])->name("cart_items.quantity_plus");
     Route::patch('cart_items/{cart_item}/update', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
     Route::delete('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
+    Route::post('cartItems/{product}/addToCart', [App\Http\Controllers\CartItemController::class, 'addToCart'])->name("cart_items.addToCart");
 
     #申請成為賣家
     Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");
