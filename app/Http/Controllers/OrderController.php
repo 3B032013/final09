@@ -175,6 +175,15 @@ class OrderController extends Controller
         ]);
         return redirect()->route('orders.index');
     }
+
+    public function cancel_order(Order $order)
+    {
+        //
+        $order->update([
+            'status' => 7,
+        ]);
+        return redirect()->route('orders.index');
+    }
     /**
      * Show the form for editing the specified resource.
      */

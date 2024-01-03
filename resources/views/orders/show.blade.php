@@ -192,11 +192,11 @@
                         </div>
                     </form>
                 @elseif($order_detail->order->status != '7' and $order_detail->order->status != '5')
-                    <form action="#" method="POST">
+                    <form id="cancelForm{{ $order_detail->order->id }}" action="{{ route('orders.cancel_order', $order_detail->order->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <div class="text-left">
-                            <button class="btn btn-outline-dark mx-6 mt-auto" type="submit">取消訂單</button><br><br>
+                            <button class="btn btn-outline-dark mx-6 mt-auto" onclick="confirmCancel('{{ $order_detail->order->id }}')" type="button">取消訂單</button><br><br>
                         </div>
                     </form>
                 @endif
@@ -205,4 +205,12 @@
         </tbody>
     </table>
 @endsection
+
+<script>
+    function confirmCancel(orderId) {
+        if (confirm("確定要取消訂單嗎？")) {
+            document.getElementById('cancelForm' + orderId).submit();
+        }
+    }
+</script>
 
