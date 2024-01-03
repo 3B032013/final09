@@ -151,6 +151,8 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/product_categories/{product_category}/edit', [App\Http\Controllers\AdminProductCategoryController::class, 'edit'])->name("product_categories.edit");
         Route::patch('/product_categories/{product_category}',[App\Http\Controllers\AdminProductCategoryController::class,'update'])->name('product_categories.update');
         Route::delete('/product_categories/{product_category}', [App\Http\Controllers\AdminProductCategoryController::class, 'destroy'])->name("product_categories.destroy");
+
+        Route::get('/settings',[App\Http\Controllers\AdminSettingController::class,'index'])->name('settings.index');
     });
 });
 

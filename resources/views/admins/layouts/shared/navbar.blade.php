@@ -6,11 +6,6 @@
             class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="搜尋..." aria-label="Search for..."
-                   aria-describedby="btnNavbarSearch"/>
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-        </div>
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -19,7 +14,7 @@
                aria-expanded="false">管理員：{{ Auth::user()->name }} </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{ route('home') }}">回到前台</a></li>
-                <li><a class="dropdown-item" href="#!">設定</a></li>
+                <li><a class="dropdown-item" href="{{ route('admins.settings.index') }}">設定</a></li>
                 <li>
                     <hr class="dropdown-divider"/>
                 </li>
