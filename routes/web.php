@@ -105,6 +105,8 @@ Route::group(['middleware' => 'admin'], function () {
         Route::patch('/orders/{order}', [App\Http\Controllers\AdminOrderController::class, 'cancel'])->name("orders.cancel");
 
         Route::get('/moneys', [App\Http\Controllers\AdminMoneyController::class, 'index'])->name('moneys.index');
+        Route::get('/moneys/search', [App\Http\Controllers\AdminMoneyController::class, 'search'])->name('moneys.search');
+
 
         //公告路由
         Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");

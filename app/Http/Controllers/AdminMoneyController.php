@@ -27,4 +27,36 @@ class AdminMoneyController extends Controller
         $data = ['totalProfit' => $totalProfit, 'orders' => $completedOrders];
         return view('admins.moneys.index', $data);
     }
+
+    public function search(Request $request)
+    {
+        $perPage = $request->input('perPage', 10);
+        $query = $request->input('query');
+
+        $completedOrders = Order::where('status', 5)
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->whereHas('seller.user', function ($q) use ($query) {
+                    $q->where('name', 'like', "%{$query}%");
+                })->orWhereHas('user', function ($q) use ($query) {
+                    $q->where('name', 'like', "%{$query}%");
+                });
+            })
+            ->orderBy('id', 'ASC')
+            ->paginate($perPage);
+
+        $totalProfit = 0;
+        foreach ($completedOrders as $order) {
+            foreach ($order->orderDetails as $orderDetail) {
+                $product = $orderDetail->product;
+                $platformFee = $product->price * 0.05 * $orderDetail->quantity;
+                $totalProfit += $platformFee;
+            }
+        }
+        $data = [
+            'totalProfit' => $totalProfit,
+            'orders' => $completedOrders,
+            'query' => $query,
+        ];
+        return view('admins.moneys.index', $data);
+    }
 }
