@@ -43,6 +43,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::patch('cart_items/{cart_item}/quantity_plus', [App\Http\Controllers\CartItemController::class, 'quantity_plus'])->name("cart_items.quantity_plus");
     Route::patch('cart_items/{cart_item}/update', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
     Route::delete('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
+    Route::post('cartItems/{product}/addToCart', [App\Http\Controllers\CartItemController::class, 'addToCart'])->name("cart_items.addToCart");
 
     #申請成為賣家
     Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");

@@ -79,6 +79,29 @@ class CartItemController extends Controller
         return redirect()->route('home');
     }
 
+    public function addToCart(Product $product)
+    {
+
+        $user = Auth::user();
+        $cartItem = $user->cartItems()->where('product_id', $product->id)->first();
+
+        if ($cartItem) {
+            // 商品已存在於購物車，更新數量
+            $cartItem->update([
+                'quantity' => $cartItem->quantity + 1,
+            ]);
+        } else {
+            // 商品不存在於購物車，新增購物車項目
+            $user->cartItems()->create([
+                'product_id' => $product->id,
+                'quantity' => 1,
+            ]);
+        }
+
+//        return redirect()->back()->with('success', '成功加入購物車!');
+        return redirect()->route('home');
+    }
+
     /**
      * Display the specified resource.
      */
