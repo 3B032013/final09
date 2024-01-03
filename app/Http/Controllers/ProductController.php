@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -81,6 +82,26 @@ class ProductController extends Controller
             ];
             return view('products.show', $data);
         }
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // 搜尋商品
+        $products = Product::where('name', 'like', "%$query%")
+            ->where('status','=',3)
+            ->get();
+
+//        // 搜尋賣家
+//        $sellers = Seller::where('name', 'like', "%$query%")->get();
+
+        // 返回結果
+        return view('products.search', [
+            'products' => $products,
+//            'sellers' => $sellers,
+            'query' => $query,
+        ]);
     }
 
     /**
