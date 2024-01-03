@@ -110,5 +110,34 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="d-flex align-items-center">
+                <span class="mr-1">每</span>
+                <select id="records-per-page" class="form-control" onchange="changeRecordsPerPage()">
+                    <option value="5" {{ $products->perPage() == 5 ? 'selected' : '' }}>5</option>
+                    <option value="10" {{ $products->perPage() == 10 ? 'selected' : '' }}>10</option>
+                    <option value="20" {{ $products->perPage() == 20 ? 'selected' : '' }}>20</option>
+                </select>
+                <span class="ml-1">筆</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            @if ($products->currentPage() > 1)
+                <a href="{{ $products->previousPageUrl() }}" class="btn btn-secondary">上一頁</a>
+            @endif
+
+            <span class="mx-2">全部 {{ $products->total() }} 筆資料，目前位於第 {{ $products->currentPage() }} 頁，共 {{ $products->lastPage() }} 頁</span>
+
+            @if ($products->hasMorePages())
+                <a href="{{ $products->nextPageUrl() }}" class="btn btn-secondary">下一頁</a>
+            @endif
+        </div>
     </div>
+    <script>
+        function changeRecordsPerPage() {
+            const select = document.getElementById('records-per-page');
+            const value = select.options[select.selectedIndex].value;
+            window.location.href = `{{ route('sellers.products.index') }}?perPage=${value}`;
+        }
+    </script>
 @endsection

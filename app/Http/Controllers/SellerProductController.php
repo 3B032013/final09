@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class SellerProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $seller = Auth::user()->seller;
-        $products = Product::orderby('id','ASC')->where('seller_id',$seller->id)->get();
+        $perPage = $request->input('perPage', 10);
+        $products = Product::where('seller_id', $seller->id)->orderBy('id', 'ASC')->paginate($perPage);
         $data = ['products' => $products];
-        return view('sellers.products.index',$data);
+        return view('sellers.products.index', $data);
     }
 
     /**
