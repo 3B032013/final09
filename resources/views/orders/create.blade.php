@@ -61,6 +61,22 @@
                     @endphp
                 @endforeach
                 <tr>
+                    <td colspan="5" ><div class="text-center"><hr></div></td>
+                </tr>
+                <tr>
+                    <td colspan="5" >
+                        <p>&nbsp&nbsp商品總運費：$ <span id="member-name">{{ number_format($totalShippingFee, 0) }}</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <p>&nbsp&nbsp商品總金額：$<span id="member-address">{{ number_format($totalSum, 0) }}</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" ><div class="text-center"><hr></div></td>
+                </tr>
+                <tr>
                     <td colspan="5">
                         <br><h4>&nbsp會員資訊</h4>
                     </td>
@@ -79,6 +95,9 @@
                     <td colspan="5">
                         <p>&nbsp&nbsp會員地址： <span id="member-address">{{ $selectedCartItem->user->address }}</span></p>
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="5" ><div class="text-center"><hr></div></td>
                 </tr>
                 <tr>
                     <td colspan="5">
@@ -108,7 +127,7 @@
                 <tr>
                     <td colspan="5">
                         <div class="text-center">
-                            總金額：${{ number_format($totalSum, 0) }}
+                            總金額(含運費)：<font color="red">${{ number_format($totalSum + $totalShippingFee, 0) }}</font>
                             <button class="btn btn-outline-dark mx-6 mt-auto" type="submit">下單</button><br><br>
                         </div>
                     </td>

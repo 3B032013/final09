@@ -61,7 +61,9 @@
                                     <a class="dropdown-item" href="{{ route('home') }}" style="color:black">{{ __('賣家申請中') }}</a>
                                 </li>
                             @endif
-
+                            <li>
+                                <a class="dropdown-item" href="{{ route('orders.index') }}" style="color:black">{{ __('訂購清單') }}</a>
+                            </li>
                         @else
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}" style="color:black">{{ __('個人資料') }}</a>

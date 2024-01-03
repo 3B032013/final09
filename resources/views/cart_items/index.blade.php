@@ -20,7 +20,7 @@
                         $totalAmountBySeller = 0;
                     @endphp
 
-                    <table class="min-w-full bg-white border border-gray-200 mx-auto">
+                        <table class="mx-auto" border="0">
                         <tbody>
                         <tr>
                             <td class="py-2 px-4 border-b" colspan="7">
@@ -96,7 +96,7 @@
                         </div>
                         <br>
                         <div class="text-left" style="height: 80px">
-                            <strong>總金額：</strong>${{ number_format($totalAmount + $totalShippingFee, 0) }}
+                            <strong>總金額(含運費)：</strong>${{ number_format($totalAmount + $totalShippingFee, 0) }}
                         </div>
 
                 <form action="{{ route('orders.create') }}" method="GET" id="checkoutForm" onsubmit="return prepareCheckout(event)">
