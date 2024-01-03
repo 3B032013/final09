@@ -12,17 +12,18 @@
         </div>
     </div>
     <table border="0" align="center">
+        <thead align="center">
         <tbody>
         <tr style="height: 100px">
-            <td>
+            <th>
                 <div class="container mt-4 text-center">
                     <form action="{{ route('orders.index') }}" method="GET">
                         @method('GET')
                         <button type="submit" class="btn btn-secondary mx-2">所有訂單</button>
                     </form>
                 </div>
-            </td>
-            <td>
+            </th>
+            <th>
                 <div class="container mt-4 text-center">
                     <form action="{{ route('orders.filter') }}" method="GET">
                         @method('GET')
@@ -30,8 +31,8 @@
                         <button type="submit" class="btn btn-secondary mx-2">未付款</button>
                     </form>
                 </div>
-            </td>
-            <td>
+            </th>
+            <th>
                 <div class="container mt-4 text-center">
                     <form action="{{ route('orders.filter') }}" method="GET">
                         @method('GET')
@@ -39,8 +40,8 @@
                         <button type="submit" class="btn btn-secondary mx-2">待出貨</button>
                     </form>
                 </div>
-            </td>
-            <td>
+            </th>
+            <th>
                 <div class="container mt-4 text-center">
                     <form action="{{ route('orders.filter') }}" method="GET">
                         @method('GET')
@@ -48,8 +49,8 @@
                         <button type="submit" class="btn btn-secondary mx-2">待收貨</button>
                     </form>
                 </div>
-            </td>
-            <td>
+            </th>
+            <th>
                 <div class="container mt-4 text-center">
                     <form action="{{ route('orders.filter') }}" method="GET">
                         @method('GET')
@@ -57,8 +58,8 @@
                         <button type="submit" class="btn btn-secondary mx-2">已完成</button>
                     </form>
                 </div>
-            </td>
-            <td>
+            </th>
+            <th>
                 <div class="container mt-4 text-center">
                     <form action="{{ route('orders.filter') }}" method="GET">
                         @method('GET')
@@ -66,9 +67,10 @@
                         <button type="submit" class="btn btn-secondary mx-2">未成立</button>
                     </form>
                 </div>
-            </td>
+            </th>
         </tr>
-        </tbody>
+
+        </tbody></thead>
     </table>
     @if(count($orders) > 0)
         <table class="min-w-full bg-white border border-gray-200 mx-auto" border="1">

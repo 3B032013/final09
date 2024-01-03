@@ -6,6 +6,7 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\OrderDetail;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -139,7 +140,11 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $orderDetails = orderItem::where('order_id', $order->id)->get();
+
+        $data = ['order_details' => $orderDetails];
+
+        return view('orders.show', $data);
     }
 
     /**
