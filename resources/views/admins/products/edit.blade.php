@@ -4,29 +4,25 @@
 
 @section('page-content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">書籍管理</h1>
+        <h1 class="mt-4">商品管理</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">編輯書籍資料</li>
+            <li class="breadcrumb-item active">編輯商品資料</li>
         </ol>
         @include('admins.layouts.shared.errors')
         <form action="{{ route('admins.products.update',$product->id) }}" method="POST" role="form" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
-            {{--            # 模擬賣家id & 商品類別id--}}
-            <input type="hidden" name="product_category_id" value=1>
-            <input type="hidden" name="seller_id" value=1>
-
             <div class="form-group">
-                <label for="name" class="form-label">書籍名稱</label>
+                <label for="name" class="form-label">商品名稱</label>
                 <input id="name" name="name" type="text" class="form-control" value="{{ old('name',$product->name) }}" placeholder="請輸入帳號">
             </div>
             <div class="form-group">
-                <label for="image_url" class="form-label">書籍圖片</label>
+                <label for="image_url" class="form-label">商品圖片</label>
                 <input id="image_url" name="image_url" type="file" class="form-control" value="{{ old('image_url',$product->image_url ) }}" placeholder="請選擇商品圖片" onchange="previewImage(this);">
                 <img id="image-preview" src="#" alt="圖片預覽" style="display: none; width:200px; height:200px;" >
             </div>
             <div class="form-group">
-                <label for="detail" class="form-label">書籍內容</label>
+                <label for="detail" class="form-label">商品內容</label>
                 <input id="detail" name="detail" type="text" class="form-control" value="{{ old('detail',$product->detail) }}" placeholder="請輸入內容">
             </div>
             <div class="form-group">

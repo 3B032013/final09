@@ -77,6 +77,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         // 商品管理
         Route::get('/products',[App\Http\Controllers\AdminProductController::class,'index'])->name('products.index');
+        Route::get('/products/search',[App\Http\Controllers\AdminProductController::class,'search'])->name('products.search');
         Route::get('/products/create',[App\Http\Controllers\AdminProductController::class,'create'])->name('products.create');
         Route::post('/products', [App\Http\Controllers\AdminProductController::class, 'store'])->name("products.store");
         Route::get('/products/{product}/edit', [App\Http\Controllers\AdminProductController::class, 'edit'])->name("products.edit");
