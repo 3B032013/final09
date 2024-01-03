@@ -67,8 +67,13 @@ require __DIR__.'/auth.php';
 
 #賣家後台
 Route::group(['middleware' => 'seller'], function () {
-    Route::prefix('sellers')->name('selers.')->group(function () {
-
+    Route::prefix('sellers')->name('sellers.')->group(function () {
+        Route::get('/products', [App\Http\Controllers\SellerProductController::class, 'index'])->name('products.index');
+        Route::get('/products/create', [App\Http\Controllers\SellerProductController::class, 'create'])->name('products.create');
+        Route::post('/products', [App\Http\Controllers\SellerProductController::class, 'store'])->name("products.store");
+        Route::get('/products/{product}/edit', [App\Http\Controllers\SellerProductController::class, 'edit'])->name("products.edit");
+        Route::patch('/products/{product}', [App\Http\Controllers\SellerProductController::class, 'update'])->name('products.update');
+        Route::delete('/products/{product}', [App\Http\Controllers\SellerProductsController::class, 'destroy'])->name("products.destroy");
     });
 });
 
