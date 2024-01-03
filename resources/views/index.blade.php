@@ -12,7 +12,7 @@
                 <div class="card h-100">
                     <!-- Product image-->
                     <a href="{{ route("products.show",$product->id) }}">
-                    <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }}" />
+                    <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }}" style="max-width: 150%; height: 170px"/>
                     </a>
                         <!-- Product details-->
                     <div class="card-body p-4">
@@ -35,7 +35,6 @@
                             </span>
                             <br><br><div class="text-center"><button class="btn btn-outline-dark mx-6 mt-auto" type="submit">加入購物車</button></div>
                         </form>
-
                     </div>
                 </div>
             </div>

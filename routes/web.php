@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\CartItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +28,33 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('cartItems', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");
-    Route::get('cartItems/create', [App\Http\Controllers\CartItemController::class, 'create'])->name("cart_items.create");
-    Route::post('cartItems/{product}', [App\Http\Controllers\CartItemController::class, 'store'])->name("cart_items.store");
-    Route::get('cartItems/{cartItem}/edit', [App\Http\Controllers\CartItemController::class, 'edit'])->name("cart_items.edit");
-    Route::patch('cartItems/{cartItem}', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
-    Route::delete('cartItems/{cartItem}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
+
 });
+
+
+Route::group(['middleware' => 'user'], function () {
+    #購物車
+    Route::get('cart_items', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");
+    Route::post('cart_items/{product}/store', [App\Http\Controllers\CartItemController::class, 'store'])->name("cart_items.store");
+    Route::get('cart_items/{cart_item}/edit', [App\Http\Controllers\CartItemController::class, 'edit'])->name("cart_items.edit");
+    Route::patch('cart_items/{cart_item}/quantity_minus/a', [App\Http\Controllers\CartItemController::class, 'quantity_minus'])->name("cart_items.quantity_minus");
+    Route::patch('cart_items/{cart_item}/quantity_plus', [App\Http\Controllers\CartItemController::class, 'quantity_plus'])->name("cart_items.quantity_plus");
+    Route::patch('cart_items/{cart_item}/update', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
+    Route::delete('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
+
+    #申請成為賣家
+    Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");
+    Route::post('sellers/{seller}/store', [App\Http\Controllers\SellerController::class, 'store'])->name("sellers.store");
+
+    #買家訂單
+    Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name("orders.index");
+    Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
+    Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name("orders.store");
+    Route::get('orders/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('orders.filter');
+    Route::get('orders/{order}/show', [App\Http\Controllers\OrderController::class, 'show'])->name("orders.show");
+
+});
+
 
 
 require __DIR__.'/auth.php';
