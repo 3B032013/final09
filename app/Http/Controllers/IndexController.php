@@ -11,7 +11,7 @@ class IndexController extends Controller
     //
     public function index()
     {
-        $products = Product::orderby('id','ASC')->get();
+        $products = Product::orderby('id','ASC')->where('status',3)->get();
         $data = ['products' => $products];
         return view('index',$data);
     }
