@@ -149,10 +149,22 @@ class OrderController extends Controller
 
     public function payment($order_id)
     {
-        $orderDetails = orderItem::where('order_id', $order_id)->get();
-        $data = ['order_details' => $orderDetails];
+        $orderItems = orderItem::where('order_id', $order_id)->get();
+        $data = ['orderItems' => $orderItems];
 
         return view('orders.payment', $data);
+    }
+
+    public function update_pay(StoreOrderRequest $request,Order $order)
+    {
+        $order->update([
+            'status' => 1,
+            'pay'=> 1,
+            'bank_account'=> $request->bank_account,
+            'month'=> $request->month,
+            'year'=> $request->year,
+            ]);
+        return redirect()->route('orders.index');
     }
 
     /**
