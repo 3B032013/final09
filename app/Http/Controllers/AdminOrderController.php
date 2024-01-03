@@ -9,9 +9,29 @@ class AdminOrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::orderby('id','ASC')->get();
+        $perPage = $request->input('perPage', 10);
+        $orders = Order::orderby('id','ASC')->paginate($perPage);
         $data = ['orders' => $orders];
         return view('admins.orders.index',$data);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+
+        $orders = Order::whereHas('seller.user', function ($queryBuilder) use ($query) {
+            $queryBuilder->where('name', 'like', "%$query%");
+        })
+            ->orWhereHas('user', function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'like', "%$query%");
+            })
+            ->paginate($perPage);
+
+        return view('admins.orders.index', [
+            'orders' => $orders,
+            'query' => $query,
+        ]);
     }
 
     public function show(Order $order)
