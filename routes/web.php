@@ -66,6 +66,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         //管理員權限管理
         Route::get('/admins',[App\Http\Controllers\AdminAdminController::class,'index'])->name('admins.index');
+        Route::get('/admins/search', [App\Http\Controllers\AdminAdminController::class, 'search'])->name('admins.search');
         Route::get('/admins/create',[App\Http\Controllers\AdminAdminController::class,'create'])->name('admins.create');
         Route::get('/admins/create_selected/{id}',[App\Http\Controllers\AdminAdminController::class,'create_selcted'])->name('admins.create_selected');
         Route::post('/admins', [App\Http\Controllers\AdminAdminController::class, 'store'])->name("admins.store");

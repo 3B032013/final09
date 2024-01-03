@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class AdminAdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->input('perPage', 10);
         $currentUserId = Auth::id();
         $positionObject = DB::table('admins')->select('position')->where('user_id', $currentUserId)->first();
         $position = $positionObject->position;
@@ -19,10 +20,35 @@ class AdminAdminController extends Controller
             ->select('admins.*', 'users.name', 'users.email')
             ->where('admins.position', '>', $position)
             ->orderBy('admins.id', 'ASC')
-            ->get();
+            ->paginate($perPage);
 
         $data = ['admins' => $admins];
         return view('admins.admins.index', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+        $currentUserId = Auth::id();
+        $positionObject = DB::table('admins')->select('position')->where('user_id', $currentUserId)->first();
+        $position = $positionObject->position;
+
+        $admins = DB::table('admins')
+            ->join('users', 'admins.user_id', '=', 'users.id')
+            ->select('admins.*', 'users.name', 'users.email')
+            ->where('admins.position', '>', $position)
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('users.name', 'like', "%$query%");
+            })
+            ->orderBy('admins.id', 'ASC')
+            ->paginate($perPage);
+
+        // 返回結果
+        return view('admins.admins.index', [
+            'admins' => $admins,
+            'query' => $query,
+        ]);
     }
 
     public function create()
