@@ -28,6 +28,8 @@ class User extends Authenticatable
         'password',
         'bank_branch',
         'bank_account',
+        'month',
+        'year',
     ];
 
     /**

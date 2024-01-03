@@ -51,15 +51,26 @@ Route::group(['middleware' => 'user'], function () {
     #買家訂單
     Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name("orders.index");
     Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
+
     Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name("orders.store");
     Route::get('orders/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('orders.filter');
     Route::get('orders/{order}/show', [App\Http\Controllers\OrderController::class, 'show'])->name("orders.show");
+    Route::get('orders/{order}/payment', [App\Http\Controllers\OrderController::class, 'payment'])->name("orders.payment");
+
 
 });
 
 
 
 require __DIR__.'/auth.php';
+
+
+#賣家後台
+Route::group(['middleware' => 'seller'], function () {
+    Route::prefix('sellers')->name('selers.')->group(function () {
+
+    });
+});
 
 
 # 管理員後台

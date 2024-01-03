@@ -21,6 +21,10 @@ class Order extends Model
         'receiver',
         'receiver_phone',
         'receiver_address',
+        'bank_account',
+        'month',
+        'year',
+
     ];
 
     public function user()
