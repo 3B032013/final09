@@ -11,7 +11,7 @@
     </div>
 
     @if ($selectedCartItems->count() > 0)
-        <form id="checkoutForm" action="#" method="POST">
+        <form id="checkoutForm" action="{{ route('orders.store') }}" method="POST">
             @csrf
             @method('POST')
             <table class="min-w-full bg-white border border-gray-200 mx-auto" border="1">

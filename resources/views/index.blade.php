@@ -35,7 +35,6 @@
                             </span>
                             <br><br><div class="text-center"><button class="btn btn-outline-dark mx-6 mt-auto" type="submit">加入購物車</button></div>
                         </form>
-
                     </div>
                 </div>
             </div>

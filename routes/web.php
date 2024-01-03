@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::group(['middleware' => 'user'], function () {
+    #購物車
     Route::get('cart_items', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");
     Route::post('cart_items/{product}/store', [App\Http\Controllers\CartItemController::class, 'store'])->name("cart_items.store");
     Route::get('cart_items/{cart_item}/edit', [App\Http\Controllers\CartItemController::class, 'edit'])->name("cart_items.edit");
@@ -45,8 +46,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");
     Route::post('sellers/{seller}/store', [App\Http\Controllers\SellerController::class, 'store'])->name("sellers.store");
 
-
+    #買家訂單
     Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
+    Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name("orders.store");
 
 });
 
