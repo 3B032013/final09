@@ -13,7 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('updated_at','DESC')->where('status',1)->get();
+        $data = [
+            'posts' => $posts,
+        ];
+        return view('posts.index',$data);
     }
 
     /**

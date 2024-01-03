@@ -22,6 +22,8 @@ use App\Http\Controllers\CartItemController;
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
 Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 
+# 公告
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 
 
 Route::middleware('auth')->group(function () {
