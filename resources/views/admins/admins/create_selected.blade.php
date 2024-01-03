@@ -9,8 +9,8 @@
             @method('POST')
             @csrf
             <div class="form-group">
-                <label for="account" class="form-label">選擇使用者帳號</label>
-                <select id="account" name="account" class="form-control" onchange="navigateToRoute(this.value)">
+                <label for="name" class="form-label">選擇使用者名稱</label>
+                <select id="name" name="name" class="form-control" onchange="navigateToRoute(this.value)">
                     @foreach($users as $user)
                         @if($user->name == $user_selected->name)
                             <option value="{{ route('admins.admins.create_selected', ['id' => $user->id]) }}" selected>{{ $user->name }}</option>
@@ -23,9 +23,9 @@
             <div class="form-group">
                 <label for="position" class="form-label">職級</label>
                 <select id="position" name="position" class="form-control">
-                    <option value=4>使用者</option>
                     <option value=3>一般管理員</option>
                     <option value=2>高階管理員</option>
+                    <option value=1>超級管理員</option>
                 </select>
             </div>
             <input type="hidden" name="user_id" id="user_id" value="{{ $user_selected->id }}">

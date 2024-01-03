@@ -4,7 +4,15 @@
 
 @section('page-content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">管理員管理</h1>
+        <h1 class="mt-4">管理員管理
+            @if(Auth::user()->admin->position == 1)
+                目前職位：超級管理員
+            @elseif(Auth::user()->admin->position == 2)
+                目前職位：高階管理員
+            @elseif(Auth::user()->admin->position == 3)
+                目前職位：一般管理員
+            @endif
+        </h1>
         <div class="container px-4 px-lg-5 mt-2 mb-4">
             <form action="{{ route('admins.admins.search') }}" method="GET" class="d-flex">
                 <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
