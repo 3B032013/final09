@@ -21,7 +21,7 @@ use App\Http\Controllers\CartItemController;
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
 Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
-
+Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');
 # 公告
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
@@ -43,6 +43,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::patch('cart_items/{cart_item}/quantity_plus', [App\Http\Controllers\CartItemController::class, 'quantity_plus'])->name("cart_items.quantity_plus");
     Route::patch('cart_items/{cart_item}/update', [App\Http\Controllers\CartItemController::class, 'update'])->name("cart_items.update");
     Route::delete('cart_items/{cart_item}', [App\Http\Controllers\CartItemController::class, 'destroy'])->name("cart_items.destroy");
+    Route::post('cartItems/{product}/addToCart', [App\Http\Controllers\CartItemController::class, 'addToCart'])->name("cart_items.addToCart");
 
     #申請成為賣家
     Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");
@@ -56,6 +57,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('orders/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('orders.filter');
     Route::get('orders/{order}/show', [App\Http\Controllers\OrderController::class, 'show'])->name("orders.show");
     Route::get('orders/{order}/payment', [App\Http\Controllers\OrderController::class, 'payment'])->name("orders.payment");
+    Route::patch('orders/{order}/update_pay', [App\Http\Controllers\OrderController::class, 'update_pay'])->name("orders.update_pay");
+    Route::patch('orders/{order}/complete_order', [App\Http\Controllers\OrderController::class, 'complete_order'])->name("orders.complete_order");
+    Route::patch('orders/{order}/cancel_order', [App\Http\Controllers\OrderController::class, 'cancel_order'])->name("orders.cancel_order");
 
 
 });
@@ -67,8 +71,18 @@ require __DIR__.'/auth.php';
 
 #賣家後台
 Route::group(['middleware' => 'seller'], function () {
-    Route::prefix('sellers')->name('selers.')->group(function () {
-
+    Route::prefix('sellers')->name('sellers.')->group(function () {
+        #商品管理
+        Route::get('/products', [App\Http\Controllers\SellerProductController::class, 'index'])->name('products.index');
+        Route::get('/products/create', [App\Http\Controllers\SellerProductController::class, 'create'])->name('products.create');
+        Route::post('/products', [App\Http\Controllers\SellerProductController::class, 'store'])->name("products.store");
+        Route::get('/products/{product}/edit', [App\Http\Controllers\SellerProductController::class, 'edit'])->name("products.edit");
+        Route::patch('/products/{product}', [App\Http\Controllers\SellerProductController::class, 'update'])->name('products.update');
+        Route::get('/products/search',[App\Http\Controllers\SellerProductController::class,'search'])->name('products.search');
+        Route::patch('/products/{product}/reply', [App\Http\Controllers\SellerProductController::class, 'reply'])->name('products.reply');
+        Route::patch('/products/{product}/statusoff', [App\Http\Controllers\SellerProductController::class, 'statusoff'])->name('products.statusoff');
+        Route::patch('/products/{product}/statuson', [App\Http\Controllers\SellerProductController::class, 'statuson'])->name('products.statuson');
+        Route::delete('/products/{product}', [App\Http\Controllers\SellerProductController::class, 'destroy'])->name("products.destroy");
     });
 });
 
