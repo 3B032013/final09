@@ -167,6 +167,14 @@ class OrderController extends Controller
         return redirect()->route('orders.index');
     }
 
+    public function complete_order(Order $order)
+    {
+        //
+        $order->update([
+            'status' => 5,
+        ]);
+        return redirect()->route('orders.index');
+    }
     /**
      * Show the form for editing the specified resource.
      */

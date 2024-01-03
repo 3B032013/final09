@@ -176,7 +176,7 @@
             </td>
             <td>
                 @if ($order_detail->order->status == '4')
-                    <form action="#" method="POST">
+                    <form action="{{ route('orders.complete_order', $order_detail->order->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <div class="text-left">
