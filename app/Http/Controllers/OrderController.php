@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,7 +18,22 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $data = ['orders' => $orders];
+
+        return view('orders.index',$data);
+    }
+
+    public function filter(Request $request)
+    {
+        $status = $request->input('status');
+        $orders = Order::where('status', $status)->get();
+
+        // You can pass $orders to the view and display the filtered orders
+
+        // Redirect back to the order list
+        return view('orders.index', ['orders' => $orders]);
     }
 
     /**

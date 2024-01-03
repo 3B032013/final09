@@ -70,7 +70,7 @@
                                 <a class="dropdown-item" href="{{ route('sellers.create') }}" style="color:black">{{ __('申請成為賣家') }}</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('home') }}" style="color:black">{{ __('訂購清單') }}</a>
+                                <a class="dropdown-item" href="{{ route('orders.index') }}" style="color:black">{{ __('訂購清單') }}</a>
                             </li>
                         @endif
                         @if (Auth::check() && Auth::user()->isAdmin())

@@ -47,8 +47,11 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('sellers/{seller}/store', [App\Http\Controllers\SellerController::class, 'store'])->name("sellers.store");
 
     #買家訂單
+    Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name("orders.index");
     Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
     Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name("orders.store");
+    Route::get('orders/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('orders.filter');
+    Route::get('orders/{order}/show', [App\Http\Controllers\OrderController::class, 'show'])->name("orders.show");
 
 });
 
