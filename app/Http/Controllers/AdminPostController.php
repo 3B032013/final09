@@ -10,9 +10,24 @@ class AdminPostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at','DESC')->get();
+        $perPage = $request->input('perPage', 10);
+        $posts = Post::orderBy('created_at','DESC')->paginate($perPage);
         $data = ['posts' => $posts];
         return view('admins.posts.index',$data);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+        $posts = Post::where('title', 'like', "%$query%")
+            ->paginate($perPage);
+
+        // 返回結果
+        return view('admins.posts.index', [
+            'posts' => $posts,
+            'query' => $query,
+        ]);
     }
 
     public function create()

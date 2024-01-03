@@ -88,6 +88,7 @@ Route::group(['middleware' => 'admin'], function () {
 
         //公告路由
         Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");
+        Route::get('/posts/search', [App\Http\Controllers\AdminPostController::class, 'search'])->name('posts.search');
         Route::get('/posts/create', [App\Http\Controllers\AdminPostController::class, 'create'])->name("posts.create");
         Route::post('/posts', [App\Http\Controllers\AdminPostController::class, 'store'])->name("posts.store");
         Route::get('/posts/{post}/edit', [App\Http\Controllers\AdminPostController::class, 'edit'])->name("posts.edit");
