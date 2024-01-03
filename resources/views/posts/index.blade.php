@@ -18,7 +18,7 @@
                         <div class="col-md-6 mb-4 mx-auto">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <h5 class="card-title"><a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a></h5>
                                     <p class="card-text"><small class="text-muted">發佈日期： {{ $post->created_at }}</small></p>
                                 </div>
                             </div>

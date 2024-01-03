@@ -24,7 +24,7 @@ Route::get('products/{product}/show', [App\Http\Controllers\ProductController::c
 
 # 公告
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
-
+Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
