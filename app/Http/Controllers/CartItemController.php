@@ -98,9 +98,39 @@ class CartItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCartItemRequest $request, CartItem $cartItem)
+    public function update(UpdateCartItemRequest $request, $cartItem)
+    {
+        $cartItem = CartItem::findOrFail($cartItem);
+
+        // 取得產品庫存量
+        $inventory = $cartItem->product->inventory;
+
+        // 使用min函數比較庫存量和請求的數量，選擇較小的值
+        $updatedQuantity = min($inventory, $request->quantity);
+
+        // 更新購物車項目的數量
+        $cartItem->update(['quantity' => $updatedQuantity]);
+
+        return redirect()->route('cart_items.index');
+    }
+
+    public function quantity_minus(CartItem $cartItem)
     {
         //
+        $cartItem->quantity = max(1, $cartItem->quantity - 1);
+        $cartItem->save();
+
+        return redirect()->back()->with('success', 'Quantity decremented successfully.');
+    }
+
+    public function quantity_plus(CartItem $cartItem)
+    {
+        //
+        $inventory = $cartItem->product->inventory;
+        $cartItem->quantity = min($inventory, $cartItem->quantity + 1);
+        $cartItem->save();
+
+        return redirect()->back()->with('success', 'Quantity decremented successfully.');
     }
 
     /**

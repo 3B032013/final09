@@ -8,15 +8,34 @@ use Illuminate\Support\Facades\DB;
 
 class AdminSellerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->input('perPage', 10);
         $sellers = DB::table('sellers')
             ->join('users', 'sellers.user_id', '=', 'users.id')
             ->select('sellers.*', 'users.name', 'users.email') // 選擇需要的使用者資料
             ->orderBy('sellers.id', 'ASC')
-            ->get();
+            ->paginate($perPage);
         $data = ['sellers' => $sellers];
         return view('admins.sellers.index',$data);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+        $sellers = DB::table('sellers')
+            ->join('users', 'sellers.user_id', '=', 'users.id')
+            ->where('users.name', 'like', "%$query%")
+            ->orWhere('users.email', 'like', '%' . $query . '%')
+            ->orderBy('sellers.id', 'ASC')
+            ->paginate($perPage);
+
+        // 返回結果
+        return view('admins.sellers.index', [
+            'sellers' => $sellers,
+            'query' => $query,
+        ]);
     }
 
     public function statusOn(Request $request, Seller $seller)

@@ -6,7 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">最新公告</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">最新公告</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">聯絡我們</a></li>
 {{--                <li class="nav-item dropdown">--}}
 {{--                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>--}}
@@ -70,7 +70,7 @@
                                 <a class="dropdown-item" href="{{ route('sellers.create') }}" style="color:black">{{ __('申請成為賣家') }}</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('home') }}" style="color:black">{{ __('訂購清單') }}</a>
+                                <a class="dropdown-item" href="{{ route('orders.index') }}" style="color:black">{{ __('訂購清單') }}</a>
                             </li>
                         @endif
                         @if (Auth::check() && Auth::user()->isAdmin())
