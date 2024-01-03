@@ -23,7 +23,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col" style="text-align:left">書籍類別名稱</th>
+                <th scope="col" style="text-align:left">#</th>
+                <th scope="col" style="text-align:left">商品類別名稱</th>
                 <th scope="col" style="text-align:left">狀態</th>
                 <th scope="col" style="text-align:center">修改狀態</th>
                 <th scope="col" style="text-align:center">修改</th>
@@ -31,8 +32,9 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($product_categories as $product_category)
+            @foreach($product_categories as $index => $product_category)
                 <tr>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $product_category->name }}</td>
                     <td>
                         @if ($product_category->status == 1)
