@@ -184,7 +184,7 @@
                         </div>
                     </form>
                 @elseif($order_detail->order->status == '5')
-                    <form action="#" method="GET">
+                    <form action="{{ route('comments.create', $order_detail->order->id) }}" method="GET">
                         @csrf
                         @method('GET')
                         <div class="text-left">
