@@ -15,7 +15,6 @@ class Order extends Model
         'status',
         'date',
         'score',
-        'comment',
         'pay',
         'price',
         'receiver',

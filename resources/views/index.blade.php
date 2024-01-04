@@ -3,7 +3,6 @@
 @section('title','二手書拍賣平台')
 
 @section('content')
-<hr>
 <div class="container px-4 px-lg-5 mt-2 mb-4">
     <form action="{{ route('products.search') }}" method="GET" class="d-flex">
         <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
@@ -18,7 +17,7 @@
                 <div class="card h-100">
                     <!-- Product image-->
                     <a href="{{ route("products.show",$product->id) }}">
-                    <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }}" style="max-width: 150%; height: 170px"/>
+                    <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }}" style="max-width: 100%; height: 180px"/>
                     </a>
                         <!-- Product details-->
                     <div class="card-body p-4">

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('status');
             $table->date('date');
             $table->integer('score')->nullable();
-            $table->string('comment')->nullable();
             $table->integer('pay');
             $table->integer('price');
             $table->string('receiver');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\comment;
 use App\Http\Requests\StorecommentRequest;
 use App\Http\Requests\UpdatecommentRequest;
+use App\Models\Order;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -16,20 +18,29 @@ class CommentController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(Order $order)
     {
-        //
+
+
+        return view('orders.comments.create', ['order' => $order]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorecommentRequest $request)
+    public function store(Request $request, Order $order)
     {
-        //
+        $message = Comment::updateOrCreate(
+            ['order_id' => $order->id],
+            [
+                'buyer_message' => $request->input('buyer_message'),
+                'buyer_rating' => $request->input('comment_rating'),
+            ]
+        );
+
+        if ($message) {
+            $message->save();
+        }
+
+        // 重定向到訂單列表頁面
+        return redirect()->route('orders.index');
     }
 
     /**
