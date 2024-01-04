@@ -29,7 +29,9 @@ class OrderController extends Controller
     public function filter(Request $request)
     {
         $status = $request->input('status');
-        $orders = Order::where('status', $status)->get();
+        $status2 = $request->input('status2');
+
+        $orders = Order::whereIn('status', [$status, $status2])->get();
 
         // You can pass $orders to the view and display the filtered orders
 
