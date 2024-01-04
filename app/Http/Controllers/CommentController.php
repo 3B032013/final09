@@ -54,17 +54,32 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(comment $comment)
+    public function edit(Order $order)
     {
-        //
+
+
+        return view('orders.comments.edit', ['order' => $order]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatecommentRequest $request, comment $comment)
+    public function update(Request $request, Order $order)
     {
-        //
+        $message = Comment::updateOrCreate(
+            ['order_id' => $order->id],
+            [
+                'buyer_message' => $request->input('buyer_message'),
+                'buyer_rating' => $request->input('comment_rating'),
+            ]
+        );
+
+        if ($message) {
+            $message->save();
+        }
+
+        // 重定向到訂單列表頁面
+        return redirect()->route('orders.index');
     }
 
     /**

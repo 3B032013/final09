@@ -21,4 +21,16 @@ class Comment extends Model
     {
         return $this->belongsTo(order::class);
     }
+
+    public static function getAverageScoreForProduct($productId)
+    {
+        $averageScore = self::whereHas('order.orderDetails.product', function ($query) use ($productId) {
+            $query->where('products.id', $productId);
+        })
+            ->selectRaw('COALESCE(AVG(buying_rating), 0) AS average_score')
+            ->pluck('average_score')
+            ->first();
+
+        return number_format($averageScore, 1); // Format the score with one decimal place
+    }
 }

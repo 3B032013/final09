@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,9 @@ class ViewServiceProvider extends ServiceProvider
                 $cartItems = $user->CartItems;
                 $view->with('cartItems', $cartItems);
             }
+
+            $bookCategories = ProductCategory::all();
+            $view->with('bookCategories', $bookCategories);
         });
     }
 }

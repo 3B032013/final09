@@ -14,7 +14,6 @@ class Order extends Model
         'seller_id',
         'status',
         'date',
-        'score',
         'pay',
         'price',
         'receiver',

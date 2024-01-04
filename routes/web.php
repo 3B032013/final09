@@ -22,6 +22,8 @@ use App\Http\Controllers\CartItemController;
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
 Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');
+Route::get('products/by_category/{category_id}/show', [App\Http\Controllers\ProductController::class, 'by_category'])->name('products.by_category');
+Route::get('products/by_category/search/{category_id}', [App\Http\Controllers\ProductController::class, 'by_category_search'])->name('products.by_category.search');
 # 公告
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
@@ -35,9 +37,6 @@ Route::middleware('auth')->group(function () {
 
 
 Route::group(['middleware' => 'user'], function () {
-    Route::prefix('orders')->name('orders.')->group(function () {
-
-    });
     #購物車
     Route::get('cart_items', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");
     Route::post('cart_items/{product}/store', [App\Http\Controllers\CartItemController::class, 'store'])->name("cart_items.store");
@@ -66,6 +65,8 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('orders/comments/{order}', [App\Http\Controllers\CommentController::class, 'create'])->name('comments.create');
     Route::patch('orders/comments/{order}/store', [App\Http\Controllers\CommentController::class, 'store'])->name("comments.store");
+    Route::get('orders/comments/{order}/edit', [App\Http\Controllers\CommentController::class, 'edit'])->name("comments.edit");
+    Route::patch('orders/comments/{order}/update', [App\Http\Controllers\CommentController::class, 'update'])->name("comments.update");
 });
 
 
