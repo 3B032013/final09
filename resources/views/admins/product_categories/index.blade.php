@@ -28,7 +28,7 @@
                 <th scope="col" style="text-align:left">狀態</th>
                 <th scope="col" style="text-align:center">修改狀態</th>
                 <th scope="col" style="text-align:center">修改</th>
-                <th scope="col" style="text-align:center">刪除</th>
+{{--                <th scope="col" style="text-align:center">刪除</th>--}}
             </tr>
             </thead>
             <tbody>

@@ -60,10 +60,10 @@
                         <a href="{{ route('admins.admins.edit',$admin->id) }}" class="btn btn-secondary btn-sm">編輯</a>
                     </td>
                     <td style="text-align:center">
-                        <form action="{{ route('admins.admins.destroy',$admin->id) }}" method="POST">
+                        <form id="deleteForm{{ $admin->id }}" action="{{ route('admins.admins.destroy',$admin->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">刪除</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $admin->name }}', {{ $admin->id }})">刪除</button>
                         </form>
                     </td>
                 </tr>
@@ -93,6 +93,14 @@
             @endif
         </div>
     </div>
+    <script>
+        function confirmDelete(admin_name, adminId)
+        {
+            if (confirm("確定要刪除管理員" + admin_name + "嗎？")) {
+                document.getElementById('deleteForm' + adminId).submit();
+            }
+        }
+    </script>
     <script>
         function changeRecordsPerPage() {
             const select = document.getElementById('records-per-page');
