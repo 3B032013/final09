@@ -16,7 +16,18 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+        <div>
+            <x-input-label for="photo" :value="__('Photo')" />
+            <input id="photo" name="photo" type="file" class="mt-1 block w-full" :value="old('photo')" required autofocus autocomplete="name" onchange="previewImage(this)" />
+            <x-input-error class="mt-2" :messages="$errors->get('photo')" />
+            <img id="image-preview" src="#" alt="圖片預覽" style="display: none; width:200px; height:200px;" />
 
+            @if ($user->photo == 'head.jpg')
+                <img class="card-img-top w-100 h-100 object-cover" src="images/head.jpg" alt="{{ htmlspecialchars($user->name) }}" />
+            @else
+                <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/user/' . $user->photo) }}" alt="{{ htmlspecialchars($user->name) }}" />
+            @endif
+        </div>
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
@@ -61,4 +72,21 @@
             @endif
         </div>
     </form>
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('image-preview');
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 </section>
