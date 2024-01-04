@@ -24,6 +24,9 @@ Route::get('products/{product}/show', [App\Http\Controllers\ProductController::c
 Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');
 Route::get('products/by_category/{category_id}/show', [App\Http\Controllers\ProductController::class, 'by_category'])->name('products.by_category');
 Route::get('products/by_category/search/{category_id}', [App\Http\Controllers\ProductController::class, 'by_category_search'])->name('products.by_category.search');
+Route::get('contacts', [App\Http\Controllers\ContactController::class, 'create'])->name("contacts.create");
+Route::post('contacts', [App\Http\Controllers\ContactController::class, 'store'])->name("contacts.store");
+
 # 公告
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');

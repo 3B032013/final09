@@ -15,6 +15,7 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">最新公告</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('contacts.create') }}">聯絡我們</a></li>
             </ul>
 
             <ul class="navbar-nav">
