@@ -13,49 +13,139 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update',$user->id) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
-        <div>
-            <x-input-label for="photo" :value="__('Photo')" />
-            <input id="photo" name="photo" type="file" class="mt-1 block w-full" :value="old('photo')" required autofocus autocomplete="name" onchange="previewImage(this)" />
-            <x-input-error class="mt-2" :messages="$errors->get('photo')" />
-            <img id="image-preview" src="#" alt="圖片預覽" style="display: none; width:200px; height:200px;" />
+        <div class="row mb-3">
+            <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('個人頭像 / photo') }}</label>
+            <div class="col-md-6">
+                <label for="photo" class="form-label">頭像</label>
+                <input id="photo" name="photo" type="file" class="form-control" onchange="previewImage(this);">
+                <img id="image-preview" src="#" alt="圖片預覽" style="display: none; width:200px; height:200px;" >
 
-            @if ($user->photo == 'head.jpg')
-                <img class="card-img-top w-100 h-100 object-cover" src="images/head.jpg" alt="{{ htmlspecialchars($user->name) }}" />
-            @else
-                <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/user/' . $user->photo) }}" alt="{{ htmlspecialchars($user->name) }}" />
-            @endif
+                @if ($user->photo == 'head.jpg')
+                    <img class="card-img-top w-100 h-100 object-cover" src="images/head.jpg" alt="{{ htmlspecialchars($user->name) }}" />
+                @else
+                    <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/user/' . $user->photo) }}" alt="{{ htmlspecialchars($user->name) }}" />
+                @endif
+
+                @error('photo')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
         </div>
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+
+        <div class="row mb-3">
+            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('姓名 / Name') }}</label>
+
+            <div class="col-md-6">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+        <div class="row mb-3">
+            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('信箱 / Email') }}</label>
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
+            <div class="col-md-6">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
+        </div>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
+        <div class="row mb-3">
+            <label for="sex" class="col-md-4 col-form-label text-md-end">{{ __('性別 / Sex') }}</label>
+
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    @if ($user->sex == '男')
+                        男<input id="sex" type="radio" name="sex" value="{{ '男' }}" required autocomplete="sex" checked="checked">
+                        女<input id="sex" type="radio" name="sex" value="{{ '女' }}" required autocomplete="sex">
+                    @else
+                        男<input id="sex" type="radio" name="sex" value="{{ '男' }}" required autocomplete="sex">
+                        女<input id="sex" type="radio" name="sex" value="{{ '女' }}" required autocomplete="sex" checked="checked">
                     @endif
                 </div>
-            @endif
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="birthday" class="col-md-4 col-form-label text-md-end">{{ __('生日 / Birthday') }}</label>
+
+            <div class="col-md-6">
+                <input id="birthday" type="text" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ $user->birthday }}" required autocomplete="current-password">
+
+                @error('birthday')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('電話 / Phone') }}</label>
+
+            <div class="col-md-6">
+                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="current-password">
+
+                @error('phone')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('地址 / Address') }}</label>
+
+            <div class="col-md-6">
+                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $user->address }}" required autocomplete="current-password">
+
+                @error('address')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="bank_branch" class="col-md-4 col-form-label text-md-end">{{ __('分行代碼 / bank_branch') }}</label>
+
+            <div class="col-md-6">
+                <input id="bank_branch" type="text" class="form-control @error('bank_branch') is-invalid @enderror" name="bank_branch" value="{{ $user->bank_branch }}" >
+
+                @error('bank_branch')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="bank_account" class="col-md-4 col-form-label text-md-end">{{ __('銀行帳號 / bank_account') }}</label>
+            <div class="col-md-6">
+                <input id="bank_account" type="text" class="form-control @error('bank_account') is-invalid @enderror" name="bank_account" value="{{ $user-> bank_account }}" >
+
+                @error('bank_account')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
         </div>
 
         <div class="flex items-center gap-4">
