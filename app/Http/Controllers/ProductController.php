@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -127,5 +128,34 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('sellers.products.index');
+    }
+
+    public function by_category(Request $request,$category_id)
+    {
+        $selectedCategory = ProductCategory::find($category_id);
+        $products = Product::where('product_category_id', $category_id)
+            ->where('status', 3)
+            ->get();
+
+        return view('products.by_category', [
+            'selectedCategory' => $selectedCategory,
+            'products' => $products,
+        ]);
+    }
+
+    public function by_category_search(Request $request,$category_id)
+    {
+        $query = $request->input('query');
+        $selectedCategory = ProductCategory::find($category_id);
+        $products = Product::where('product_category_id', $category_id)
+            ->where('name', 'like', "%$query%")
+            ->where('status', 3)
+            ->get();
+
+        return view('products.by_category', [
+            'selectedCategory' => $selectedCategory,
+            'products' => $products,
+            'query' => $query,
+        ]);
     }
 }
