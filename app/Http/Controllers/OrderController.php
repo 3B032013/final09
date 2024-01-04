@@ -30,8 +30,10 @@ class OrderController extends Controller
     {
         $status = $request->input('status');
         $status2 = $request->input('status2');
+        $status3 = $request->input('status3');
+        $status4 = $request->input('status4');
 
-        $orders = Order::whereIn('status', [$status, $status2])->get();
+        $orders = Order::whereIn('status', [$status, $status2,$status3,$status4])->get();
 
         // You can pass $orders to the view and display the filtered orders
 

@@ -23,13 +23,24 @@ class Comment extends Model
 
     public static function getAverageScoreForProduct($productId)
     {
-        $averageScore = self::whereHas('order.orderDetails.product', function ($query) use ($productId) {
+        $averageScore = self::whereHas('order.orderItems.product', function ($query) use ($productId) {
             $query->where('products.id', $productId);
         })
-            ->selectRaw('COALESCE(AVG(buying_rating), 0) AS average_score')
+            ->selectRaw('COALESCE(AVG(buyer_rating), 0) AS average_score')
             ->pluck('average_score')
             ->first();
 
         return number_format($averageScore, 1); // Format the score with one decimal place
+    }
+
+    public static function getAllMessagesForProduct($productId)
+    {
+        $messages = self::whereHas('order.orderItems.product', function ($query) use ($productId) {
+            $query->where('products.id', $productId);
+        })
+            ->with('order.orderItems.product') // 如果需要取得其他相關資料，可以使用 with 方法
+            ->get(['order_id', 'buyer_rating', 'buyer_message', 'created_at' ,'updated_at']);
+
+        return $messages;
     }
 }

@@ -11,68 +11,6 @@
             {{--            <a href="#" style="text-decoration: none;color: black" >歷史訂單</a>--}}
         </div>
     </div>
-{{--    <table border="0" align="center">--}}
-{{--        <thead align="center">--}}
-{{--        <tbody>--}}
-{{--        <tr style="height: 100px">--}}
-{{--            <th>--}}
-{{--                <div class="container mt-4 text-center">--}}
-{{--                    <form action="{{ route('orders.index') }}" method="GET">--}}
-{{--                        @method('GET')--}}
-{{--                        <button type="submit" class="btn btn-secondary mx-2">所有訂單</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </th>--}}
-{{--            <th>--}}
-{{--                <div class="container mt-4 text-center">--}}
-{{--                    <form action="{{ route('orders.filter') }}" method="GET">--}}
-{{--                        @method('GET')--}}
-{{--                        <input type="text" name="status" value="0" hidden>--}}
-{{--                        <button type="submit" class="btn btn-secondary mx-2">未付款</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </th>--}}
-{{--            <th>--}}
-{{--                <div class="container mt-4 text-center">--}}
-{{--                    <form action="{{ route('orders.filter') }}" method="GET">--}}
-{{--                        @method('GET')--}}
-{{--                        <input type="text" name="status" value="1" hidden>--}}
-{{--                        <button type="submit" class="btn btn-secondary mx-2">處理中</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </th>--}}
-{{--            <th>--}}
-{{--                <div class="container mt-4 text-center">--}}
-{{--                    <form action="{{ route('orders.filter') }}" method="GET">--}}
-{{--                        @method('GET')--}}
-{{--                        <input type="text" name="status" value="4" hidden>--}}
-{{--                        <button type="submit" class="btn btn-secondary mx-2">待收貨</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </th>--}}
-{{--            <th>--}}
-{{--                <div class="container mt-4 text-center">--}}
-{{--                    <form action="{{ route('orders.filter') }}" method="GET">--}}
-{{--                        @method('GET')--}}
-{{--                        <input type="text" name="status" value="5" hidden>--}}
-{{--                        <button type="submit" class="btn btn-secondary mx-2">已完成</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </th>--}}
-{{--            <th>--}}
-{{--                <div class="container mt-4 text-center">--}}
-{{--                    <form action="{{ route('orders.filter') }}" method="GET">--}}
-{{--                        @method('GET')--}}
-{{--                        <input type="text" name="status" value="7" hidden>--}}
-{{--                        <button type="submit" class="btn btn-secondary mx-2">未成立</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </th>--}}
-{{--        </tr>--}}
-
-{{--        </tbody></thead>--}}
-{{--    </table>--}}
-
     <table class="mx-auto" border="0">
         <thead align="center">
         <tr  align="center">
@@ -89,6 +27,8 @@
                     @method('GET')
                     <input type="text" name="status" value="1" hidden>
                     <input type="text" name="status2" value="2" hidden>
+                    <input type="text" name="status3" value="3" hidden>
+                    <input type="text" name="status4" value="4" hidden>
                     <button type="submit" class="button">處理中</button>
                 </form></th>
             <th width="200" height="30"><form action="{{ route('orders.filter') }}" method="GET">
@@ -122,7 +62,7 @@
                 <tr  align="center">
                     <td width="200" height="50">訂單{{ $order->id }}</td>
                     <td width="200" height="50">{{ $order->created_at }}</td>
-                    <td width="200" height="50">{{ count($orders )}}</td>
+                    <td width="200" height="50">{{ count($orders)}}</td>
                     <td width="200" height="50">
                         @if ($order->status == '0')
                             <div style="color:#8d00ff; font-weight:bold;">
