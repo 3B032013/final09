@@ -50,6 +50,29 @@
                         </form>
                     </div>
                 </div>
+                <div class="border p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle overflow-hidden" style="width: 150px; height: 150px;">
+                            @if ($product->seller->user->photo == 'head.jpg')
+                                <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('images/head.jpg') }}" alt="{{ htmlspecialchars($product->seller->user->name) }}" />
+                            @else
+                                <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/user/' . $product->seller->user->photo) }}" alt="{{ htmlspecialchars($product->seller->user->name) }}" />
+                            @endif
+                        </div>
+                        <div class="ml-3">
+                            <span>賣家：{{ $product->seller->user->name }} 賣場</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>商品數量：{{ $productsCount }} </span><br>
+                            <a href="{{ route("products.by_seller",$product->seller_id) }}">
+                                查看賣場
+                            </a>
+                        </div>
+                        <div class="m-lg-4">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             </div>
         </div>
     </section>
