@@ -21,18 +21,16 @@
             <div class="col-md-6">
                 <label for="photo" class="form-label">頭像</label>
                 <input id="photo" name="photo" type="file" class="form-control" onchange="previewImage(this);">
-                <img id="image-preview" src="#" alt="圖片預覽" style="display: none; width:200px; height:200px;" >
-
                 @if ($user->photo == 'head.jpg')
-                    <img class="card-img-top w-100 h-100 object-cover" src="images/head.jpg" alt="{{ htmlspecialchars($user->name) }}" />
+                    <img id="image-preview" src="{{ asset('images/head.jpg') }}" alt="圖片預覽" style="width:200px; height:200px; display: {{ $user->photo ? 'block' : 'none' }}" >
                 @else
-                    <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/user/' . $user->photo) }}" alt="{{ htmlspecialchars($user->name) }}" />
+                    <img id="image-preview" src="{{ $user->photo ? asset('storage/user/' . $user->photo) : '#' }}" alt="圖片預覽" style="width:200px; height:200px; display: {{ $user->photo ? 'block' : 'none' }}" >
                 @endif
 
                 @error('photo')
                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
         </div>

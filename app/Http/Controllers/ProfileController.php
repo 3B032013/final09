@@ -30,13 +30,10 @@ class ProfileController extends Controller
     {
        $this->validate($request, [
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:4089',
-           'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
-        if (!$request->hasFile('photo')) {
-            $user->photo = 'images/default.jpg';
-        }
-        else
-        {
+
+        if ($request->hasFile('photo')) {
             // Delete the old image from storage
             if ($user->photo) {
                 Storage::disk('user')->delete($user->photo);
@@ -49,22 +46,21 @@ class ProfileController extends Controller
             // Log the image file name
             Storage::disk('user')->put($imageName, file_get_contents($image));
 
-            // Set the new image URL in the Product instance
+            // Set the new image URL in the User instance
             $user->photo = $imageName;
-
-            // Update other user attributes
-            $user->update($request->except(['photo', '_token', '_method']));
-
-
-            // Save the user model
-            $user->save();
         }
+
+        // Update other user attributes
+        $user->update($request->except(['photo']));
+
+        // Save the user model
+        $user->save();
 
         // 如果 email 發生變化，重置 email_verified_at
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-        dd($request->all());
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
