@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\ProductCategory;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,9 +48,9 @@ class ProductController extends Controller
         {
             $user = Auth::user();
             $cartItems = $user->CartItems;
-
+            $seller_id=$user->seller->id;
             $product = Product::where('id',$productId)->first();
-
+            $productsCount = Product::where('seller_id', $seller_id)->count();
             $relatedProducts = Product::where('product_category_id', $product->product_category_id)
                 ->where('id', '!=', $product->id) // 排除當前產品
                 ->inRandomOrder() // 隨機排序
@@ -61,6 +62,7 @@ class ProductController extends Controller
                 'cartItems' => $cartItems,
                 'product' => $product,
                 'relatedProducts' => $relatedProducts,
+                'productsCount'=>$productsCount,
             ];
             return view('products.show', $data);
         }
@@ -157,5 +159,97 @@ class ProductController extends Controller
             'products' => $products,
             'query' => $query,
         ]);
+    }
+    public function by_seller($seller_id)
+    {
+        $productsCount = Product::where('seller_id', $seller_id)->count();
+        $products = Product::where('seller_id', $seller_id)
+            ->where('status', 3)
+            ->orderby('id','ASC')->get();
+        $seller = Seller::where('id', $seller_id)->first();
+        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+        $data = ['products' => $products , 'seller' => $seller ,
+            'sellerCategories' => $sellerCategories,
+            'productsCount'=>$productsCount,];
+
+        return view('products.by_seller',$data);
+    }
+
+    public function by_seller_search(Request $request, $seller_id)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('seller_id', $seller_id)
+            ->where('status', 3)
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'like', '%' . $query . '%');
+            })
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $seller = Seller::find($seller_id);
+
+        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+
+        $data = [
+            'products' => $products,
+            'seller' => $seller,
+            'sellerCategories' => $sellerCategories,
+            'query' => $query,
+        ];
+
+        return view('products.by_seller_search', $data);
+    }
+
+    public function by_seller_and_category($seller_id, $category_id)
+    {
+        $products = Product::where('seller_id', $seller_id)
+            ->where('product_category_id', $category_id)
+            ->where('status', 3)
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $seller = Seller::find($seller_id);
+
+        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+
+        $selectedCategory = ProductCategory::find($category_id);
+
+        $data = [
+            'products' => $products,
+            'seller' => $seller,
+            'sellerCategories' => $sellerCategories,
+            'selectedCategory' => $selectedCategory,
+        ];
+
+        return view('products.by_seller_and_category', $data);
+    }
+
+    public function by_seller_and_category_search(Request $request,$seller_id, $category_id)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('seller_id', $seller_id)
+            ->where('product_category_id', $category_id)
+            ->where('status', 3)
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'like', '%' . $query . '%');
+            })
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $seller = Seller::find($seller_id);
+        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+        $selectedCategory = ProductCategory::find($category_id);
+
+        $data = [
+            'products' => $products,
+            'seller' => $seller,
+            'sellerCategories' => $sellerCategories,
+            'selectedCategory' => $selectedCategory,
+            'query' => $query,
+        ];
+
+        return view('products.by_seller_and_category_search', $data);
     }
 }
