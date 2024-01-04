@@ -97,6 +97,14 @@
         </div>
     </div>
     <script>
+        function confirmDelete(post_name, postId)
+        {
+            if (confirm("確定要刪除公告" + post_name + "嗎？")) {
+                document.getElementById('deleteForm' + postId).submit();
+            }
+        }
+    </script>
+    <script>
         function changeRecordsPerPage() {
             const select = document.getElementById('records-per-page');
             const value = select.options[select.selectedIndex].value;

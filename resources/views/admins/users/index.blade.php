@@ -71,10 +71,10 @@
                         <a href="{{ route('admins.users.edit',$user->id) }}" class="btn btn-secondary btn-sm">編輯</a>
                     </td>
                     <td style="text-align:center">
-                        <form action="{{ route('admins.users.destroy',$user->id) }}" method="POST">
+                        <form id="deleteForm{{ $user->id }}" action="{{ route('admins.users.destroy',$user->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">刪除</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $user->name }}', {{ $user->id }})">刪除</button>
                         </form>
                     </td>
                 </tr>
@@ -104,6 +104,14 @@
             @endif
         </div>
     </div>
+    <script>
+        function confirmDelete(username, userId)
+        {
+            if (confirm("確定要刪除使用者" + username + "嗎？")) {
+                document.getElementById('deleteForm' + userId).submit();
+            }
+        }
+    </script>
     <script>
         function changeRecordsPerPage() {
             const select = document.getElementById('records-per-page');
