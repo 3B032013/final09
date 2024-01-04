@@ -11,6 +11,10 @@
                 <a class="nav-link" href="{{ route('sellers.orders.show') }}">
                     訂單金流管理
                 </a>
+                <a class="nav-link" href="{{ route('sellers.comments.index') }}">
+                    訂單評價管理
+                </a>
+
 
 
             </div>

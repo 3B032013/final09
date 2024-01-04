@@ -99,6 +99,12 @@ Route::group(['middleware' => 'seller'], function () {
         Route::patch('/orders/{order}/arrive', [App\Http\Controllers\SellerOrderController::class, 'arrive'])->name('orders.arrive');
         Route::delete('/orders/{order}', [App\Http\Controllers\SellerOrderController::class, 'destroy'])->name("orders.destroy");
         Route::get('/orders/show', [App\Http\Controllers\SellerOrderController::class, 'show'])->name('orders.show');
+
+        #訂單評價管理
+        Route::get('/comments', [App\Http\Controllers\SellerCommentController::class, 'index'])->name('comments.index');
+        Route::get('/comments/{order}/edit', [App\Http\Controllers\SellerCommentController::class, 'edit'])->name("comments.edit");
+        Route::patch('/comments/{comments}', [App\Http\Controllers\SellerCommentController::class, 'update'])->name('comments.update');
+        Route::delete('/comments/{comments}', [App\Http\Controllers\SellerCommentController::class, 'destroy'])->name("comments.destroy");
     });
 });
 
