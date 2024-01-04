@@ -93,6 +93,7 @@ Route::group(['middleware' => 'seller'], function () {
         Route::patch('/orders/{order}/transport', [App\Http\Controllers\SellerOrderController::class, 'transport'])->name('orders.transport');
         Route::patch('/orders/{order}/arrive', [App\Http\Controllers\SellerOrderController::class, 'arrive'])->name('orders.arrive');
         Route::delete('/orders/{order}', [App\Http\Controllers\SellerOrderController::class, 'destroy'])->name("orders.destroy");
+        Route::get('/orders/show', [App\Http\Controllers\SellerOrderController::class, 'show'])->name('orders.show');
     });
 });
 

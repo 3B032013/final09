@@ -59,5 +59,13 @@ class SellerOrderController extends Controller
         $order->delete();
         return redirect()->route('sellers.orders.index');
     }
+    public function show()
+    {
+        $orders = Order::where('status','5')->orderby('id','ASC')->get();
+        $data = ['orders' => $orders];
+        return view('sellers.orders.show',$data);
+
+    }
+
 
 }

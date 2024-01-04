@@ -8,6 +8,10 @@
                 <a class="nav-link" href="{{ route('sellers.orders.index') }}">
                     訂單管理
                 </a>
+                <a class="nav-link" href="{{ route('sellers.orders.show') }}">
+                    訂單金流管理
+                </a>
+
 
             </div>
         </div>

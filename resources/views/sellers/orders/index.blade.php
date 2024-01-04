@@ -26,6 +26,10 @@
                             <div style="color:#FF0000; font-weight:bold;">
                                 (待確認)
                             </div>
+                        @elseif ($order->status == '0')
+                            <div style="color:#ff6f00; font-weight:bold;">
+                                (買家待付款)
+                            </div>
                         @elseif ($order->status == '2')
                             <div style="color:#ff6f00; font-weight:bold;">
                                 (出貨中)
