@@ -35,9 +35,6 @@ Route::middleware('auth')->group(function () {
 
 
 Route::group(['middleware' => 'user'], function () {
-    Route::prefix('orders')->name('orders.')->group(function () {
-
-    });
     #購物車
     Route::get('cart_items', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");
     Route::post('cart_items/{product}/store', [App\Http\Controllers\CartItemController::class, 'store'])->name("cart_items.store");
@@ -66,6 +63,8 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('orders/comments/{order}', [App\Http\Controllers\CommentController::class, 'create'])->name('comments.create');
     Route::patch('orders/comments/{order}/store', [App\Http\Controllers\CommentController::class, 'store'])->name("comments.store");
+    Route::get('orders/comments/{order}/edit', [App\Http\Controllers\CommentController::class, 'edit'])->name("comments.edit");
+    Route::patch('orders/comments/{order}/update', [App\Http\Controllers\CommentController::class, 'update'])->name("comments.update");
 });
 
 

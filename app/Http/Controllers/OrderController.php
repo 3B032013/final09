@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Comment;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\OrderDetail;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -156,9 +156,15 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $orderDetails = orderItem::where('order_id', $order->id)->get();
+        // 获取订单关联的评论
+        $comment = Comment::where('order_id', $order->id)->first();
 
-        $data = ['order_details' => $orderDetails];
+        $orderDetails = OrderItem::where('order_id', $order->id)->get();
+
+        $data = [
+            'order_details' => $orderDetails,
+            'has_comment' => $comment !== null, // 如果评论存在，has_comment 将为 true，否则为 false
+        ];
 
         return view('orders.show', $data);
     }

@@ -65,12 +65,12 @@
                 </tr>
                 <tr>
                     <td colspan="5" >
-                        <p>&nbsp&nbsp商品總運費：$ <span id="member-name">{{ number_format($totalShippingFee, 0) }}</span></p>
+                        <p>&nbsp&nbsp商品總運費：$ <span>{{ number_format($totalShippingFee, 0) }}</span></p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <p>&nbsp&nbsp商品總金額：$<span id="member-address">{{ number_format($totalSum, 0) }}</span></p>
+                        <p>&nbsp&nbsp商品總金額：$<span>{{ number_format($totalSum, 0) }}</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -118,7 +118,7 @@
                             <label for="receiver_phone">&nbsp&nbsp收件人電話:</label>
                             <input type="text" id="recipient-phone" name="receiver_phone" placeholder="收件人電話" required><br><br>
 
-                            <label for="receiver_address">&nbsp&nbsp收件人名稱:</label>
+                            <label for="receiver_address">&nbsp&nbsp收件人地址:</label>
                             <input type="text" id="recipient-address" name="receiver_address" placeholder="收件人名稱" required><br><br>
                         </div>
                     </td>
