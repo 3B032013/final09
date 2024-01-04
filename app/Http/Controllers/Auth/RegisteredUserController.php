@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
+            'photo' => $request->input('photo'),
             'name' => $request->name,
             'sex' => $request->sex,
             'birthday' => $request->birthday,
