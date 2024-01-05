@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Order;
+
+use App\Models\Comment;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -18,9 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-//        $products = Product::orderby('id','ASC')->get();
-//        $data = ['products' => $products];
-//        return view('index',$data);
+
     }
 
     /**
@@ -51,7 +52,13 @@ class ProductController extends Controller
             $cartItems = $user->CartItems;
             $seller_id=$user->seller->id;
             $product = Product::where('id',$productId)->first();
+
+            $averageScore = Comment::getAverageScoreForProduct($product->id);
+
+            $AllMessages = Comment::getAllMessagesForProduct($product->id);
+
             $productsCount = Product::where('seller_id', $seller_id)->count();
+
             $relatedProducts = Product::where('product_category_id', $product->product_category_id)
                 ->where('id', '!=', $product->id) // 排除當前產品
                 ->inRandomOrder() // 隨機排序
@@ -62,6 +69,8 @@ class ProductController extends Controller
             $data = [
                 'cartItems' => $cartItems,
                 'product' => $product,
+                'averageScore'=>$averageScore,
+                'AllMessages'=>$AllMessages,
                 'relatedProducts' => $relatedProducts,
                 'productsCount'=>$productsCount,
             ];

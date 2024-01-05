@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('products.show.layouts.master')
 
 @section('title', $post->title)
 

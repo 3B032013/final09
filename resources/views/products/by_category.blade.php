@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('products.show.layouts.master')
 
 @section('title','二手書拍賣平台')
 
@@ -30,7 +30,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <a href="{{ route("products.show",$product->id) }}">
-                                <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }}" />
+                                <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }} " style="max-width: 100%; height: 180px"/>
                             </a>
                             <!-- Product details-->
                             <div class="card-body p-4">
