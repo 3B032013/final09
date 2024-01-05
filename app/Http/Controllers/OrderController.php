@@ -168,6 +168,7 @@ class OrderController extends Controller
         $data = [
             'order_details' => $orderDetails,
             'has_comment' => $comment !== null, // 如果评论存在，has_comment 将为 true，否则为 false
+            'orderId' => $order->id,
         ];
 
         return view('orders.show', $data);
@@ -176,7 +177,8 @@ class OrderController extends Controller
     public function payment($order_id)
     {
         $orderItems = orderItem::where('order_id', $order_id)->get();
-        $data = ['orderItems' => $orderItems];
+        $data = ['orderItems' => $orderItems,
+            'orderId' => $order_id,];
 
         return view('orders.payment', $data);
     }

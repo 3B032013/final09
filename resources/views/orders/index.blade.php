@@ -2,13 +2,19 @@
 
 @section('title', '訂單')
 
+@section('page-path')
+    <div>
+        <p style="font-size: 1.2em;"><a href="{{ route('home') }}">
+                <i class="fa fa-home"></i></a> &gt;
+            訂購清單
+        </p>
+    </div>
+@endsection
+
 @section('content')
-    <hr>
     <div class="wrapper">
         <div class="container mt-8">
             <h3 class="text-2xl mb-4" align="center">訂購清單</h3>
-            {{--            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp--}}
-            {{--            <a href="#" style="text-decoration: none;color: black" >歷史訂單</a>--}}
         </div>
     </div>
     <table class="mx-auto" border="0">
@@ -62,7 +68,7 @@
                 <tr  align="center">
                     <td width="200" height="50">訂單{{ $order->id }}</td>
                     <td width="200" height="50">{{ $order->created_at }}</td>
-                    <td width="200" height="50">{{ count($orders)}}</td>
+                    <td width="200" height="50">{{ count($order->orderitems)}}</td>
                     <td width="200" height="50">
                         @if ($order->status == '0')
                             <div style="color:#8d00ff; font-weight:bold;">

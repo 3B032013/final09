@@ -2,25 +2,30 @@
 
 @section('title','二手書拍賣平台')
 
+@section('page-path')
+    <div>
+        <p style="font-size: 1.2em;">
+            <a href="{{ route('home') }}"><i class="fa fa-home"></i></a> &gt;
+            @if (request()->has('query'))
+                <a href="{{ route('products.by_category', $selectedCategory->id) }}" class="custom-link">
+                    {{ $selectedCategory->name }}類
+                </a> &gt;
+                查找「{{ request('query') }}」
+                <a class="btn btn-success btn-sm" href="{{ route('products.by_category', $selectedCategory->id) }}">取消搜尋</a>
+            @else
+                {{ $selectedCategory->name }}類
+            @endif
+        </p>
+    </div>
+@endsection
+
 @section('content')
-    <hr>
     <div class="container px-4 px-lg-5 mt-2 mb-4">
         <form action="{{ route('products.by_category.search',$selectedCategory->id) }}" method="GET" class="d-flex">
             <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
             <button type="submit" class="btn btn-outline-dark">搜尋</button>
         </form>
     </div>
-    @if ($selectedCategory)
-        <div class="container px-4 px-lg-5 mt-2 mb-4">
-            查找「{{ $selectedCategory->name }}」類商品
-        </div>
-    @endif
-    @if (request()->has('query'))
-        <div class="container px-4 px-lg-5 mt-2 mb-4">
-            查找「{{ request('query') }}」
-            <a class="btn btn-success btn-sm" href="{{ route('products.by_category',$selectedCategory->id) }}">取消搜尋</a>
-        </div>
-    @endif
     @if (count($products) > 0)
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">

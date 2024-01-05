@@ -2,8 +2,16 @@
 
 @section('title', '訂單')
 
+@section('page-path')
+    <div>
+        <p style="font-size: 1.2em;"><a href="{{ route('home') }}">
+                <i class="fa fa-home"></i></a> &gt;
+            <a href="{{ route('cart_items.index') }}" class="custom-link">購物車</a> > 結帳
+        </p>
+    </div>
+@endsection
+
 @section('content')
-    <hr>
     <div class="wrapper">
         <div class="container mt-8">
             <h3 class="text-2xl mb-4" align="center">訂單結帳</h3>

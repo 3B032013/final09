@@ -2,8 +2,16 @@
 
 @section('title','最新公告')
 
+@section('page-path')
+    <div>
+        <p style="font-size: 1.2em;">
+            <a href="{{ route('home') }}"><i class="fa fa-home"></i></a> &gt;
+            最新公告
+        </p>
+    </div>
+@endsection
+
 @section('content')
-    <hr>
     <section class="py-5">
         <div class="container">
             {{-- Display the overall title --}}

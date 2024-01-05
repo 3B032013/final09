@@ -2,26 +2,29 @@
 
 @section('title','二手書拍賣平台')
 
+@section('page-path')
+    <div>
+        <p style="font-size: 1.2em;">
+            <a href="{{ route('home') }}"><i class="fa fa-home"></i></a> &gt;
+            <a href="{{ route('products.by_seller',['seller_id' => $seller->id]) }}" class="custom-link">{{ $seller->user->name }}賣場</a> &gt;
+            @if ($selectedCategory)
+                <a href="{{ route('products.by_seller_and_category',['seller_id' => $seller->id, 'category_id' => $selectedCategory->id]) }}" class="custom-link">{{ $selectedCategory->name }}類</a> &gt;
+            @endif
+            @if (request()->has('query'))
+                查找「{{ request('query') }}」
+                <a class="btn btn-success btn-sm" href="{{ route('products.by_seller_and_category',['seller_id' => $seller->id, 'category_id' => $selectedCategory->id]) }}">取消搜尋</a>
+            @endif
+        </p>
+    </div>
+@endsection
+
 @section('content')
-<hr>
 <div class="container px-4 px-lg-5 mt-2 mb-4">
     <form action="{{ route('products.by_seller_and_category.search',['seller_id' => $seller->id, 'category_id' => $selectedCategory->id]) }}" method="GET" class="d-flex">
         <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
         <button type="submit" class="btn btn-outline-dark">搜尋</button>
     </form>
 </div>
-@if ($selectedCategory)
-    <div class="container px-4 px-lg-5 mt-2 mb-4">
-        查找「{{ $selectedCategory->name }}」類商品
-    </div>
-@endif
-@if (request()->has('query'))
-    <div class="container px-4 px-lg-5 mt-2 mb-4">
-        查找「{{ request('query') }}」
-        <a class="btn btn-success btn-sm" href="{{ route('products.by_seller_and_category',['seller_id' => $seller->id, 'category_id' => $selectedCategory->id]) }}">取消搜尋</a>
-    </div>
-@endif
-<!-- Responsive navbar-->
 <!-- Page Content-->
 <div class="container px-4 px-lg-5">
     <!-- Heading Row-->

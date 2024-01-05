@@ -30,7 +30,7 @@ class ViewServiceProvider extends ServiceProvider
                 $view->with('cartItems', $cartItems);
             }
 
-            $bookCategories = ProductCategory::all();
+            $bookCategories = ProductCategory::where('status', 1)->get();
             $view->with('bookCategories', $bookCategories);
         });
     }

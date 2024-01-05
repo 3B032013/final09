@@ -2,6 +2,18 @@
 
 @section('title','二手書拍賣平台')
 
+@section('page-path')
+    <div>
+        <p style="font-size: 1.2em;">
+            <a href="{{ route('home') }}"><i class="fa fa-home"></i></a> &gt;
+            @if (request()->has('query'))
+                查找「{{ request('query') }}」
+                <a class="btn btn-success btn-sm" href="{{ route('home') }}">取消搜尋</a>
+            @endif
+        </p>
+    </div>
+@endsection
+
 @section('content')
     <div class="container px-4 px-lg-5 mt-2 mb-4">
         <form action="{{ route('products.search') }}" method="GET" class="d-flex">
@@ -9,12 +21,6 @@
             <button type="submit" class="btn btn-outline-dark">搜尋</button>
         </form>
     </div>
-    @if (request()->has('query'))
-        <div class="container px-4 px-lg-5 mt-2 mb-4">
-            查找「{{ request('query') }}」
-            <a class="btn btn-success btn-sm" href="{{ route('home') }}">取消搜尋</a>
-        </div>
-    @endif
     @if (count($products) > 0)
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
