@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -160,22 +161,54 @@ class ProductController extends Controller
             'query' => $query,
         ]);
     }
-    public function by_seller($seller_id)
+    public function by_seller(Request $request,$seller_id, $category_id = null)
     {
-        $productsCount = Product::where('seller_id', $seller_id)->count();
-        $products = Product::where('seller_id', $seller_id)
-            ->where('status', 3)
-            ->orderby('id','ASC')->get();
-        $seller = Seller::where('id', $seller_id)->first();
-        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
-        $data = ['products' => $products , 'seller' => $seller ,
-            'sellerCategories' => $sellerCategories,
-            'productsCount'=>$productsCount,];
+//        // 獲取所有商品類別
+        $allCategories = ProductCategory::all();
+//
+//        // 根據 $seller_id 查詢賣家相關資訊
+        $seller = Seller::findOrFail($seller_id);
 
-        return view('products.by_seller',$data);
+        //$seller_id = $request->input('seller_id');
+        $category_id = $request->input('category_id');
+        // 如果提供了 $category_id，則僅顯示該類別的商品
+        if ($category_id) {
+            //$selectedCategory = $allCategories->find($category_id);
+            //$products = $selectedCategory ? $selectedCategory->products : collect();
+            // 獲取賣家的商品類別
+
+            $products = Product::where('seller_id', $seller->id)
+                ->when($category_id, function ($query) use ($category_id) {
+                    return $query->where('product_category_id', $category_id);
+                })
+                ->where('status', 3)
+                ->orderBy('id', 'ASC')
+                ->get();
+            $sellerCategories = $category_id ? $allCategories->whereIn('id', [$category_id]) : $allCategories;
+
+        } else {
+            // 如果未提供 $category_id，則顯示所有商品
+            $products = $seller->products()
+                ->where('status', 3)
+                ->orderBy('id', 'ASC')->get();
+
+            // 獲取賣家的所有商品類別
+            $sellerCategories = $allCategories->whereIn('id', $products->pluck('product_category_id'));
+        }
+
+        $data = [
+            'products' => $products,
+            'seller' => $seller,
+            'sellerCategories' => $sellerCategories,
+            'productsCount' => $products->count(),
+        ];
+//        dd($request->all());
+
+        return view('products.by_seller', $data);
     }
 
-    public function by_seller_search(Request $request, $seller_id)
+
+    public function by_seller_search(Request $request, $seller_id,$categoryid)
     {
         $query = $request->input('query');
 

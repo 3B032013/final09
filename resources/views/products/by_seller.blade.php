@@ -31,6 +31,32 @@
             </div>
         </div>
     </div>
+
+{{--    <table class="mx-auto" border="0">--}}
+{{--        <thead>--}}
+{{--        <tr align="center">--}}
+{{--            @foreach ($sellerCategories as $category)--}}
+{{--                <th width="200" height="30">--}}
+{{--                    <form action="{{ route('products.by_seller', ['seller_id' => $seller->id]) }}" method="GET">--}}
+{{--                        @method('GET')--}}
+{{--                        <input type="hidden" name="seller_id" value="{{ $seller->id }}">--}}
+{{--                        @if(isset($category_id))--}}
+{{--                            <input type="hidden" name="category_id" value="">--}}
+{{--                            <button type="submit" class="button">選擇所有商品</button>--}}
+{{--                        @else--}}
+{{--                                <input type="hidden" name="category_id" value="{{ $category->id }}">--}}
+{{--                            <button type="submit" class="button">{{$category->name}}</button>--}}
+{{--                            <button type="submit" class="button" name="category_id" value="{{ $category->id }}">--}}
+{{--                                {{$category->name}}--}}
+{{--                            </button>--}}
+{{--                        @endif--}}
+{{--                    </form>--}}
+{{--                </th>--}}
+{{--            @endforeach--}}
+{{--        </tr>--}}
+{{--        </thead>--}}
+{{--    </table>--}}
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             @if (count($products) > 0)
@@ -108,4 +134,22 @@
         });
     </script>
 @endsection
+
+    <style>
+        .button {
+            display: inline-block;
+            outline: 0;
+            border: 0;
+            cursor: pointer;
+            background-color: white;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            border: 1px solid #cbd5e0;
+            line-height: 26px;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
+        }
+    </style>
 
