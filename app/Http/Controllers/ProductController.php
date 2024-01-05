@@ -54,7 +54,6 @@ class ProductController extends Controller
             $product = Product::where('id',$productId)->first();
 
             $averageScore = Comment::getAverageScoreForProduct($product->id);
-
             $AllMessages = Comment::getAllMessagesForProduct($product->id);
 
             $productsCount = Product::where('seller_id', $seller_id)->where('status','3')->count();
@@ -87,10 +86,17 @@ class ProductController extends Controller
                 ->limit(4) // 限制取得的數量，根據你的需求調整
                 ->get();
 
+            $seller_id=$product->seller->id;
+            $productsCount = Product::where('seller_id', $seller_id)->count();
+            $averageScore = Comment::getAverageScoreForProduct($product->id);
+            $AllMessages = Comment::getAllMessagesForProduct($product->id);
 
             $data = [
                 'product' => $product,
                 'relatedProducts' => $relatedProducts,
+                'averageScore'=>$averageScore,
+                'AllMessages'=>$AllMessages,
+                'productsCount'=>$productsCount,
 
             ];
             return view('products.show', $data);

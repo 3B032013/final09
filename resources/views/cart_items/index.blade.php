@@ -166,9 +166,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const quantitySpans = document.querySelectorAll('.quantity-span');
-            const totalAmountElement = document.getElementById('totalAmount');
-
             const checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
@@ -190,7 +187,18 @@
 
                 totalAmount += totalShippingFee;
 
-                totalAmountElement.textContent = `$${totalAmount.toFixed(0)}`;
+                // Log for debugging
+                console.log('Total Amount:', totalAmount);
+
+                // 確保能正確獲取 totalAmount 元素
+                const totalAmountElement = document.getElementById('totalAmount');
+
+                if (totalAmountElement) {
+                    totalAmountElement.textContent = `$${totalAmount.toFixed(0)}`;
+                } else {
+                    // Log for debugging
+                    console.error('Total Amount Element not found!');
+                }
             }
         });
     </script>

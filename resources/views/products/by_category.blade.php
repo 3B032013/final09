@@ -30,7 +30,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <a href="{{ route("products.show",$product->id) }}">
-                                <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }} " style="max-width: 100%; height: 180px"/>
+                                <img class="card-img-top" src="{{ asset('storage/products/' . $product->image_url) }}" alt="{{ $product->title }} " style="max-width: 150%; height: 250px"/>
                             </a>
                             <!-- Product details-->
                             <div class="card-body p-4">

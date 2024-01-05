@@ -18,16 +18,22 @@
                         <tr>
                             <td>
                                 <div class="rating d-flex justify-content-center mb-4">
-                                    @php
-                                        $count = 0
-                                    @endphp
-                                    @for ($i = 5; $i >= 1; $i--)
-                                        @php
-                                            $count += 1
-                                        @endphp
-                                        <input type="radio" id="star{{ $i }}" name="comment_rating" value="{{ $i }}" {{ old('averageScore', number_format($averageScore,0)) == $i ? 'checked' : '' }} disabled>
-                                        <label for="star{{ $i }}"><i class="fas fa-star"></i></label>
-                                    @endfor
+                                    @if(count($AllMessages) > 0)
+                                        <div class="rating d-flex justify-content-center mb-4">
+                                            @php
+                                                $count = 0
+                                            @endphp
+                                            @for ($i = 5; $i >= 1; $i--)
+                                                @php
+                                                    $count += 1
+                                                @endphp
+                                                <input type="radio" id="star{{ $i }}" name="comment_rating" value="{{ $i }}" {{ old('averageScore', number_format($averageScore,0)) == $i ? 'checked' : '' }} disabled>
+                                                <label for="star{{ $i }}"><i class="fas fa-star"></i></label>
+                                            @endfor
+                                        </div>
+                                    @else
+                                        <div align="center"><p>目前無評論</p></div>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
