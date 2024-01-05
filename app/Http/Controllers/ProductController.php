@@ -176,7 +176,7 @@ class ProductController extends Controller
             'query' => $query,
         ]);
     }
-    public function by_seller(Request $request,$seller_id, $category_id = null)
+    public function by_seller(Request $request,$seller_id)
     {
 //        // 獲取所有商品類別
         $allCategories = ProductCategory::all();
@@ -223,7 +223,7 @@ class ProductController extends Controller
     }
 
 
-    public function by_seller_search(Request $request, $seller_id,$categoryid)
+    public function by_seller_search(Request $request, $seller_id)
     {
         $query = $request->input('query');
 
