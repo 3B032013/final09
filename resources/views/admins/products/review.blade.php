@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label for="inventory" class="form-label">庫存</label>
-                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory',$product->inventory) }}" placeholder="請輸入數量" readonly>
+                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory',$product->inventory) }}" placeholder="請輸入庫存" readonly>
             </div>
 
             <form action="{{ route('admins.products.pass',$product->id) }}" method="POST" role="form">

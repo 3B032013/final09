@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="product_category" class="form-label">選擇商品類別</label>
                 <select id="product_category" name="product_category" class="form-control">
-                    @foreach($product_category as $product_category)
+                    @foreach($product_categories as $product_category)
                         <option value="{{ $product_category->id }}">{{ $product_category->name }}</option>
                     @endforeach
                 </select>
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="inventory" class="form-label">庫存</label>
-                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory') }}" placeholder="請輸入商品數量">
+                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory') }}" placeholder="請輸入商品庫存">
             </div>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
