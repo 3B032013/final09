@@ -55,7 +55,8 @@ class ProductController extends Controller
 
             $averageScore = Comment::getAverageScoreForProduct($product->id);
             $AllMessages = Comment::getAllMessagesForProduct($product->id);
-            $productsCount = Product::where('seller_id', $seller_id)->count();
+
+            $productsCount = Product::where('seller_id', $seller_id)->where('status','3')->count();
 
             $relatedProducts = Product::where('product_category_id', $product->product_category_id)
                 ->where('id', '!=', $product->id) // 排除當前產品

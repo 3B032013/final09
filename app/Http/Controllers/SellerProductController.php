@@ -25,8 +25,8 @@ class SellerProductController extends Controller
     public function create()
     {
         $seller = Auth::user()->seller;
-        $product_category = ProductCategory::orderby('id','ASC')->get();
-        $data = ['product_category' => $product_category,'seller'=>$seller];
+        $product_categories = ProductCategory::orderby('id','ASC')->get();
+        $data = ['product_categories' => $product_categories,'seller'=>$seller];
 
         return view('sellers.products.create',$data);
     }
@@ -141,6 +141,9 @@ class SellerProductController extends Controller
     }
     public function destroy(Product $product)
     {
+        if ($product->image_url) {
+            Storage::disk('products')->delete($product->image_url);
+        }
         $product->delete();
         return redirect()->route('sellers.products.index');
     }

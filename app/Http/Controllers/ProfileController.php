@@ -70,6 +70,9 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        if ($request->photo) {
+            Storage::disk('user')->delete($request->photo);
+        }
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
