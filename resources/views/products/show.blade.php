@@ -72,12 +72,8 @@
                                 查看賣場
                             </a>
                         </div>
-                        <div class="m-lg-4">
-
-                        </div>
                     </div>
                 </div>
-
             </div>
             </div>
         </div>

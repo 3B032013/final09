@@ -5,14 +5,14 @@
         <div class="col-lg-2">
             <h5 class="text-black text-uppercase mb-4" style="letter-spacing: 1px;">關於</h5>
             <div class="d-flex flex-column justify-content-start">
-                <a class="text-black-50 mb-2" href="">第一次下單</a>
-                <a class="text-black-50 mb-2" href="">第一次賣書</a>
+                <a class="text-black-50 mb-2" href="detail">第一次下單</a>
+                <a class="text-black-50 mb-2" href="detail">第一次賣商品</a>
             </div>
         </div>
         <div class="col-lg-2">
             <h5 class="text-black text-uppercase mb-4" style="letter-spacing: 1px;">顧客服務</h5>
             <div class="d-flex flex-column justify-content-start">
-                <a class="text-black-50 mb-2" href="">訂單查詢</a>
+                <a class="text-black-50 mb-2" href="{{ route('orders.index') }}">訂單查詢</a>
                 <a class="text-black-50 mb-2" href="">退貨</a>
                 <a class="text-black-50 mb-2" href="">付款方式</a>
                 <a class="text-black-50 mb-2" href="">取貨方式及運費</a>
@@ -21,10 +21,10 @@
         <div class="col-lg-2">
             <h5 class="text-black text-uppercase mb-4" style="letter-spacing: 1px;">會員系統</h5>
             <div class="d-flex flex-column justify-content-start">
-                <a class="text-black-50 mb-2" href="">登入</a>
-                <a class="text-black-50 mb-2" href="">註冊</a>
-                <a class="text-black-50 mb-2" href="">個人資料查詢</a>
-                <a class="text-black-50 mb-2" href="">訂單查詢</a>
+                <a class="text-black-50 mb-2" href="{{ route('login') }}">登入</a>
+                <a class="text-black-50 mb-2" href="{{ route('register') }}">註冊</a>
+                <a class="text-black-50 mb-2" href="{{ route('profile.edit') }}">個人資料查詢</a>
+
             </div>
         </div>
         <div class="col-lg-2">

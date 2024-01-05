@@ -20,6 +20,7 @@ use App\Http\Controllers\CartItemController;
 
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
+Route::get('/detail', [App\Http\Controllers\IndexController::class, 'detail'])->name('detail');
 Route::get('products/{product}/show', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');
 Route::get('products/by_seller/{seller_id}/shop', [App\Http\Controllers\ProductController::class, 'by_seller'])->name('products.by_seller');
