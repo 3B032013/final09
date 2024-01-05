@@ -61,7 +61,7 @@
                 <tr  align="center">
                     <td width="200" height="50">訂單{{ $order->id }}</td>
                     <td width="200" height="50">{{ $order->created_at }}</td>
-                    <td width="200" height="50">{{ count($orders)}}</td>
+                    <td width="200" height="50">{{ count($order->orderitems)}}</td>
                     <td width="200" height="50">
                         @if ($order->status == '0')
                             <div style="color:#8d00ff; font-weight:bold;">
