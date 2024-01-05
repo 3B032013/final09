@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="inventory" class="form-label">庫存數量</label>
-                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory') }}" placeholder="請輸入商品庫存數量">
+                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory') }}" placeholder="請輸入商品庫存">
             </div>
             <input type="hidden" name="status" value=0>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

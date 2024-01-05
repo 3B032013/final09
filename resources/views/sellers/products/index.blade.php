@@ -27,7 +27,7 @@
                 <th scope="col" style="text-align:left">商品圖片</th>
                 <th scope="col" style="text-align:left">商品簡述</th>
                 <th scope="col" style="text-align:left">價格</th>
-                <th scope="col" style="text-align:left">數量</th>
+                <th scope="col" style="text-align:left">庫存</th>
                 <th scope="col" style="text-align:center">修改</th>
                 <th scope="col" style="text-align:center">狀態</th>
                 <th scope="col" style="text-align:center">操作</th>
