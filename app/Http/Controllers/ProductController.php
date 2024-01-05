@@ -84,7 +84,7 @@ class ProductController extends Controller
                 ->inRandomOrder() // 隨機排序
                 ->limit(4) // 限制取得的數量，根據你的需求調整
                 ->get();
-            
+
             $seller_id=$product->seller->id;
             $productsCount = Product::where('seller_id', $seller_id)->count();
             $averageScore = Comment::getAverageScoreForProduct($product->id);
