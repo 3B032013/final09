@@ -3,7 +3,6 @@
 @section('title', $post->title)
 
 @section('content')
-    <hr>
     <div class="container">
         <div class="card mx-auto mt-5" style="width: 50%;">
             <div class="card-body">

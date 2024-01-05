@@ -3,7 +3,6 @@
 @section('title','最新公告')
 
 @section('content')
-    <hr>
     <section class="py-5">
         <div class="container">
             {{-- Display the overall title --}}

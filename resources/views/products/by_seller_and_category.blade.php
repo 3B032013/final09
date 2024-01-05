@@ -3,7 +3,6 @@
 @section('title','二手書拍賣平台')
 
 @section('content')
-<hr>
 <div class="container px-4 px-lg-5 mt-2 mb-4">
     <form action="{{ route('products.by_seller_and_category.search',['seller_id' => $seller->id, 'category_id' => $selectedCategory->id]) }}" method="GET" class="d-flex">
         <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">

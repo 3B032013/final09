@@ -3,7 +3,6 @@
 @section('title', '購物車')
 
 @section('content')
-    <hr>
     <div class="wrapper">
         <div class="container mt-8">
             <h1 class="text-2xl mb-4" align="center">購物車內容</h1>
