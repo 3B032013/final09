@@ -26,8 +26,8 @@
                 <input id="price" name="price" type="text" class="form-control" value="{{ old('price',$product->price) }}" placeholder="請輸入價格" readonly>
             </div>
             <div class="form-group">
-                <label for="quantity" class="form-label">庫存</label>
-                <input id="quantity" name="quantity" type="text" class="form-control" value="{{ old('quantity',$product->quantity) }}" placeholder="請輸入數量" readonly>
+                <label for="inventory" class="form-label">庫存</label>
+                <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory',$product->inventory) }}" placeholder="請輸入數量" readonly>
             </div>
 
             <form action="{{ route('admins.products.pass',$product->id) }}" method="POST" role="form">

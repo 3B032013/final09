@@ -38,7 +38,7 @@
                 <input id="price" name="price" type="text" class="form-control" value="{{ old('price') }}" placeholder="請輸入商品價格">
             </div>
             <div class="form-group">
-                <label for="inventory" class="form-label">數量</label>
+                <label for="inventory" class="form-label">庫存</label>
                 <input id="inventory" name="inventory" type="text" class="form-control" value="{{ old('inventory') }}" placeholder="請輸入商品數量">
             </div>
 
