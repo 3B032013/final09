@@ -42,10 +42,10 @@
             @endif</td>
         </div>
         <br><h3>訂單明細</h3>
-        @foreach ($order -> orderDetails as $index => $orderDetail)
+        @foreach ($order -> orderItems as $index => $orderItem)
         <div class="form-group">
             <label for="order_detail" class="form-label">書籍{{$index + 1}}</label>
-            <input id="order_detail" name="order_detail" type="text" class="form-control" value="{{ old('order_detail',$orderDetail->product->name) }}" readonly>
+            <input id="order_detail" name="order_detail" type="text" class="form-control" value="{{ old('order_detail',$orderItem->product->name) }}" readonly>
         </div>
         @endforeach
         @if (!in_array($order->status, [5, 6, 7, 8]))
