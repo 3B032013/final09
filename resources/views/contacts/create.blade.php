@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('contacts.create.layouts.master')
 
 @section('title','聯絡我們')
 

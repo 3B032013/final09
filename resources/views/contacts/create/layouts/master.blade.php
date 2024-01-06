@@ -6,9 +6,10 @@
         <title>@yield('title')</title>
         <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <link href="{{asset('css/homepage-styles.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/shopitem-styles.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <style>
             .custom-link {
                 color: black; /* 設置字體顏色為黑色 */
@@ -27,4 +28,4 @@
         </section>
         @include('layouts.partials.footer')
     </body>
-<html>
+</html>

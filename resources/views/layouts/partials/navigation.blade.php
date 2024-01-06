@@ -80,7 +80,7 @@
                         @endif
                         @if (Auth::check() && Auth::user()->isAdmin())
                             <li>
-                                <a class="dropdown-item" href="{{ route('admins.dashboard') }}" style="color:black">{{ __('後台管理') }}</a>
+                                <a class="dropdown-item" href="{{ route('admins.users.index') }}" style="color:black">{{ __('後台管理') }}</a>
                             </li>
                         @endif
                         <li>

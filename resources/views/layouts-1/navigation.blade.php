@@ -34,13 +34,25 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('個人資料') }}
-                        </x-dropdown-link>
+                        @if (Auth::check() && Auth::user()->isSeller())
+                            <x-dropdown-link :href="route('profile.edit')">{{ __('個人資料') }}</x-dropdown-link>
+                            @if(Auth::User()->Seller->status==0)
+                                <x-dropdown-link :href="route('sellers.create')">{{ __('賣家申請失敗') }}</x-dropdown-link>
+                            @elseif(Auth::User()->Seller->status==1)
+                                <x-dropdown-link :href="route('home')">{{ __('賣場已被停權') }}</x-dropdown-link>
+                            @elseif(Auth::User()->Seller->status==2)
+                                <x-dropdown-link :href="route('sellers.products.index')">{{ __('賣家後台') }}</x-dropdown-link>
+                            @elseif(Auth::User()->Seller->status==3)
+                                <x-dropdown-link :href="route('home')">{{ __('賣家申請中') }}</x-dropdown-link>
+                            @endif
+                            <x-dropdown-link :href="route('orders.index')">{{ __('訂購清單') }}</x-dropdown-link>
+                        @else
+                            <x-dropdown-link :href="route('profile.edit')">{{ __('個人資料') }}</x-dropdown-link>
+                            <x-dropdown-link :href="route('sellers.create')">{{ __('申請成為賣家') }}</x-dropdown-link>
+                            <x-dropdown-link :href="route('orders.index')">{{ __('訂購清單') }}</x-dropdown-link>
+                        @endif
                         @if (Auth::check() && Auth::user()->isAdmin())
-                            <x-dropdown-link :href="route('admins.dashboard')">
-                                {{ __('後台管理') }}
-                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admins.dashboard')">{{ __('後台管理') }}</x-dropdown-link>
                         @endif
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
