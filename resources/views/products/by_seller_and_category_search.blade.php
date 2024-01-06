@@ -1,6 +1,6 @@
 @extends('products.by_seller.layouts.master')
 
-@section('title','二手書拍賣平台')
+@section('title',$seller->user->name.' - 賣場')
 
 @section('page-path')
     <div>

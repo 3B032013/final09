@@ -1,6 +1,6 @@
 @extends('admins.layouts.master')
 
-@section('page-title', 'Edit article')
+@section('page-title', '編輯書籍類別 - '.$product_category->name)
 
 @section('page-content')
     <div class="container-fluid px-4">

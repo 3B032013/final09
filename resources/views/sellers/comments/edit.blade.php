@@ -1,6 +1,6 @@
 @extends('sellers.layouts.master')
 
-@section('page-title', 'Edit article')
+@section('page-title', '編輯評價')
 
 @section('page-content')
     <div class="container-fluid px-4">

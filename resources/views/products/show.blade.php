@@ -1,6 +1,6 @@
 @extends('products.show.layouts.master')
 
-@section('title','商品內容')
+@section('title','商品檢視 - '.$product->name)
 
 @section('page-path')
     <div>

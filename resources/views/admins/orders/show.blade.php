@@ -1,6 +1,6 @@
 @extends('admins.layouts.master')
 
-@section('page-title', 'Edit article')
+@section('page-title', '訂單明細')
 
 @section('page-content')
     <div class="container-fluid px-4">

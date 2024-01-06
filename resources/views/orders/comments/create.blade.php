@@ -1,6 +1,6 @@
 @extends('products.index.layouts.master')
 
-@section('title', '訂單')
+@section('title', '評論訂單')
 
 @section('content')
     <hr>

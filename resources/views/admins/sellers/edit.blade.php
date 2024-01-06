@@ -1,6 +1,6 @@
 @extends('admins.layouts.master')
 
-@section('page-title', 'Edit article')
+@section('page-title', '賣家審核 - '.$seller->user->name)
 
 @section('page-content')
     <div class="container-fluid px-4">

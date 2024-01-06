@@ -1,3 +1,5 @@
+@section('title', '重設密碼')
+
 <x-guest-layout>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf

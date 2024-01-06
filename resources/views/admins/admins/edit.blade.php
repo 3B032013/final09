@@ -1,6 +1,6 @@
 @extends('admins.layouts.master')
 
-@section('page-title', 'Edit article')
+@section('page-title', '編輯管理員 - '.$admin->user->name)
 
 @section('page-content')
     <div class="container-fluid px-4">
