@@ -1,6 +1,6 @@
 @extends('products.index.layouts.master')
 
-@section('title','二手書拍賣平台')
+@section('title','電腦二手零件交易平台')
 
 @section('content')
     <div class="container px-4 px-lg-5 mt-2 mb-4">

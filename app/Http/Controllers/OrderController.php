@@ -145,7 +145,13 @@ class OrderController extends Controller
                     // 扣除商品庫存
                     $product['inventory'] -= $quantity;
                     Product::where('id', $product['id'])->update(['inventory' => $product['inventory']]);
+
+                    if ($product['inventory'] == 0) {
+                        Product::where('id', $product['id'])->update(['status' => 4]);
+                    }
                 }
+
+
             }
 
             $productIdsToRemove = $items->pluck('cart_item.product_id');

@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sellers', function (Blueprint $table) {
-            # 使用者編號 外來鍵
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sellers', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropForeign(['order_id']);
         });
     }
 };

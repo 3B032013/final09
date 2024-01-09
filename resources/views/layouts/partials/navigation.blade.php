@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="{{ url('/') }}">二手零件交易平台</a>
+        <a class="navbar-brand" href="{{ url('/') }}">電腦二手零件交易平台</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -80,7 +80,7 @@
                         @endif
                         @if (Auth::check() && Auth::user()->isAdmin())
                             <li>
-                                <a class="dropdown-item" href="{{ route('admins.dashboard') }}" style="color:black">{{ __('後台管理') }}</a>
+                                <a class="dropdown-item" href="{{ route('admins.users.index') }}" style="color:black">{{ __('後台管理') }}</a>
                             </li>
                         @endif
                         <li>

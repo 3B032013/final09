@@ -33,7 +33,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $order->user->name }}</td>
-                    <td>{{ $order->seller->user->name }}</td>
+                    <td>{{ $order->seller->user->name ?? 'N/A' }}</td>
                     <td>{{ $order->date }}</td>
                     <td> @if ($order->status == '0')
                             <div style="color:#8d00ff; font-weight:bold;">

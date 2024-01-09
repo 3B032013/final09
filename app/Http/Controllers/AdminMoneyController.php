@@ -17,13 +17,16 @@ class AdminMoneyController extends Controller
         // 總收益計算
         $totalProfit = 0;
 
-        foreach ($completedOrders as $order) {
-            foreach ($order->orderDetails as $orderDetail) {
-                $product = $orderDetail->product;
-                $platformFee = $product->price * 0.05 * $orderDetail->quantity;
-                $totalProfit += $platformFee;
+        if (!$completedOrders->isEmpty()) {
+            foreach ($completedOrders as $order) {
+                foreach ($order->orderItems as $orderItem) {
+                    $product = $orderItem->product;
+                    $platformFee = $product->price * 0.05 * $orderItem->quantity;
+                    $totalProfit += $platformFee;
+                }
             }
         }
+
         $data = ['totalProfit' => $totalProfit, 'orders' => $completedOrders];
         return view('admins.moneys.index', $data);
     }

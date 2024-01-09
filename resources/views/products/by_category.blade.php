@@ -1,6 +1,6 @@
 @extends('products.show.layouts.master')
 
-@section('title','二手書拍賣平台')
+@section('title','類別搜尋 - '.$selectedCategory->name.'類')
 
 @section('page-path')
     <div>

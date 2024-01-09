@@ -1,6 +1,6 @@
 @extends('products.index.layouts.master')
 
-@section('title', '訂單')
+@section('title', '訂單付款')
 
 @section('page-path')
     <div>

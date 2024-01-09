@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('order_items', function (Blueprint $table) {
             # 訂單編號 外來鍵
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             # 商品編號 外來鍵
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

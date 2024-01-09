@@ -30,6 +30,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
@@ -38,5 +43,23 @@ class Order extends Model
     public function comment()
     {
         return $this->hasOne(comment::class);
+    }
+
+    public function calculateTotalProfit()
+    {
+        $totalProfit = 0;
+
+        foreach ($this->orderItems as $orderItem) {
+            // Assuming you have a relationship between OrderDetail and Product model
+            $product = $orderItem->product;
+
+            // Calculate the platform fee (5% of the product price times quantity)
+            $platformFee = $product->price * 0.05 * $orderItem->quantity;
+
+            // Accumulate the total profit (platform profit)
+            $totalProfit += $platformFee;
+        }
+
+        return $totalProfit;
     }
 }

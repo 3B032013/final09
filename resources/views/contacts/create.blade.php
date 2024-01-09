@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('contacts.create.layouts.master')
 
-@section('title','二手書拍賣平台')
+@section('title','聯絡我們')
 
 @section('content')
 <section class="py-5">

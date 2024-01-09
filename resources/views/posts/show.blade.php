@@ -1,6 +1,6 @@
 @extends('products.show.layouts.master')
 
-@section('title', $post->title)
+@section('title','公告 - '.$post->title)
 
 @section('page-path')
     <div>
