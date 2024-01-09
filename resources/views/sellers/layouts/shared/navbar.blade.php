@@ -19,17 +19,6 @@
                aria-expanded="false">賣家：{{ Auth::user()->name }} </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{ route('home') }}">回到前台</a></li>
-                <li><a class="dropdown-item" href="#!">設定</a></li>
-                <li>
-                    <hr class="dropdown-divider"/>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();" style="color:black">{{ __('登出') }}</a>
-                </li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
             </ul>
         </li>
     </ul>

@@ -89,10 +89,12 @@ class SellerOrderController extends Controller
     }
     public function show()
     {
-        $orders = Order::where('status','5')->orderby('id','ASC')->get();
+        $seller = Auth::user()->seller;
+        $orders = Order::where('status','5')
+            ->where('seller_id',$seller->id)
+            ->orderby('id','ASC')->get();
         $data = ['orders' => $orders];
         return view('sellers.orders.show',$data);
-
     }
 
 

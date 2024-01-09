@@ -7,15 +7,47 @@ use App\Http\Requests\StorecommentRequest;
 use App\Http\Requests\UpdatecommentRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SellerCommentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('status','5',)->orderby('id','ASC')->get();
+        $seller = Auth::user()->seller;
+        $perPage = $request->input('perPage', 10);
+        $orders = Order::where('status', '5')
+            ->where('seller_id', $seller->id)
+            ->orderBy('id', 'ASC')
+            ->paginate($perPage);
         $data = ['orders' => $orders];
         return view('sellers.comments.index',$data);
     }
+
+    public function search(Request $request)
+    {
+        $seller = Auth::user()->seller;
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+
+        $orders = Order::where('status', '5')
+            ->where('seller_id', $seller->id)
+            ->when($query, function ($queryBuilder) use ($query) {
+                $queryBuilder->where(function ($subQuery) use ($query) {
+                    $subQuery->whereHas('seller.user', function ($userQuery) use ($query) {
+                        $userQuery->where('name', 'like', "%$query%");
+                    })
+                        ->orWhereHas('user', function ($userQuery) use ($query) {
+                            $userQuery->where('name', 'like', "%$query%");
+                        });
+                });
+            })
+            ->orderBy('id', 'ASC')
+            ->paginate($perPage);
+
+        $data = ['orders' => $orders, 'query' => $query];
+        return view('sellers.comments.index', $data);
+    }
+
     public function edit(Order $order)
     {
         $data = [

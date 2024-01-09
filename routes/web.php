@@ -111,6 +111,7 @@ Route::group(['middleware' => 'seller'], function () {
 
         #訂單評價管理
         Route::get('/comments', [App\Http\Controllers\SellerCommentController::class, 'index'])->name('comments.index');
+        Route::get('/comments/search', [App\Http\Controllers\SellerCommentController::class, 'search'])->name('comments.search');
         Route::get('/comments/{order}/edit', [App\Http\Controllers\SellerCommentController::class, 'edit'])->name("comments.edit");
         Route::patch('/comments/{comments}', [App\Http\Controllers\SellerCommentController::class, 'update'])->name('comments.update');
         Route::delete('/comments/{comments}', [App\Http\Controllers\SellerCommentController::class, 'destroy'])->name("comments.destroy");
