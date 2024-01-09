@@ -5,7 +5,7 @@
         <meta viewport" content="width=device-width, initial-scale=1.0">
         <title>@yield('title')</title>
         <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{{--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">--}}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link href="{{asset('css/homepage-styles.css')}}" rel="stylesheet" />

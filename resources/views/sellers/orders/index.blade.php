@@ -21,7 +21,7 @@
             @foreach($orders as $index => $order)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $order->user_id }}</td>
+                    <td>{{ $order->user->name }}</td>
                     <td> @if ($order->status == '1')
                             <div style="color:#FF0000; font-weight:bold;">
                                 (待確認)

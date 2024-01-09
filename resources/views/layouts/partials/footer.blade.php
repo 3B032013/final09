@@ -1,4 +1,4 @@
-<div class="container-fluid bg-gray text-black-30 py-2 px-sm-3 px-lg-4" style="margin-top:250px;">
+<div class="container-fluid bg-light text-black-30 py-2 px-sm-3 px-lg-4" style="margin-top:250px;">
     <div class="row pt-4">
         <div class="col-lg-2">
         </div>
