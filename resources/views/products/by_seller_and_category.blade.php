@@ -80,6 +80,17 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="d-flex justify-content-center">
+                    @if ($products->currentPage() > 1)
+                        <a href="{{ $products->previousPageUrl() }}" class="btn btn-secondary">上一頁</a>
+                    @endif
+
+                    <span class="mx-2">全部 {{ $products->total() }} 筆商品，目前位於第 {{ $products->currentPage() }} 頁，共 {{ $products->lastPage() }} 頁</span>
+
+                    @if ($products->hasMorePages())
+                        <a href="{{ $products->nextPageUrl() }}" class="btn btn-secondary">下一頁</a>
+                    @endif
+                </div>
             @else
                 <div align="center">
                     <h3>賣場內無商品</h3>
