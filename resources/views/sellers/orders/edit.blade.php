@@ -27,26 +27,28 @@
         </div>
         <div class="form-group">
             <label for="status" class="form-label">狀態</label>
-                @if ($order->status == '1')
+                @if($order->status == '0')
+                    <div style="color:#ff6f00; font-weight:bold;">
+                        (買家待付款)
+                    </div>
+                @elseif ($order->status == '1')
                     <div style="color:#FF0000; font-weight:bold;">
                         (待確認)
-                        @if($order->status=='1')
-                            <form action="{{ route('sellers.orders.pass',$order->id) }}" method="POST" role="form">
-                                @method('PATCH')
-                                @csrf
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="submit" class="btn btn-primary btn-sm">接受訂單</button>
-                                </div>
-                            </form>
+                        <form action="{{ route('sellers.orders.pass',$order->id) }}" method="POST" role="form">
+                            @method('PATCH')
+                            @csrf
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary btn-sm">接受訂單</button>
+                            </div>
+                        </form>
 
-                            <form action="{{ route('sellers.orders.unpass',$order->id) }}" method="POST" role="form">
-                                @method('PATCH')
-                                @csrf
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="submit" class="btn btn-primary btn-sm">不接受訂單</button>
-                                </div>
-                            </form>
-                        @endif
+                        <form action="{{ route('sellers.orders.unpass',$order->id) }}" method="POST" role="form">
+                            @method('PATCH')
+                            @csrf
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary btn-sm">不接受訂單</button>
+                            </div>
+                        </form>
                     </div>
                 @elseif ($order->status == '2')
                     <div style="color:#ff6f00; font-weight:bold;">
@@ -111,11 +113,25 @@
                     <div style="color:#002aff; font-weight:bold;">
                         (未成立)
                     </div>
-
                 @endif
-
         </div>
-
+        <div class="form-group">
+            <label class="form-label">訂單明細</label>
+            @foreach($order->orderItems as $orderItem)
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <strong>{{ $orderItem->product->name }}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <span>數量: {{ $orderItem->quantity }}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>價格: ${{ $orderItem->product->price }}</span>
+                    </div>
+                </div>
+            @endforeach
+            <label class="form-label">運費：$60</label>
+        </div>
     </div>
     <script>
         function previewImage(input) {
