@@ -9,6 +9,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,12 +49,10 @@ class OrderController extends Controller
     {
         $selectedItems = $request->query('selected_items');
 
-        // 將這些 ID 轉換為數組，然後使用它們進行進一步的處理
         $selectedItemsArray = explode(',', $selectedItems);
 
-        // 根據 $selectedItemsArray 獲取相應的商品信息，這可以通過你的數據庫模型或其他方式完成
         $selectedCartItems = CartItem::whereIn('id', $selectedItemsArray)
-            ->with('product') // 使用 with 方法预加载关联的产品信息
+            ->with('product')
             ->get()
             ->sortBy(function ($cartItem) {
                 return $cartItem->product->seller_id;
@@ -64,20 +63,69 @@ class OrderController extends Controller
         foreach ($selectedCartItems as $cartItem) {
             $sellerId = $cartItem->product->seller->id;
 
-            // 假設每個賣家的運費為60
             if (!isset($shippingFees[$sellerId])) {
                 $shippingFees[$sellerId] = 60;
             }
         }
         $totalShippingFee = array_sum($shippingFees);
 
-        // 現在，$selectedProducts 將包含所選商品的信息，你可以將它傳遞給結帳視圖
         return view('orders.create', ['selectedCartItems' => $selectedCartItems],['totalShippingFee' => $totalShippingFee]);
+    }
+
+    public function show_create(Request $request)
+    {
+        $selectedItems = $request->input('selected_items');
+
+        $selectedCartItems = Product::where('id', $selectedItems)
+            ->first();
+
+        return view('orders.show_create', ['selectedCartItems' => $selectedCartItems]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    public function show_store(StoreOrderRequest $request, Product $product)
+    {
+        // 創建一個新的訂單
+        $order = new Order();
+        $order->user_id = auth()->user()->id;
+        $order->seller_id = 1;
+        $order->status = 0;
+        $order->date = now();
+        $order->pay = 0;
+
+        // 使用 $product 來獲取價格
+        $order->price = $product->price + 60;
+
+        $order->receiver = $request->receiver;
+        $order->receiver_phone = $request->receiver_phone;
+        $order->receiver_address = $request->receiver_address;
+
+        // 儲存訂單
+        $order->save();
+
+        // 創建一個新的訂單明細
+        $orderDetail = new OrderItem();
+        $orderDetail->order_id = $order->id;
+        $orderDetail->product_id = $product->id; // 使用 $product->id 來獲取商品ID
+        $orderDetail->quantity = 1;
+
+        // 儲存訂單明細
+        $orderDetail->save();
+
+        // 扣除商品庫存
+        $product->decrement('inventory', 1);
+
+        // 檢查庫存是否為 0，如果是，設置商品的 status 為 4
+        if ($product->inventory === 0) {
+            $product->update(['status' => 4]);
+        }
+
+        return redirect()->route('home');
+    }
+
+
     public function store(StoreOrderRequest $request)
     {
         // 先獲取購物車商品資訊

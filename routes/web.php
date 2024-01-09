@@ -62,7 +62,8 @@ Route::group(['middleware' => 'user'], function () {
     #買家訂單
     Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name("orders.index");
     Route::get('orders/create', [App\Http\Controllers\OrderController::class, 'create'])->name("orders.create");
-
+    Route::get('orders/show_create', [App\Http\Controllers\OrderController::class, 'show_create'])->name("orders.show_create");
+    Route::post('orders/show_store/{product}', [App\Http\Controllers\OrderController::class, 'show_store'])->name("orders.show_store");
     Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name("orders.store");
     Route::get('orders/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('orders.filter');
     Route::get('orders/{order}/show', [App\Http\Controllers\OrderController::class, 'show'])->name("orders.show");
