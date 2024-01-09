@@ -121,6 +121,28 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="d-flex align-items-center">
+                <span class="mr-1">每</span>
+                <select id="records-per-page" class="form-control" onchange="changeRecordsPerPage()">
+                    <option value="5" {{ $orders->perPage() == 5 ? 'selected' : '' }}>5</option>
+                    <option value="10" {{ $orders->perPage() == 10 ? 'selected' : '' }}>10</option>
+                    <option value="20" {{ $orders->perPage() == 20 ? 'selected' : '' }}>20</option>
+                </select>
+                <span class="ml-1">筆</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            @if ($orders->currentPage() > 1)
+                <a href="{{ $orders->previousPageUrl() }}" class="btn btn-secondary">上一頁</a>
+            @endif
+
+            <span class="mx-2">全部 {{ $orders->total() }} 筆資料，目前位於第 {{ $orders->currentPage() }} 頁，共 {{ $orders->lastPage() }} 頁</span>
+
+            @if ($orders->hasMorePages())
+                <a href="{{ $orders->nextPageUrl() }}" class="btn btn-secondary">下一頁</a>
+            @endif
+        </div>
     @else
         <br><br><div align="center"><h3>目前無訂單</h3></div>
     @endif
@@ -143,4 +165,10 @@
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
     }
 </style>
-
+<script>
+    function changeRecordsPerPage() {
+        const select = document.getElementById('records-per-page');
+        const value = select.options[select.selectedIndex].value;
+        window.location.href = `{{ route('orders.index') }}?perPage=${value}`;
+    }
+</script>
