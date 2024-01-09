@@ -25,7 +25,10 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @foreach($products as $product)
+                @php
+                    $count =0;
+                @endphp
+                @foreach($products as $key => $product)
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -40,6 +43,18 @@
                                     <!-- Product price-->
                                     <span class="price" style="color: red; font-size: 1.6em; font-weight: bold;">${{ $product->price }}</span>
                                 </div>
+                            </div>
+                            <div align="center">
+                                @if (isset($averageScores[$key+1]))
+                                    <div class="rating d-flex justify-content-center mb-4">
+                                        @for ($i = 5; $i >= 1; $i--)
+                                            <input type="radio" id="star{{ $i }}" name="comment_rating_{{ $count }}" value="{{ $i }}" {{ old('buyer_rating', number_format($averageScores[$key+1], 0)) == $i ? 'checked' : '' }} disabled>
+                                            <label for="star{{ $i }}"><i class="fas fa-star"></i></label>
+                                        @endfor
+                                    </div>
+                                @else
+                                    <p>尚無評分</p>
+                                @endif
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-3 pt-0 border-top-0 bg-transparent d-flex justify-content-center align-items-center">
@@ -134,4 +149,41 @@
             }
         });
     </script>
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('image-preview');
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+    <style>
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #ddd;
+        }
+
+        .rating input:checked ~ label {
+            color: #ffc107;
+        }
+    </style>
 @endsection

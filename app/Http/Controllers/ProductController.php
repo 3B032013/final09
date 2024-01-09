@@ -113,6 +113,7 @@ class ProductController extends Controller
             ->where('status','=',3)
             ->paginate($perPage);
 
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
 //        // 搜尋賣家
 //        $sellers = Seller::where('name', 'like', "%$query%")->get();
 
@@ -121,6 +122,7 @@ class ProductController extends Controller
             'products' => $products,
 //            'sellers' => $sellers,
             'query' => $query,
+            'averageScores'=>$averageScores,
         ]);
     }
 
@@ -157,9 +159,11 @@ class ProductController extends Controller
             ->where('status', 3)
             ->paginate($perPage);
 
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
         return view('products.by_category', [
             'selectedCategory' => $selectedCategory,
             'products' => $products,
+            'averageScores'=>$averageScores,
         ]);
     }
 
@@ -172,10 +176,11 @@ class ProductController extends Controller
             ->where('name', 'like', "%$query%")
             ->where('status', 3)
             ->paginate($perPage);
-
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
         return view('products.by_category', [
             'selectedCategory' => $selectedCategory,
             'products' => $products,
+            'averageScores'=>$averageScores,
             'query' => $query,
         ]);
     }

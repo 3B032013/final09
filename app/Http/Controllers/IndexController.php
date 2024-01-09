@@ -13,7 +13,7 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 12);
-        $products = Product::orderBy('id','DESC')->where('status',3)->paginate($perPage);
+        $products = Product::orderBy('id','ASC')->where('status',3)->paginate($perPage);
 
         $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
 
