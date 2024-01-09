@@ -105,12 +105,13 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
+        $perPage = $request->input('perPage', 12);
         $query = $request->input('query');
 
         // 搜尋商品
         $products = Product::where('name', 'like', "%$query%")
             ->where('status','=',3)
-            ->get();
+            ->paginate($perPage);
 
 //        // 搜尋賣家
 //        $sellers = Seller::where('name', 'like', "%$query%")->get();

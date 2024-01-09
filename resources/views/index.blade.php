@@ -77,7 +77,7 @@
             // 如果輸入值不是一個有效的數字，或者超出庫存範圍，進行相應處理
             if (isNaN(newValue) || newValue < minInventory || newValue > maxInventory) {
                 // 顯示警告或執行其他處理方式，例如將數量重置為庫存範圍內的值
-                alert('請輸入有效的數量');
+                alert('輸入超過庫存數量!');
                 input.value = Math.min(Math.max(newValue, minInventory), maxInventory);
             }
         }

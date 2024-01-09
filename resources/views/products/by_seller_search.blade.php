@@ -70,10 +70,10 @@
                                         @csrf
                                         @method('POST')
                                         <span class="quantity-span">
-                            <button class="quantity-minus" type="button">-</button>
-                            <input class="quantity-input" type="text"  name="quantity" value="1" style="max-width: 5rem">
-                            <button class="quantity-plus" type="button">+</button>
-                            </span>
+                                            <button class="quantity-minus" data-product-id="{{ $product->id }}" type="button">-</button>
+                                            <input class="quantity-input" data-product-id="{{ $product->id }}" type="text" min="1" max="{{ $product->inventory }}" name="quantity" value="1" style="max-width: 5rem" oninput="checkQuantity(this)">
+                                            <button class="quantity-plus" data-product-id="{{ $product->id }}" type="button">+</button>
+                                        </span>
                                         <br><br><div class="text-center"><button class="btn btn-outline-dark mx-6 mt-auto" type="submit">加入購物車</button></div>
                                     </form>
 
@@ -102,6 +102,23 @@
     </section>
 
     <script>
+        function checkQuantity(input) {
+            // 獲取輸入框的值
+            let newValue = parseInt(input.value);
+
+            // 獲取庫存範圍
+            let maxInventory = parseInt(input.getAttribute('max'));
+            let minInventory = parseInt(input.getAttribute('min'));
+
+            // 如果輸入值不是一個有效的數字，或者超出庫存範圍，進行相應處理
+            if (isNaN(newValue) || newValue < minInventory || newValue > maxInventory) {
+                // 顯示警告或執行其他處理方式，例如將數量重置為庫存範圍內的值
+                alert('輸入超過庫存數量!');
+                input.value = Math.min(Math.max(newValue, minInventory), maxInventory);
+            }
+        }
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const quantitySpans = document.querySelectorAll('.quantity-span');
 
@@ -109,23 +126,36 @@
                 const quantityInput = span.querySelector('.quantity-input');
                 const minusButton = span.querySelector('.quantity-minus');
                 const plusButton = span.querySelector('.quantity-plus');
+                const productId = quantityInput.getAttribute('data-product-id'); // 獲取商品 ID
 
                 minusButton.addEventListener('click', function(event) {
                     event.preventDefault();
-                    updateQuantity(quantityInput, -1);
+                    updateQuantity(quantityInput, -1, productId);
                 });
 
                 plusButton.addEventListener('click', function(event) {
                     event.preventDefault();
-                    updateQuantity(quantityInput, 1);
+                    updateQuantity(quantityInput, 1, productId);
                 });
             });
 
-            function updateQuantity(input, change) {
+            function updateQuantity(input, change, productId) {
                 let newValue = parseInt(input.value) + change;
+
                 if (newValue < 1) {
                     newValue = 1;
                 }
+
+                // 在這裡你可以使用 productId，執行與商品相關的操作，例如檢查是否超過庫存
+                // 如果你的商品信息需要從後端獲取，你可能需要進行 Ajax 請求來獲取該商品的庫存等信息
+
+                // 檢查是否超過庫存
+                if (input.getAttribute('max') && newValue > parseInt(input.getAttribute('max'))) {
+                    newValue = parseInt(input.getAttribute('max'));
+                    // 可以顯示提示或採取其他處理方式，例如禁用按鈕
+                    alert('超過庫存數量！');
+                }
+
                 input.value = newValue;
             }
         });
