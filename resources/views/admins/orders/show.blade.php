@@ -39,15 +39,8 @@
                 <input id="status" name="status" type="text" class="form-control" value="取消" readonly>
             @elseif ($order->status == '8')
                 <input id="status" name="status" type="text" class="form-control" value="未成立" readonly>
-            @endif</td>
+            @endif
         </div>
-        <br><h3>訂單明細</h3>
-        @foreach ($order -> orderItems as $index => $orderItem)
-        <div class="form-group">
-            <label for="order_detail" class="form-label">書籍{{$index + 1}}</label>
-            <input id="order_detail" name="order_detail" type="text" class="form-control" value="{{ old('order_detail',$orderItem->product->name) }}" readonly>
-        </div>
-        @endforeach
         @if (!in_array($order->status, [5, 6, 7, 8]))
         <form action="{{ route('admins.orders.cancel',$order->id) }}" method="POST" role="form">
             @method('PATCH')
@@ -59,6 +52,24 @@
         @else
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">目前狀態無法取消訂單</div>
         @endif
+        <div class="form-group">
+            <label class="form-label">訂單明細</label>
+            @foreach($order->orderItems as $orderItem)
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <strong>{{ $orderItem->product->name }}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <span>數量: {{ $orderItem->quantity }}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>價格: ${{ $orderItem->product->price }}</span>
+                    </div>
+                </div>
+            @endforeach
+            <label class="form-label">運費：$60</label><br>
+            <label class="form-label">總金額：${{ $order->price }}</label>
+        </div>
     </div>
     <script>
         function previewImage(input) {

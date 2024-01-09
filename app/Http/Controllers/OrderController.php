@@ -34,8 +34,8 @@ class OrderController extends Controller
         $status2 = $request->input('status2');
         $status3 = $request->input('status3');
         $status4 = $request->input('status4');
-
-        $orders = Order::whereIn('status', [$status, $status2,$status3,$status4])->get();
+        $perPage = $request->input('perPage', 10);
+        $orders = Order::whereIn('status', [$status, $status2,$status3,$status4])->paginate($perPage);
 
         // You can pass $orders to the view and display the filtered orders
 
