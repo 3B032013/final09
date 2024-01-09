@@ -74,7 +74,8 @@ class SellerProductController extends Controller
     }
     public function edit(Product $product)
     {
-        $data = [
+        $product_categories = ProductCategory::orderby('id','ASC')->get();
+        $data = ['product_categories' => $product_categories,
             'product'=> $product,
         ];
         return view('sellers.products.edit',$data);
@@ -111,7 +112,7 @@ class SellerProductController extends Controller
             // Set the new image URL in the Product instance
             $product->image_url = $imageName;
         }
-
+        $product->product_category_id = $request->product_category;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->inventory = $request->inventory;

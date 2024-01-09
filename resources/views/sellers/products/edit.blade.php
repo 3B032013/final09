@@ -13,6 +13,17 @@
             @method('PATCH')
             @csrf
             <div class="form-group">
+                <label for="product_category" class="form-label">選擇商品類別</label>
+                <select id="product_category" name="product_category" class="form-control">
+                    @foreach($product_categories as $product_category)
+{{--                        <option value="{{ $product_category->id }}">{{ $product_category->name }}</option>--}}
+                        <option value="{{ $product_category->id }}" {{ $product->product_category_id == $product_category->id ? 'selected' : '' }}>
+                            {{$product_category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="name" class="form-label">商品名稱</label>
                 <input id="name" name="name" type="text" class="form-control" value="{{ old('name',$product->name) }}" placeholder="請輸入帳號">
             </div>
