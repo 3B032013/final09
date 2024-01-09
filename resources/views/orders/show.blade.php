@@ -193,8 +193,7 @@
         </tr>
         <tr>
             <td colspan="5">
-            <textarea id="buyer_message" name="buyer_message" class="form-control" rows="10" readonly>
-                {{ old('buyer_message', optional($order_detail->order->comment)->buyer_message) }}</textarea>
+            <textarea id="buyer_message" name="buyer_message" class="form-control" rows="10" readonly>{{ old('buyer_message', optional($order_detail->order->comment)->buyer_message) }}</textarea>
             </td>
         </tr>
         @endif

@@ -46,8 +46,7 @@
                     <div class='form-row row'>
                         <div class='col-xs-12 form-group required'>
                             <label for="buyer_message" class="form-label">輸入評論內容</label>
-                            <textarea id="buyer_message" name="buyer_message" class="form-control" rows="10" placeholder="請輸入文章內容">
-                            {{ old('buyer_message', optional($order->comment)->buyer_message) }}</textarea>
+                            <textarea id="buyer_message" name="buyer_message" class="form-control" rows="10" placeholder="請輸入文章內容">{{ old('buyer_message', optional($order->comment)->buyer_message) }}</textarea>
                         </div>
                     </div>
                 </td>
