@@ -33,6 +33,24 @@ class Comment extends Model
         return number_format($averageScore, 1); // Format the score with one decimal place
     }
 
+    public static function getAverageScoreForProducts($productIds)
+    {
+        $averageScores = [];
+
+        foreach ($productIds as $productId) {
+            $averageScore = self::whereHas('order.orderItems.product', function ($query) use ($productId) {
+                $query->where('products.id', $productId);
+            })
+                ->selectRaw('COALESCE(AVG(buyer_rating), 0) AS average_score')
+                ->pluck('average_score')
+                ->first();
+
+            $averageScores[$productId] = number_format($averageScore, 1);
+        }
+
+        return $averageScores;
+    }
+
     public static function getAllMessagesForProduct($productId)
     {
         $messages = self::whereHas('order.orderItems.product', function ($query) use ($productId) {
