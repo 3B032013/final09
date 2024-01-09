@@ -1,6 +1,6 @@
 @extends('products.index.layouts.master')
 
-@section('title','二手書拍賣平台')
+@section('title','二手電腦零件交易平台')
 
 @section('content')
 

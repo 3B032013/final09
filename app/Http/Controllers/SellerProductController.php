@@ -87,9 +87,9 @@ class SellerProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:25',
-            'content' => 'required',
+            'detail' => 'required',
             'price' => 'required',
-            'quantity' => 'required',
+            'inventory' => 'required',
             'image_url' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -114,8 +114,8 @@ class SellerProductController extends Controller
 
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->quantity = $request->quantity;
-        $product->content = $request->input('content');
+        $product->inventory = $request->inventory;
+        $product->detail = $request->input('detail');
 
         $product->save();
 
