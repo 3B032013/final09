@@ -17,6 +17,18 @@
             <h3 class="text-2xl mb-4" align="center">訂購清單</h3>
         </div>
     </div>
+    <div class="container px-4 px-lg-5 mt-2 mb-4">
+        <form action="{{ route('orders.search') }}" method="GET" class="d-flex">
+            <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
+            <button type="submit" class="btn btn-outline-dark">搜尋</button>
+        </form>
+    </div>
+    @if (request()->has('query'))
+        <div class="container px-4 px-lg-5 mt-2 mb-4">
+            查找「{{ request('query') }}」
+            <a class="btn btn-success btn-sm" href="{{ route('orders.index') }}">取消搜尋</a>
+        </div>
+    @endif
     <table class="mx-auto" border="0">
         <thead align="center">
         <tr  align="center">

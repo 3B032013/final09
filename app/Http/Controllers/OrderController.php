@@ -284,6 +284,25 @@ class OrderController extends Controller
         //
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+
+        $orders = Order::whereHas('seller.user', function ($queryBuilder) use ($query) {
+            $queryBuilder->where('name', 'like', "%$query%");
+        })
+            ->orWhereHas('user', function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'like', "%$query%");
+            })
+            ->paginate($perPage);
+
+        return view('orders.index', [
+            'orders' => $orders,
+            'query' => $query,
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */

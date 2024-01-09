@@ -71,6 +71,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::patch('orders/{order}/update_pay', [App\Http\Controllers\OrderController::class, 'update_pay'])->name("orders.update_pay");
     Route::patch('orders/{order}/complete_order', [App\Http\Controllers\OrderController::class, 'complete_order'])->name("orders.complete_order");
     Route::patch('orders/{order}/cancel_order', [App\Http\Controllers\OrderController::class, 'cancel_order'])->name("orders.cancel_order");
+    Route::get('orders/search', [App\Http\Controllers\OrderController::class, 'search'])->name('orders.search');
 
     Route::get('orders/comments/{order}', [App\Http\Controllers\CommentController::class, 'create'])->name('comments.create');
     Route::patch('orders/comments/{order}/store', [App\Http\Controllers\CommentController::class, 'store'])->name("comments.store");
