@@ -21,17 +21,16 @@
                     $cartItemsBySeller = $cartItems->groupBy('product.seller.id');
                     $totalAmount = 0;
                 @endphp
-
+                <table class="mx-auto" border="0">
                 @foreach ($cartItemsBySeller as $sellerId => $items)
                     @php
                         $seller = $items->first()->product->seller;
                         $totalAmountBySeller = 0;
                     @endphp
 
-                        <table class="mx-auto" border="0">
-                        <tbody>
+                    <tbody>
                         <tr>
-                            <td class="py-2 px-4 border-b" colspan="7">
+                            <td class="py-2 px-4 border-b" colspan="9">
                                 賣家：{{ $seller->user->name }}
                             </td>
                         </tr>
@@ -87,12 +86,17 @@
                                 $totalAmountBySeller += $cartItem->quantity * $cartItem->product->price;
                             @endphp
                         @endforeach
-                        </tbody>
-                    </table>
-                        @php
-                            $totalAmount += $totalAmountBySeller;
-                        @endphp
+                        <tr>
+                            <td class="py-2 px-4 border-b" colspan="9" align="left">
+                                <hr>
+                            </td>
+                        </tr>
+                    </tbody>
+                    @php
+                        $totalAmount += $totalAmountBySeller;
+                    @endphp
                 @endforeach
+                </table>
 
                 <hr>
                 <div class="text-left" id="totalShippingFeeDisplay">
