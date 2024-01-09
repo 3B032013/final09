@@ -98,61 +98,77 @@ class OrderController extends Controller
             ];
         });
 
-        // 將購買的商品以賣家做區隔
-        $groupedItems = $productsByCartItem->groupBy(function ($item) {
-            // 以seller_id區隔
-            return $item['product']->seller_id;
-        });
+        // 檢查所有商品庫存是否足夠
+        if ($this->checkInventoryForAll($productsByCartItem)) {
+            // 遍歷分組後的商品，建立對應的訂單
+            $productsByCartItem->groupBy(function ($item) {
+                // 以seller_id區隔
+                return $item['product']->seller_id;
+            })->each(function ($items, $sellerId) use ($request, $user) {
+                // 建立訂單
+                $order = new Order();
+                $order->user_id = $user->id;
+                $order->seller_id = $sellerId;
+                $order->status = 0;
+                $order->date = now();
+                $order->pay = 0;
+                $order->price = $items->sum(function ($item) {
+                        return $item['cart_item']['quantity'] * $item['cart_item']['product']['price'];
+                    }) + 60;
+                $order->receiver = $request->receiver;
+                $order->receiver_phone = $request->receiver_phone;
+                $order->receiver_address = $request->receiver_address;
 
-        // 遍歷分組後的商品，建立對應的訂單
-        $groupedItems->each(function ($items, $sellerId) use ($request, $user) {
-            // 建立訂單
-            $order = new Order();
-            $order->user_id = $user->id;
-            $order->seller_id = $sellerId; // 賣家的 ID
-            $order->status = 0; // 這裡可以根據需求填入適當的初始狀態
-            $order->date = now(); // 或者你想要的訂單日期
-            $order->pay = 0;
-            # 抓取該在該賣家購買的訂單總額
-            $sellerTotal = $items->sum(function ($item) {
-                return $item['cart_item']['quantity'] * $item['cart_item']['product']['price'];
-            });
-            $order->price = $sellerTotal+60;
-            $order->receiver = $request->receiver;
-            $order->receiver_phone = $request->receiver_phone;
-            $order->receiver_address = $request->receiver_address;
+                // 儲存訂單
+                $order->save();
 
-            // 儲存訂單
-            $order->save();
+                // 建立訂單明細
+                foreach ($items as $item) {
+                    $orderDetail = new OrderItem();
+                    $orderDetail->order_id = $order->id;
+                    $orderDetail->product_id = $item['cart_item']['product_id'];
+                    $orderDetail->quantity = $item['cart_item']['quantity'];
+                    // ...其他訂單明細相關欄位
 
-            // 建立訂單明細
-            foreach ($items as $item) {
-                $orderDetail = new OrderItem();
-                $orderDetail->order_id = $order->id;
-                $orderDetail->product_id = $item['cart_item']['product_id'];
-                $orderDetail->quantity = $item['cart_item']['quantity'];
-                // ...其他訂單明細相關欄位
+                    // 儲存訂單明細
+                    $orderDetail->save();
 
-                // 儲存訂單明細
-                $orderDetail->save();
-
-
-                // 訂單建立後，將商品資料表的庫存扣除
-                $product = $item['cart_item']['product'];
-                $quantity = $item['cart_item']['quantity'];
-                // 檢查庫存是否足夠
-                if ($product['inventory'] >= $quantity) {
                     // 扣除商品庫存
-                    $product['inventory'] -= $quantity;
-                    Product::where('id', $product['id'])->update(['inventory' => $product['inventory']]);
+                    Product::where('id', $item['cart_item']['product']['id'])->decrement('inventory', $item['cart_item']['quantity']);
+
+                    // 檢查庫存是否為 0，如果是，設置商品的 status 為 4
+                    $updatedInventory = Product::where('id', $item['cart_item']['product']['id'])->value('inventory');
+
+                    if ($updatedInventory == 0) {
+                        Product::where('id', $item['cart_item']['product']['id'])->update(['status' => 4]);
+                    }
                 }
+
+                // 刪除購物車中的商品
+                $productIdsToRemove = $items->pluck('cart_item.product_id');
+                $user->cartItems()->whereIn('product_id', $productIdsToRemove)->delete();
+            });
+
+            return redirect()->route('home'); // 跳轉到你想要的路由
+        } else {
+            // 如果庫存不足，返回上一頁並帶上錯誤訊息
+            return back()->withErrors(['error' => '庫存不足，請調整購買數量。']);
+        }
+    }
+
+// 檢查所有商品庫存是否足夠
+    private function checkInventoryForAll($productsByCartItem)
+    {
+        foreach ($productsByCartItem as $item) {
+            $product = $item['product'];
+            $quantity = $item['cart_item']['quantity'];
+
+            if ($product['inventory'] < $quantity) {
+                return false; // 如果有任一商品庫存不足，返回 false
             }
+        }
 
-            $productIdsToRemove = $items->pluck('cart_item.product_id');
-            $user->cartItems()->whereIn('product_id', $productIdsToRemove)->delete();
-        });
-
-        return redirect()->route('home'); // 跳轉到你想要的路由
+        return true; // 所有商品庫存足夠
     }
 
     /**
