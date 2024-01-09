@@ -54,7 +54,8 @@
         <table class="min-w-full bg-white border border-gray-200 mx-auto" border="1">
             <thead align="center">
             <tr  align="center">
-                <th width="200" height="30">訂單</th>
+                <th width="200" height="30">#</th>
+                <th width="200" height="30">賣家</th>
                 <th width="200" height="30">建立日期</th>
                 <th width="200" height="30">商品數</th>
                 <th width="200" height="30">狀態</th>
@@ -67,6 +68,7 @@
             @foreach ($orders as $order)
                 <tr  align="center">
                     <td width="200" height="50">訂單{{ $order->id }}</td>
+                    <td width="200" height="50">{{ $order->seller->user->name }}</td>
                     <td width="200" height="50">{{ $order->created_at }}</td>
                     <td width="200" height="50">{{ count($order->orderitems)}}</td>
                     <td width="200" height="50">
