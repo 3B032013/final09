@@ -5,16 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class SellerOrderController extends Controller
 {
     public function index(Request $request)
     {
+        $seller = Auth::user()->seller;
         $perPage = $request->input('perPage', 10);
-        $orders = Order::orderby('id','ASC')->paginate($perPage);
+        $orders = Order::orderby('id','ASC')->where('seller_id',$seller->id)->paginate($perPage);
         $data = ['orders' => $orders];
         return view('sellers.orders.index',$data);
     }
+
+    public function search(Request $request)
+    {
+        $seller = Auth::user()->seller;
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+
+        $orders = Order::where('seller_id', $seller->id)
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->whereHas('seller.user', function ($subQuery) use ($query) {
+                    $subQuery->where('name', 'like', "%$query%");
+                })
+                    ->orWhereHas('user', function ($subQuery) use ($query) {
+                        $subQuery->where('name', 'like', "%$query%");
+                    });
+            })
+            ->orderBy('id', 'ASC')
+            ->paginate($perPage);
+
+        return view('sellers.orders.index', [
+            'orders' => $orders,
+            'query' => $query,
+        ]);
+    }
+
     public function edit(Order $order)
     {
         $data = [

@@ -99,6 +99,7 @@ Route::group(['middleware' => 'seller'], function () {
 
         #訂單管理
         Route::get('/orders', [App\Http\Controllers\SellerOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/search', [App\Http\Controllers\SellerOrderController::class, 'search'])->name('orders.search');
         Route::get('/orders/{order}/edit', [App\Http\Controllers\SellerOrderController::class, 'edit'])->name("orders.edit");
         Route::patch('/orders/{order}', [App\Http\Controllers\SellerOrderController::class, 'update'])->name('orders.update');
         Route::patch('/orders/{order}/pass', [App\Http\Controllers\SellerOrderController::class, 'pass'])->name('orders.pass');
