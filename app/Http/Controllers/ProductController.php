@@ -191,7 +191,7 @@ class ProductController extends Controller
             ->where('status', 3)
             ->orderby('id','ASC')->paginate($perPage);
         $seller = Seller::where('id', $seller_id)->first();
-
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
         $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
             $query->select('product_category_id')
                 ->from('products')
@@ -204,6 +204,7 @@ class ProductController extends Controller
             'products' => $products,
             'seller' => $seller,
             'sellerCategories' => $sellerCategories,
+            'averageScores'=>$averageScores,
             'productsCount' => $products->count(),
         ];
         return view('products.by_seller', $data);

@@ -75,11 +75,16 @@ class OrderController extends Controller
 
     public function show_create(Request $request)
     {
+        $user = Auth::user();
         $selectedItems = $request->input('selected_items');
 
         $selectedCartItems = Product::where('id', $selectedItems)
             ->first();
 
+        // 判斷使用者是否擁有該商品
+        if ($selectedCartItems->seller->user->id == $user->id) {
+            return back()->with('error', '您不能購買自己的商品！');
+        }
         return view('orders.show_create', ['selectedCartItems' => $selectedCartItems]);
     }
 

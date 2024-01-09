@@ -3,6 +3,11 @@
 @section('title','電腦二手零件交易平台')
 
 @section('content')
+    @if (session('error'))
+        <script>
+            alert("{{ session('error') }}");
+        </script>
+    @endif
     <div class="container px-4 px-lg-5 mt-2 mb-4">
         <form action="{{ route('products.search') }}" method="GET" class="d-flex">
             <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
