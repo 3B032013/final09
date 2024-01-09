@@ -16,16 +16,24 @@
             </tr>
             </thead>
             <tbody>
+            @php
+                $totalProfit = 0
+            @endphp
             @foreach($orders as $index => $order)
+                @php
+                    $totalProfit += $order->price * 0.95
+                @endphp
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->price * 0.95 }}</td>
                     <td>{{ $order->date }}</td>
-
                 </tr>
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-end mt-4">
+            <strong>總收益： @php print($totalProfit); @endphp元</strong>
+        </div>
     </div>
 @endsection
