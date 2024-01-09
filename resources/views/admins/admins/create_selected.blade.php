@@ -24,8 +24,11 @@
                 <label for="position" class="form-label">職級</label>
                 <select id="position" name="position" class="form-control">
                     <option value=3>一般管理員</option>
-                    <option value=2>高階管理員</option>
-                    <option value=1>超級管理員</option>
+                    @if(Auth::user()->admin->position <= 2)
+                        <option value=2>高階管理員</option>
+                    @elseif(Auth::user()->admin->position <= 1)
+                        <option value=1>超級管理員</option>
+                    @endif
                 </select>
             </div>
             <input type="hidden" name="user_id" id="user_id" value="{{ $user_selected->id }}">
