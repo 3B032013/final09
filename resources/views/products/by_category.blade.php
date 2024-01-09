@@ -82,6 +82,9 @@
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $count +=1;
+                        @endphp
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-center">

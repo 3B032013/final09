@@ -230,7 +230,7 @@ class ProductController extends Controller
             })
             ->orderBy('id', 'ASC')
             ->paginate($perPage);
-
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
         $seller = Seller::find($seller_id);
 
         $sellerCategories = $originalSellerCategories;
@@ -239,6 +239,7 @@ class ProductController extends Controller
             'products' => $products,
             'seller' => $seller,
             'sellerCategories' => $sellerCategories,
+            'averageScores'=>$averageScores,
             'query' => $query,
         ];
 
@@ -253,7 +254,7 @@ class ProductController extends Controller
             ->where('status', 3)
             ->orderBy('id', 'ASC')
             ->paginate($perPage);
-
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
         $seller = Seller::find($seller_id);
 
         $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
@@ -270,6 +271,7 @@ class ProductController extends Controller
             'products' => $products,
             'seller' => $seller,
             'sellerCategories' => $sellerCategories,
+            'averageScores'=>$averageScores,
             'selectedCategory' => $selectedCategory,
         ];
 
@@ -289,7 +291,7 @@ class ProductController extends Controller
             })
             ->orderBy('id', 'ASC')
             ->paginate($perPage);
-
+        $averageScores = Comment::getAverageScoreForProducts($products->pluck('id'));
         $seller = Seller::find($seller_id);
         $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
             $query->select('product_category_id')
@@ -304,6 +306,7 @@ class ProductController extends Controller
             'products' => $products,
             'seller' => $seller,
             'sellerCategories' => $sellerCategories,
+            'averageScores'=>$averageScores,
             'selectedCategory' => $selectedCategory,
             'query' => $query,
         ];
