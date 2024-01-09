@@ -4,7 +4,7 @@
 
 @section('page-content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">書籍類別管理</h1>
+        <h1 class="mt-4">商品類別管理</h1>
         <div class="container px-4 px-lg-5 mt-2 mb-4">
             <form action="{{ route('admins.product_categories.search') }}" method="GET" class="d-flex">
                 <input type="text" name="query" class="form-control me-2" placeholder="關鍵字搜尋...">
@@ -18,7 +18,7 @@
             </div>
         @endif
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-success btn-sm" href="{{ route('admins.product_categories.create') }}">新增書籍類別</a>
+            <a class="btn btn-success btn-sm" href="{{ route('admins.product_categories.create') }}">新增商品類別</a>
         </div>
         <table class="table">
             <thead>

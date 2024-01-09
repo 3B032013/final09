@@ -9,6 +9,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">類別搜尋</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ route('products.by_seller',['seller_id' => $seller->id]) }}">全部</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
                         @foreach ($sellerCategories as $category)
                             <li><a class="dropdown-item" href="{{ route('products.by_seller_and_category', ['seller_id' => $seller->id, 'category_id' => $category->id]) }}">{{ $category->name }}</a></li>
                         @endforeach

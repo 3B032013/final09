@@ -150,10 +150,11 @@ class ProductController extends Controller
 
     public function by_category(Request $request,$category_id)
     {
+        $perPage = $request->input('perPage', 12);
         $selectedCategory = ProductCategory::find($category_id);
         $products = Product::where('product_category_id', $category_id)
             ->where('status', 3)
-            ->get();
+            ->paginate($perPage);
 
         return view('products.by_category', [
             'selectedCategory' => $selectedCategory,
@@ -163,12 +164,13 @@ class ProductController extends Controller
 
     public function by_category_search(Request $request,$category_id)
     {
+        $perPage = $request->input('perPage', 12);
         $query = $request->input('query');
         $selectedCategory = ProductCategory::find($category_id);
         $products = Product::where('product_category_id', $category_id)
             ->where('name', 'like', "%$query%")
             ->where('status', 3)
-            ->get();
+            ->paginate($perPage);
 
         return view('products.by_category', [
             'selectedCategory' => $selectedCategory,
@@ -178,38 +180,19 @@ class ProductController extends Controller
     }
     public function by_seller(Request $request,$seller_id)
     {
-//        // 獲取所有商品類別
-        $allCategories = ProductCategory::all();
-//
-//        // 根據 $seller_id 查詢賣家相關資訊
-        $seller = Seller::findOrFail($seller_id);
+        $perPage = $request->input('perPage', 12);
+        $products = Product::where('seller_id', $seller_id)
+            ->where('status', 3)
+            ->orderby('id','ASC')->paginate($perPage);
+        $seller = Seller::where('id', $seller_id)->first();
 
-        //$seller_id = $request->input('seller_id');
-        $category_id = $request->input('category_id');
-        // 如果提供了 $category_id，則僅顯示該類別的商品
-        if ($category_id) {
-            //$selectedCategory = $allCategories->find($category_id);
-            //$products = $selectedCategory ? $selectedCategory->products : collect();
-            // 獲取賣家的商品類別
-
-            $products = Product::where('seller_id', $seller->id)
-                ->when($category_id, function ($query) use ($category_id) {
-                    return $query->where('product_category_id', $category_id);
-                })
-                ->where('status', 3)
-                ->orderBy('id', 'ASC')
-                ->get();
-            $sellerCategories = $category_id ? $allCategories->whereIn('id', [$category_id]) : $allCategories;
-
-        } else {
-            // 如果未提供 $category_id，則顯示所有商品
-            $products = $seller->products()
-                ->where('status', 3)
-                ->orderBy('id', 'ASC')->get();
-
-            // 獲取賣家的所有商品類別
-            $sellerCategories = $allCategories->whereIn('id', $products->pluck('product_category_id'));
-        }
+        $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
+            $query->select('product_category_id')
+                ->from('products')
+                ->where('seller_id', $seller_id)
+                ->where('status', 3);
+        })->get();
+        $sellerCategories = $originalSellerCategories;
 
         $data = [
             'products' => $products,
@@ -217,15 +200,21 @@ class ProductController extends Controller
             'sellerCategories' => $sellerCategories,
             'productsCount' => $products->count(),
         ];
-//        dd($request->all());
-
         return view('products.by_seller', $data);
     }
 
 
     public function by_seller_search(Request $request, $seller_id)
     {
+        $perPage = $request->input('perPage', 12);
         $query = $request->input('query');
+
+        $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
+            $query->select('product_category_id')
+                ->from('products')
+                ->where('seller_id', $seller_id)
+                ->where('status', 3);
+        })->get();
 
         $products = Product::where('seller_id', $seller_id)
             ->where('status', 3)
@@ -233,11 +222,11 @@ class ProductController extends Controller
                 $queryBuilder->where('name', 'like', '%' . $query . '%');
             })
             ->orderBy('id', 'ASC')
-            ->get();
+            ->paginate($perPage);
 
         $seller = Seller::find($seller_id);
 
-        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+        $sellerCategories = $originalSellerCategories;
 
         $data = [
             'products' => $products,
@@ -249,17 +238,24 @@ class ProductController extends Controller
         return view('products.by_seller_search', $data);
     }
 
-    public function by_seller_and_category($seller_id, $category_id)
+    public function by_seller_and_category(Request $request,$seller_id, $category_id)
     {
+        $perPage = $request->input('perPage', 12);
         $products = Product::where('seller_id', $seller_id)
             ->where('product_category_id', $category_id)
             ->where('status', 3)
             ->orderBy('id', 'ASC')
-            ->get();
+            ->paginate($perPage);
 
         $seller = Seller::find($seller_id);
 
-        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+        $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
+            $query->select('product_category_id')
+                ->from('products')
+                ->where('seller_id', $seller_id)
+                ->where('status', 3);
+        })->get();
+        $sellerCategories = $originalSellerCategories;
 
         $selectedCategory = ProductCategory::find($category_id);
 
@@ -275,6 +271,7 @@ class ProductController extends Controller
 
     public function by_seller_and_category_search(Request $request,$seller_id, $category_id)
     {
+        $perPage = $request->input('perPage', 12);
         $query = $request->input('query');
 
         $products = Product::where('seller_id', $seller_id)
@@ -284,10 +281,16 @@ class ProductController extends Controller
                 $queryBuilder->where('name', 'like', '%' . $query . '%');
             })
             ->orderBy('id', 'ASC')
-            ->get();
+            ->paginate($perPage);
 
         $seller = Seller::find($seller_id);
-        $sellerCategories = ProductCategory::whereIn('id', $products->pluck('product_category_id'))->get();
+        $originalSellerCategories = ProductCategory::whereIn('id', function ($query) use ($seller_id) {
+            $query->select('product_category_id')
+                ->from('products')
+                ->where('seller_id', $seller_id)
+                ->where('status', 3);
+        })->get();
+        $sellerCategories = $originalSellerCategories;
         $selectedCategory = ProductCategory::find($category_id);
 
         $data = [
