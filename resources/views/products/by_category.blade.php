@@ -3,6 +3,11 @@
 @section('title','類別搜尋 - '.$selectedCategory->name.'類')
 
 @section('page-path')
+    @if (session('error'))
+        <script>
+            alert("{{ session('error') }}");
+        </script>
+    @endif
     <div>
         <p style="font-size: 1.2em;">
             <a href="{{ route('home') }}"><i class="fa fa-home"></i></a> &gt;
