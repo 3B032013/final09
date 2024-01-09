@@ -12,6 +12,15 @@
 @endsection
 
 @section('content')
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            {{ $errors->first('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <div class="wrapper">
         <div class="container mt-8">
             <h3 class="text-2xl mb-4" align="center">訂單結帳</h3>
