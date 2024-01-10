@@ -155,6 +155,8 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/moneys', [App\Http\Controllers\AdminMoneyController::class, 'index'])->name('moneys.index');
         Route::get('/moneys/search', [App\Http\Controllers\AdminMoneyController::class, 'search'])->name('moneys.search');
 
+        Route::get('/contacts', [App\Http\Controllers\AdminContactController::class, 'index'])->name('contacts.index');
+        Route::get('/contacts/{contact}/show', [App\Http\Controllers\AdminContactController::class, 'show'])->name('contacts.show');
 
         //公告路由
         Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");

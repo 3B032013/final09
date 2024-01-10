@@ -26,6 +26,9 @@
                 <a class="nav-link" href="{{ route('admins.posts.index') }}">
                     公告管理
                 </a>
+                <a class="nav-link" href="{{ route('admins.contacts.index') }}">
+                    意見回饋
+                </a>
                 <a class="nav-link" href="{{ route('admins.admins.index') }}">
                     管理員管理
                 </a>
