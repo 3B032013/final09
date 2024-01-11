@@ -19,13 +19,11 @@
             @if ($cartItems->count() > 0)
                 @php
                     $cartItemsBySeller = $cartItems->groupBy('product.seller.id');
-                    $totalAmount = 0;
                 @endphp
                 <table class="mx-auto" border="0">
                 @foreach ($cartItemsBySeller as $sellerId => $items)
                     @php
                         $seller = $items->first()->product->seller;
-                        $totalAmountBySeller = 0;
                     @endphp
 
                     <tbody>
@@ -82,9 +80,6 @@
                                     </form>
                                 </td>
                             </tr>
-                            @php
-                                $totalAmountBySeller += $cartItem->quantity * $cartItem->product->price;
-                            @endphp
                         @endforeach
                         <tr>
                             <td class="py-2 px-4 border-b" colspan="9" align="left">
@@ -92,9 +87,6 @@
                             </td>
                         </tr>
                     </tbody>
-                    @php
-                        $totalAmount += $totalAmountBySeller;
-                    @endphp
                 @endforeach
                 </table>
 
@@ -102,9 +94,6 @@
                 <div class="text-left" id="totalShippingFeeDisplay">
                     <strong>商品總運費：</strong>${{ number_format($totalShippingFee, 0) }}
                 </div>
-                <script>
-                    const totalShippingFee = {{ $totalShippingFee }};
-                </script>
                 <div class="text-left" >
                     <strong>商品總金額：</strong>
                     <div id="totalAmountWithoutShippingFeeDisplay" style="display: inline;">${{ number_format($totalAmountWithoutShippingFee, 0) }}</div>

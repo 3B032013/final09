@@ -36,8 +36,9 @@ class CartItemController extends Controller
             }
         }
         $totalShippingFee = array_sum($shippingFees);
+        $totalAmountWithoutShippingFee = $totalAmount;
+        $totalAmount += $totalShippingFee;
 
-        $totalAmountWithoutShippingFee = $totalAmount - $totalShippingFee;
 
         $data = [
             'cartItems' => $cartItems,
