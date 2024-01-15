@@ -78,6 +78,7 @@
 <a href="https://imgur.com/YMnCQ6D"><img src="https://i.imgur.com/YMnCQ6D.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/T44QTvB"><img src="https://i.imgur.com/T44QTvB.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/6KGZHQG"><img src="https://i.imgur.com/6KGZHQG.png" title="source: imgur.com" /></a>
+
 賣家新增商品
 <a href="https://imgur.com/wNDQ18v"><img src="https://i.imgur.com/wNDQ18v.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/7yHhZM7"><img src="https://i.imgur.com/7yHhZM7.png" title="source: imgur.com" /></a>
@@ -87,17 +88,22 @@
 <a href="https://imgur.com/sz4iWof"><img src="https://i.imgur.com/sz4iWof.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/wNDQ18v"><img src="https://i.imgur.com/wNDQ18v.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/YfRuEZu"><img src="https://i.imgur.com/YfRuEZu.png" title="source: imgur.com" /></a>
+
 賣家查詢商品
 <a href="https://imgur.com/3dUevgh"><img src="https://i.imgur.com/3dUevgh.png" title="source: imgur.com" /></a>
+
 賣家訂單處理
 <a href="https://imgur.com/ttyCA0y"><img src="https://i.imgur.com/ttyCA0y.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/pHsqdiK"><img src="https://i.imgur.com/pHsqdiK.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/Gr6LjUO"><img src="https://i.imgur.com/Gr6LjUO.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/cPEAo5P"><img src="https://i.imgur.com/cPEAo5P.png" title="source: imgur.com" /></a>
+
 賣家查詢訂單
 <a href="https://imgur.com/v0MEBnN"><img src="https://i.imgur.com/v0MEBnN.png" title="source: imgur.com" /></a>
+
 賣家金流管理
 <a href="https://imgur.com/qs2fYoG"><img src="https://i.imgur.com/qs2fYoG.png" title="source: imgur.com" /></a>
+
 賣家評價管理
 <a href="https://imgur.com/DaREZ8F"><img src="https://i.imgur.com/DaREZ8F.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/usxbCgR"><img src="https://i.imgur.com/usxbCgR.png" title="source: imgur.com" /></a>
@@ -207,23 +213,38 @@
 
 ## 實體資料表欄位
 1.會員(賣家跟買家資料表)
-欄位名稱	英文欄位名稱	資料型態	可否為空值	備註	主鍵
-/外來鍵
-編號	id	int(11)	No	自動遞增	主鍵
-圖片	photo	varchar(255)	yes		
-姓名	name	varchar(255)	No		
-性別	sex	varchar(255)	No		
-生日	birthday	date	No		
-電話	phone	varchar(255)	No		
-地址	address	varchar(255)	No		
-郵件	email	varchar(255)	No		
-密碼	password	varchar(255)	No		
-金融帳戶	account	Varchar(255)	yes	可以選擇是否添加(賣家一定要有)	
-狀態	status	Int(11)	No	0買家
-1.停權
-2賣家審請已通過
-3審請中	
-賣家編號	seller_id	Int(11)	yes	申請為賣家才有(自動遞增	主鍵
+<a href="https://imgur.com/7rXRnAD"><img src="https://i.imgur.com/7rXRnAD.png" title="source: imgur.com" /></a>
+
+2.賣家資料表
+<a href="https://imgur.com/lKiDDfX"><img src="https://i.imgur.com/lKiDDfX.png" title="source: imgur.com" /></a>
+
+3.管理員資料表
+<a href="https://imgur.com/mclNm0z"><img src="https://i.imgur.com/mclNm0z.png" title="source: imgur.com" /></a>
+
+4.商品資料表
+<a href="https://imgur.com/Jc7pZnJ"><img src="https://i.imgur.com/Jc7pZnJ.png" title="source: imgur.com" /></a>
+
+5.商品類別資料表
+<a href="https://imgur.com/LmXkbZH"><img src="https://i.imgur.com/LmXkbZH.png" title="source: imgur.com" /></a>
+
+6.購物車資料表
+<a href="https://imgur.com/kADAh8b"><img src="https://i.imgur.com/kADAh8b.png" title="source: imgur.com" /></a>
+
+7.訂單資料表
+<a href="https://imgur.com/fT24iGZ"><img src="https://i.imgur.com/fT24iGZ.png" title="source: imgur.com" /></a>
+
+8.訂單明細資料表
+<a href="https://imgur.com/bXY8tl7"><img src="https://i.imgur.com/bXY8tl7.png" title="source: imgur.com" /></a>
+
+9.評論資料表
+<a href="https://imgur.com/Qr7ouF9"><img src="https://i.imgur.com/Qr7ouF9.png" title="source: imgur.com" /></a>
+
+10.公告資料表
+<a href="https://imgur.com/rIs2Y8b"><img src="https://i.imgur.com/rIs2Y8b.png" title="source: imgur.com" /></a>
+
+11.聯絡我們資料表
+<a href="https://imgur.com/OUenFNO"><img src="https://i.imgur.com/OUenFNO.png" title="source: imgur.com" /></a>
+
 
 
 ## 專案恢復步驟
