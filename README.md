@@ -73,6 +73,35 @@
 <a href="https://imgur.com/biH436n"><img src="https://i.imgur.com/biH436n.png" title="source: imgur.com" /></a>
 
 ## 使用者 - 會員(賣家)
+會員申請成為賣家
+<a href="https://imgur.com/qyLP65n"><img src="https://i.imgur.com/qyLP65n.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/YMnCQ6D"><img src="https://i.imgur.com/YMnCQ6D.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/T44QTvB"><img src="https://i.imgur.com/T44QTvB.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/6KGZHQG"><img src="https://i.imgur.com/6KGZHQG.png" title="source: imgur.com" /></a>
+賣家新增商品
+<a href="https://imgur.com/wNDQ18v"><img src="https://i.imgur.com/wNDQ18v.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/7yHhZM7"><img src="https://i.imgur.com/7yHhZM7.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/ByqsJpO"><img src="https://i.imgur.com/ByqsJpO.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/lwbusIi"><img src="https://i.imgur.com/lwbusIi.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Efihktj"><img src="https://i.imgur.com/Efihktj.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/sz4iWof"><img src="https://i.imgur.com/sz4iWof.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/wNDQ18v"><img src="https://i.imgur.com/wNDQ18v.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/YfRuEZu"><img src="https://i.imgur.com/YfRuEZu.png" title="source: imgur.com" /></a>
+賣家查詢商品
+<a href="https://imgur.com/3dUevgh"><img src="https://i.imgur.com/3dUevgh.png" title="source: imgur.com" /></a>
+賣家訂單處理
+<a href="https://imgur.com/ttyCA0y"><img src="https://i.imgur.com/ttyCA0y.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/pHsqdiK"><img src="https://i.imgur.com/pHsqdiK.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Gr6LjUO"><img src="https://i.imgur.com/Gr6LjUO.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/cPEAo5P"><img src="https://i.imgur.com/cPEAo5P.png" title="source: imgur.com" /></a>
+賣家查詢訂單
+<a href="https://imgur.com/v0MEBnN"><img src="https://i.imgur.com/v0MEBnN.png" title="source: imgur.com" /></a>
+賣家金流管理
+<a href="https://imgur.com/qs2fYoG"><img src="https://i.imgur.com/qs2fYoG.png" title="source: imgur.com" /></a>
+賣家評價管理
+<a href="https://imgur.com/DaREZ8F"><img src="https://i.imgur.com/DaREZ8F.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/usxbCgR"><img src="https://i.imgur.com/usxbCgR.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/chjyTUZ"><img src="https://i.imgur.com/chjyTUZ.png" title="source: imgur.com" /></a>
 
 ## 使用者 - 管理員
 
