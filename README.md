@@ -303,6 +303,7 @@
 - 賣家/管理員後台樣板：https://startbootstrap.com/template/sb-admin
 
 ## 系統測試資料存放位置
+- 專案資料夾final09底下的final09.sql
 
 ## 系統測試帳號
 ★ 前台
