@@ -305,7 +305,10 @@
 
 7.在UwAmp下，點選Apache config，選擇port 8000 ，並在Document Root 輸入{DOCUMENTPATH}/final09/public
 
-8.最後在網頁上輸入localhost:8000即可進入網頁
+8.將final09專案資料夾下的測試圖片資料夾products移至storage/app/public/下
+
+9.最後在網頁上輸入localhost:8000即可進入網頁
+
 ## 初始專案與DB負責
 - 初始專案 [3B032013 陳柏勳](https://github.com/3B032013)
 - DB [3B032007 劉秉樺](https://github.com/3B032007)、[3B032013 陳柏勳](https://github.com/3B032013)、[3B032050黃文輝](https://github.com/3B032050)
@@ -316,8 +319,8 @@
 - 賣家/管理員後台樣板：https://startbootstrap.com/template/sb-admin
 
 ## 系統測試資料存放位置
-- 專案資料夾final09底下的final09.sql
-
+- 專案資料夾final09底下的final09.sql資料庫
+- 將final09專案資料夾下的測試圖片資料夾products移至storage/app/public/下
 ## 系統測試帳號
 ★ 前台
      帳號：seller@gmail.com
