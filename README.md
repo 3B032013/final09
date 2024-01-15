@@ -176,7 +176,7 @@
 - 前台賣場商品呈現(Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home'));)[3B032007 劉秉樺](https://github.com/3B032007)
 - 賣場商品搜尋、內容檢視、相關商品查看(Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');)[3B032007 劉秉樺](https://github.com/3B032007)
 - 賣家賣場商品檢視、搜尋(Route::get('products/by_seller/{seller_id}/shop', [App\Http\Controllers\ProductController::class, 'by_seller'])->name('products.by_seller');)[3B032050 黃文輝](https://github.com/3B032050)
-- 最新消息(公告)(Route::get('posts', function () {return view('bootstarap.post');}))   [3B032013 陳柏勳](https://github.com/3B032013)
+- 最新消息(公告)(Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');)   [3B032013 陳柏勳](https://github.com/3B032013)
 - 聯絡我們(意見回饋)(Route::get('contacts', [App\Http\Controllers\ContactController::class, 'create'])->name("contacts.create");)[3B032007 劉秉樺](https://github.com/3B032007)
 
 會員
