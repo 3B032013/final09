@@ -108,13 +108,49 @@
 ## 系統名稱及作用
 二手電腦零件交易平台
 
+- 科技發展推動人們升級系統和尋找經濟實惠的電腦零件，促使二手市場需求。
+- 平台目標滿足市場需求，同時注重環境可持續發展。
+- 透過促進電腦二手零件再利用，減少電子廢棄物，實現環境的持續發展。
+- 建立電腦二手零件交易平台，方便買家選購、賣家販售。
+- 平台作為第三方增加買家信心，提高零件價值，實現雙贏。
 
 ## 系統的主要功能
-前台
+★ 前台
 
-賣家後台
+訪客 & 會員
+- 前台賣場商品呈現(Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home'));)[3B032007 劉秉樺](https://github.com/3B032007)
+- 賣場商品搜尋、內容檢視、相關商品查看(Route::get('products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');)[3B032007 劉秉樺](https://github.com/3B032007)
+- 賣家賣場商品檢視、搜尋(Route::get('products/by_seller/{seller_id}/shop', [App\Http\Controllers\ProductController::class, 'by_seller'])->name('products.by_seller');)[3B032050 黃文輝](https://github.com/3B032050)
+- 最新消息(公告)(Route::get('posts', function () {return view('bootstarap.post');}))   [3B032013 陳柏勳](https://github.com/3B032013)
+- 聯絡我們(意見回饋)(Route::get('contacts', [App\Http\Controllers\ContactController::class, 'create'])->name("contacts.create");)[3B032007 劉秉樺](https://github.com/3B032007)
 
-管理員後台
+會員
+- 會員資料編輯(Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');)[3B032050 黃文輝](https://github.com/3B032050)
+- 加入購物車、數量刪減、刪除購物車(Route::get('cart_items', [App\Http\Controllers\CartItemController::class, 'index'])->name("cart_items.index");)[3B032007 劉秉樺](https://github.com/3B032007)
+- 申請成為賣家(Route::get('sellers/create', [App\Http\Controllers\SellerController::class, 'create'])->name("sellers.create");)[3B032050 黃文輝](https://github.com/3B032050)
+- 建立訂單、訂單管理(Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name("orders.index");)[3B032007 劉秉樺](https://github.com/3B032007)
+- 訂單評論(Route::get('orders/comments/{order}', [App\Http\Controllers\CommentController::class, 'create'])->name('comments.create');)[3B032007 劉秉樺](https://github.com/3B032007)
+
+★ 賣家後台
+
+會員(賣家)
+- 商品管理(Route::get('/products', [App\Http\Controllers\SellerProductController::class, 'index'])->name('products.index');)[3B032050 黃文輝](https://github.com/3B032050)
+- 訂單管理(處理買家訂單)(Route::get('/orders', [App\Http\Controllers\SellerOrderController::class, 'index'])->name('orders.index');)[3B032050 黃文輝](https://github.com/3B032050)
+- 訂單進帳管理(Route::get('/orders/show', [App\Http\Controllers\SellerOrderController::class, 'show'])->name('orders.show');)[3B032050 黃文輝](https://github.com/3B032050)
+- 訂單評論管理(Route::get('/comments', [App\Http\Controllers\SellerCommentController::class, 'index'])->name('comments.index');)[3B032050 黃文輝](https://github.com/3B032050)
+
+★ 管理員後台
+
+管理員
+- 用戶資料管理(Route::get('/users',[App\Http\Controllers\AdminUserController::class,'index'])->name('users.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 賣家管理(審核賣家申請)(Route::get('/sellers',[App\Http\Controllers\AdminSellerController::class,'index'])->name('sellers.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 訂單管理(檢視所有訂單)(Route::get('/orders', [App\Http\Controllers\AdminOrderController::class, 'index'])->name('orders.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 金流管理(平台獲利)(Route::get('/moneys', [App\Http\Controllers\AdminMoneyController::class, 'index'])->name('moneys.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 意見回饋檢視(用戶意見)(Route::get('/contacts', [App\Http\Controllers\AdminContactController::class, 'index'])->name('contacts.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 公告管理(Route::get('/posts', [App\Http\Controllers\AdminPostController::class, 'index'])->name("posts.index");)[3B032013 陳柏勳](https://github.com/3B032013)
+- 管理員管理(管理員階級區分)(Route::get('/admins',[App\Http\Controllers\AdminAdminController::class,'index'])->name('admins.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 商品管理(審核賣家商品)(Route::get('/products',[App\Http\Controllers\AdminProductController::class,'index'])->name('products.index');)[3B032013 陳柏勳](https://github.com/3B032013)
+- 商品類別管理(Route::get('/product_categories',[App\Http\Controllers\AdminProductCategoryController::class,'index'])->name('product_categories.index');)[3B032013 陳柏勳](https://github.com/3B032013)
 
 ## ERD
 
