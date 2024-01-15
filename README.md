@@ -315,8 +315,13 @@
 
 ## 額外使用套件 & 樣板
 - 前台賣場商品樣板：https://startbootstrap.com/template/shop-homepage
+- 前台賣場首頁呈現所有商品
+
 - 前台賣場商品內容樣板：https://startbootstrap.com/template/shop-item
+- 點擊前台陳列的商品，可以進入商品內容檢視，更好的了解該商品
+
 - 賣家/管理員後台樣板：https://startbootstrap.com/template/sb-admin
+- 後台管理使用，左側清單簡單明瞭，方便管理資料
 
 ## 系統測試資料存放位置
 - 專案資料夾final09底下的final09.sql資料庫
