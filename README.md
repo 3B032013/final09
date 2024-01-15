@@ -24,7 +24,7 @@
 
 ## 使用者 - 會員(買家)
 會員登入畫面
-<a href="https://imgur.com/1Sl72bd"><img src="https://i.imgur.com/1Sl72bd.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/LI9OZSb"><img src="https://i.imgur.com/LI9OZSb.png" title="source: imgur.com" /></a>
 
 加入購物車
 <a href="https://imgur.com/pgaDR6sd"><img src="https://i.imgur.com/pgaDR6s.png" title="source: imgur.com" /></a>
@@ -36,16 +36,16 @@
 <a href="https://imgur.com/bi83ONE"><img src="https://i.imgur.com/bi83ONE.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/f7XYkKU"><img src="https://i.imgur.com/f7XYkKU.png" title="source: imgur.com" /></a>
 
+結帳
+<a href="https://imgur.com/QmJ0VYf"><img src="https://i.imgur.com/QmJ0VYf.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/XYY87f9"><img src="https://i.imgur.com/XYY87f9.png" title="source: imgur.com" /></a>
+
 ## 使用者 - 會員(賣家)
 
 
-## 購物車
+## 使用者 - 會員(賣家)
 
-## 訂單查詢
-
-## 賣家後台管理
-
-## 管理員後台管理
+## 使用者 - 管理員
 
 ## 系統名稱及作用
 二手電腦零件交易平台
