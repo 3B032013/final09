@@ -104,6 +104,55 @@
 <a href="https://imgur.com/chjyTUZ"><img src="https://i.imgur.com/chjyTUZ.png" title="source: imgur.com" /></a>
 
 ## 使用者 - 管理員
+用戶資料管理(新增、刪除、修改、查詢)
+<a href="https://imgur.com/clKArLf"><img src="https://i.imgur.com/clKArLf.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/qdxzmOY"><img src="https://i.imgur.com/qdxzmOY.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/6ckNnQX"><img src="https://i.imgur.com/6ckNnQX.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/RHRQlV7"><img src="https://i.imgur.com/RHRQlV7.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/NvyVeOX"><img src="https://i.imgur.com/NvyVeOX.png" title="source: imgur.com" /></a>
+
+賣家管理(停權、啟用)
+<a href="https://imgur.com/japCujy"><img src="https://i.imgur.com/japCujy.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/LksDpxP"><img src="https://i.imgur.com/LksDpxP.png" title="source: imgur.com" /></a>
+
+訂單管理
+<a href="https://imgur.com/jwCehqp"><img src="https://i.imgur.com/jwCehqp.png" title="source: imgur.com" /></a>
+檢視訂單
+<a href="https://imgur.com/MNGZZSP"><img src="https://i.imgur.com/MNGZZSP.png" title="source: imgur.com" /></a>
+
+金流管理
+<a href="https://imgur.com/HgyC0tx"><img src="https://i.imgur.com/HgyC0tx.png" title="source: imgur.com" /></a>
+檢視商品
+<a href="https://imgur.com/MNGZZSP"><img src="https://i.imgur.com/MNGZZSP.png" title="source: imgur.com" /></a>
+
+商品管理
+<a href="https://imgur.com/LUgQNWT"><img src="https://i.imgur.com/LUgQNWT.png" title="source: imgur.com" /></a>
+刪除商品
+<a href="https://imgur.com/hwsXTwZ"><img src="https://i.imgur.com/hwsXTwZ.png" title="source: imgur.com" /></a>
+
+商品類別管理(新增、修改、停用/啟用)
+<a href="https://imgur.com/10bOAr0"><img src="https://i.imgur.com/10bOAr0.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Ial12vs"><img src="https://i.imgur.com/Ial12vs.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/WDpDMZ8"><img src="https://i.imgur.com/WDpDMZ8.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/gzGoSyP"><img src="https://i.imgur.com/gzGoSyP.png" title="source: imgur.com" /></a>
+
+公告管理(新增、刪除、修改、上架/下架)
+<a href="https://imgur.com/FfmN1RU"><img src="https://i.imgur.com/FfmN1RU.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/2sagcMO"><img src="https://i.imgur.com/2sagcMO.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/41MWDGp"><img src="https://i.imgur.com/41MWDGp.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/rnqidWX"><img src="https://i.imgur.com/rnqidWX.png" title="source: imgur.com" /></a>
+
+意見回饋
+<a href="https://imgur.com/dCdZOta"><img src="https://i.imgur.com/dCdZOta.png" title="source: imgur.com" /></a>
+檢視
+<a href="https://imgur.com/dCdZOta"><img src="https://i.imgur.com/dCdZOta.png" title="source: imgur.com" /></a>
+
+管理管理員(新增、刪除、修改)
+<a href="https://imgur.com/Q9wOuPC"><img src="https://i.imgur.com/Q9wOuPC.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Vl79DBg"><img src="https://i.imgur.com/Vl79DBg.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Vcmo9WI"><img src="https://i.imgur.com/Vcmo9WI.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/uZMbiPt"><img src="https://i.imgur.com/uZMbiPt.png" title="source: imgur.com" /></a>
+
 
 ## 系統名稱及作用
 二手電腦零件交易平台
