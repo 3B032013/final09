@@ -36,8 +36,40 @@
 <a href="https://imgur.com/bi83ONE"><img src="https://i.imgur.com/bi83ONE.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/f7XYkKU"><img src="https://i.imgur.com/f7XYkKU.png" title="source: imgur.com" /></a>
 
-## 使用者 - 會員(賣家)
+會員結帳
+<a href="https://imgur.com/12AuQqg"><img src="https://i.imgur.com/12AuQqg.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/eoijHIb"><img src="https://i.imgur.com/eoijHIb.png" title="source: imgur.com" /></a>
 
+可以直接購買商品
+<a href="https://imgur.com/DPfR0zo"><img src="https://i.imgur.com/DPfR0zo.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/12AuQqg"><img src="https://i.imgur.com/12AuQqg.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/eoijHIb"><img src="https://i.imgur.com/eoijHIb.png" title="source: imgur.com" /></a>
+
+查看訂購清單
+<a href="https://imgur.com/tvleE6Q"><img src="https://i.imgur.com/tvleE6Q.png" title="source: imgur.com" /></a>
+
+查看訂單明細
+<a href="https://imgur.com/f2sdXZL"><img src="https://i.imgur.com/f2sdXZL.png" title="source: imgur.com" /></a>
+
+訂單付款
+<a href="https://imgur.com/kbii2f4"><img src="https://i.imgur.com/kbii2f4.png" title="source: imgur.com" /></a>
+
+已送達訂單可以點擊完成訂單
+<a href="https://imgur.com/KRzn0LN"><img src="https://i.imgur.com/KRzn0LN.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/JgxjIcp"><img src="https://i.imgur.com/JgxjIcp.png" title="source: imgur.com" /></a>
+
+已完成訂單可以進行評論
+<a href="https://imgur.com/MwbO2ji"><img src="https://i.imgur.com/MwbO2ji.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/JgxjIcp"><img src="https://i.imgur.com/JgxjIcp.png" title="source: imgur.com" /></a>
+
+已評論訂單可以修改評論
+<a href="https://imgur.com/9pEYUFg"><img src="https://i.imgur.com/9pEYUFg.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/il7igS8"><img src="https://i.imgur.com/il7igS8.png" title="source: imgur.com" /></a>
+
+會員修改個人資料、重設密碼、刪除帳號
+<a href="https://imgur.com/gDy527X"><img src="https://i.imgur.com/gDy527X.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/07pXQIF"><img src="https://i.imgur.com/07pXQIF.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/biH436n"><img src="https://i.imgur.com/biH436n.png" title="source: imgur.com" /></a>
 
 ## 使用者 - 會員(賣家)
 
