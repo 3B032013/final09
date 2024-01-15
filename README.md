@@ -211,7 +211,7 @@
 <a href="https://imgur.com/tcD2tIj"><img src="https://i.imgur.com/tcD2tIj.png" title="source: imgur.com" /></a>
 
 ## 關聯式綱要圖
-<a href="https://imgur.com/6CCurrD"><img src="https://i.imgur.com/6CCurrD.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/48ycH0F"><img src="https://i.imgur.com/48ycH0F.png" title="source: imgur.com" /></a>
 
 ## 實體資料表欄位
 1.會員(賣家跟買家資料表)
