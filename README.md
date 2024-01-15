@@ -208,8 +208,10 @@
 - 商品類別管理(Route::get('/product_categories',[App\Http\Controllers\AdminProductCategoryController::class,'index'])->name('product_categories.index');)[3B032013 陳柏勳](https://github.com/3B032013)
 
 ## ERD
+<a href="https://imgur.com/tcD2tIj"><img src="https://i.imgur.com/tcD2tIj.png" title="source: imgur.com" /></a>
 
 ## 關聯式綱要圖
+<a href="https://imgur.com/6CCurrD"><img src="https://i.imgur.com/6CCurrD.png" title="source: imgur.com" /></a>
 
 ## 實體資料表欄位
 1.會員(賣家跟買家資料表)
