@@ -1,13 +1,9 @@
 ## 二手電腦零件交易平台
-<hr>
-
-## 專案恢復步驟
-
 ## 系統畫面
-<hr>
-
 ## 首頁
-
+訪客首頁畫面，可以瀏覽賣場商品、搜尋、類別搜尋、最新公告查看
+<a href="https://imgur.com/xOtiUFg"><img src="https://i.imgur.com/xOtiUFg.png" title="source: imgur.com" /></a>
+會員登入畫面
 ## 商品檢視
 
 ## 購物車
@@ -34,6 +30,8 @@
 ## 關聯式綱要圖
 
 ## 實體資料表欄位
+
+## 專案恢復步驟
 
 ## 初始專案與DB負責
 
