@@ -206,6 +206,25 @@
 ## 關聯式綱要圖
 
 ## 實體資料表欄位
+1.會員(賣家跟買家資料表)
+欄位名稱	英文欄位名稱	資料型態	可否為空值	備註	主鍵
+/外來鍵
+編號	id	int(11)	No	自動遞增	主鍵
+圖片	photo	varchar(255)	yes		
+姓名	name	varchar(255)	No		
+性別	sex	varchar(255)	No		
+生日	birthday	date	No		
+電話	phone	varchar(255)	No		
+地址	address	varchar(255)	No		
+郵件	email	varchar(255)	No		
+密碼	password	varchar(255)	No		
+金融帳戶	account	Varchar(255)	yes	可以選擇是否添加(賣家一定要有)	
+狀態	status	Int(11)	No	0買家
+1.停權
+2賣家審請已通過
+3審請中	
+賣家編號	seller_id	Int(11)	yes	申請為賣家才有(自動遞增	主鍵
+
 
 ## 專案恢復步驟
 1.打開cmder，在www目錄下克隆 https://github.com/WISD-2023/final09.git 專案
