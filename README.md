@@ -60,7 +60,8 @@
 
 已完成訂單可以進行評論
 <a href="https://imgur.com/MwbO2ji"><img src="https://i.imgur.com/MwbO2ji.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/JgxjIcp"><img src="https://i.imgur.com/JgxjIcp.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/qjUPtZJ"><img src="https://i.imgur.com/qjUPtZJ.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Bzcff6u"><img src="https://i.imgur.com/Bzcff6u.png" title="source: imgur.com" /></a>
 
 已評論訂單可以修改評論
 <a href="https://imgur.com/9pEYUFg"><img src="https://i.imgur.com/9pEYUFg.png" title="source: imgur.com" /></a>
