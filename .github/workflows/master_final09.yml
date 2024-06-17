@@ -31,9 +31,20 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+      - name: Check if package.json exists
+        id: check_frontend_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'package.json'
+
       - name: Install npm dependencies and build production assets
         if: steps.check_frontend_files.outputs.files_exists == 'true'
         run: |
+          # Install Node.js
+          curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+
+          # Install npm dependencies and build
           npm install
           npm run build
 
