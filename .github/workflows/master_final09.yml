@@ -64,12 +64,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      - name: Run migrations
-        run: php artisan migrate --force
-
-      - name: Seed database
-        run: php artisan db:seed --force
-
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
