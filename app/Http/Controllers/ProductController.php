@@ -50,8 +50,8 @@ class ProductController extends Controller
         {
             $user = Auth::user();
             $cartItems = $user->CartItems;
-            $seller_id=$user->seller->id;
             $product = Product::where('id',$productId)->first();
+            $seller_id = $product->seller->id;
 
             $averageScore = Comment::getAverageScoreForProduct($product->id);
             $AllMessages = Comment::getAllMessagesForProduct($product->id);
